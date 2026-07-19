@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آکادمی چیز کد | آموزش لینوکس</title>
+    <link rel="stylesheet" href="styles/python-linux-style.css">
+    <script src="linux-config.js"></script>
+    <link rel="icon" type="image/jpeg" href="styles/logo.png">
+</head>
+<body>
+
+    <header class="hero-panel">
+        <div class="brand">
+            <img src="styles/logo.jpg" alt="Logo" class="brand-logo" id="logoBtn">
+            <div class="brand-text"><h1>آکادمی چیز کد</h1><p>CheeseCode Academy</p></div>
+        </div>
+        <button class="action-btn" id="infoButton">📢 اطلاعات کانال</button>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <h2 class="sidebar-header">📚 جهت شروع، روی درس کلیک کنید</h2>
+            <nav class="lessons-list" id="lessons-menu"></nav>
+        </aside>
+    </div>
+
+    <div id="lessonModal" class="modal">
+        <div class="modal-content"><span class="close-modal" id="closeLesson">&times;</span><div id="modal-body-content"></div></div>
+    </div>
+
+    <div id="channelModal" class="modal">
+        <div class="modal-content" style="max-width: 450px; text-align: center; border-top-color: #f5b81b;">
+            <span class="close-modal" id="closeChannel">&times;</span>
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎓</div>
+            <h3 style="color: #f5b81b; font-weight: 700; font-size: 1.4rem;">آکادمی چیزکد | CheeseCode</h3>
+            <p style="margin: 1rem 0; color: rgba(255,255,255,0.5);">🍕 آموزش ساده پایتون مثل خوردن پنیر</p>
+            <p style="color: rgba(255,255,255,0.7);">
+                ارتباط با ادمین: 
+                <span style="background: rgba(245, 184, 27, 0.08); color: #f5b81b; padding: 0.3rem 1rem; border-radius: 60px; border: 1px solid rgba(245, 184, 27, 0.1); display: inline-block; backdrop-filter: blur(4px);">
+                    @cheese_code
+                </span>
+            </p>
+            <p style="margin-top: 1.5rem;">
+                <a href="https://ble.ir/cheesecode" target="_blank" class="channel-link" style="color: #f5b81b; text-decoration: none; font-size: 0.95rem; font-weight: 600; display: inline-block; background: rgba(245, 184, 27, 0.08); padding: 0.5rem 1.8rem; border-radius: 60px; border: 1px solid rgba(245, 184, 27, 0.1); transition: all 0.3s ease; backdrop-filter: blur(8px);" 
+                   onmouseover="this.style.background='rgba(245, 184, 27, 0.2)'; this.style.transform='scale(1.05)'; this.style.boxShadow='0 0 40px rgba(245, 184, 27, 0.1)';"
+                   onmouseout="this.style.background='rgba(245, 184, 27, 0.08)'; this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                    👈 ورود به کانال بله 👉
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            var menuContainer = document.getElementById('lessons-menu');
+            var lessonModal = document.getElementById('lessonModal');
+            var modalBody = document.getElementById('modal-body-content');
+            var closeLesson = document.getElementById('closeLesson');
+            var channelModal = document.getElementById('channelModal');
+            var logoBtn = document.getElementById('logoBtn');
+            var infoButton = document.getElementById('infoButton');
+            var closeChannel = document.getElementById('closeChannel');
+
+            if (typeof lessonsConfig === 'undefined') { 
+                menuContainer.innerHTML = '<p style="color: #ff6b6b; padding: 1rem;">خطا: فایل linux-config.js یافت نشد!</p>';
+                return; 
+            }
+            menuContainer.innerHTML = '';
+
+            for (var i = 0; i < lessonsConfig.length; i++) {
+                (function(index) {
+                    var lesson = lessonsConfig[index];
+                    var button = document.createElement('button');
+                    button.className = 'menu-item';
+                    button.innerHTML = '<span>🧀</span> ' + (index + 1) + '. ' + lesson.title;
+                    
+                    button.addEventListener('click', function() {
+                        fetch('linux-lessons/' + lesson.file)
+                            .then(function(res) { return res.text(); })
+                            .then(function(html) {
+                                modalBody.innerHTML = html;
+                                lessonModal.style.display = 'block';
+                                document.body.style.overflow = 'hidden';
+                            })
+                            .catch(function() {
+                                modalBody.innerHTML = '<div style="text-align:center; padding:2rem;"><div style="font-size:3rem;">🧀</div><h3 style="color:#f5b81b;">خطا در بارگذاری فایل درس</h3><p style="color:rgba(255,255,255,0.4);">فایل مورد نظر پیدا نشد</p></div>';
+                                lessonModal.style.display = 'block';
+                            });
+                    });
+                    menuContainer.appendChild(button);
+                })(i);
+            }
+
+            closeLesson.addEventListener('click', function() { lessonModal.style.display = 'none'; document.body.style.overflow = 'auto'; });
+            infoButton.addEventListener('click', function() { channelModal.style.display = 'block'; });
+            logoBtn.addEventListener('click', function() { channelModal.style.display = 'block'; });
+            closeChannel.addEventListener('click', function() { channelModal.style.display = 'none'; });
+            window.addEventListener('click', function(e) { if (e.target === lessonModal) { lessonModal.style.display = 'none'; document.body.style.overflow = 'auto'; } if (e.target === channelModal) { channelModal.style.display = 'none'; } });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (lessonModal.style.display === 'block') {
+                        lessonModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                    if (channelModal.style.display === 'block') {
+                        channelModal.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
