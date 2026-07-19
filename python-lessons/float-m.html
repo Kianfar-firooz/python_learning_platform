@@ -1,0 +1,105 @@
+<div class="lesson-content-wrapper">
+    <h1>🔢 متدهای <span>اعشاری</span> در پایتون</h1>
+    
+    <p>
+        اعداد اعشاری (Float) یکی از <strong>دیتا تایپ‌های</strong> پایتون برای ذخیره اعداد با اعشار هستن.
+        در این درس با <strong style="color: #f5b81b;">متدهای اعداد اعشاری</strong> آشنا میشیم.
+    </p>
+
+    <h2>📌 عدد اعشاری چیه؟</h2>
+    <p>
+        عدد اعشاری یک <strong>عدد با ممیز شناور</strong> (floating-point) هست که با <span style="color: #f5b81b;">.</span> مشخص میشه.
+        توی پایتون با <span style="color: #50fa7b;">float</span> شناخته میشه.
+    </p>
+
+    <div class="code-block">
+        <span class="comment"># تعریف اعداد اعشاری</span>
+        pi = <span class="number">3.14</span>
+        science = <span class="number">1.5e10</span>  <span class="comment"># ۱.۵ × ۱۰¹⁰</span>
+        negative = -<span class="number">2.5</span>
+    </div>
+
+    <h2>🧰 متدهای عدد اعشاری</h2>
+
+    <div class="method-grid">
+        <div class="method-card">
+            <div class="method-name">.as_integer_ratio()</div>
+            <div class="method-desc">عدد را به صورت کسر (صورت، مخرج) برمی‌گرداند</div>
+            <div class="method-example">(0.5).as_integer_ratio()  →  (1, 2)</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.is_integer()</div>
+            <div class="method-desc">بررسی می‌کند که عدد صحیح است یا خیر</div>
+            <div class="method-example">(5.0).is_integer()  →  True</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.hex()</div>
+            <div class="method-desc">نمایش هگزادسیمال عدد را برمی‌گرداند</div>
+            <div class="method-example">(1024.5).hex()  →  '0x1.002p+10'</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.fromhex(string)</div>
+            <div class="method-desc">تبدیل هگزادسیمال به float (متد کلاس)</div>
+            <div class="method-example">float.fromhex('0x1.ffffp10')  →  2047.984375</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.from_number(number)</div>
+            <div class="method-desc">تبدیل عدد به float (پایتون ۳.۱۴+)</div>
+            <div class="method-example">float.from_number(5)  →  5.0</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.real (صفت)</div>
+            <div class="method-desc">بخش حقیقی عدد را برمی‌گرداند</div>
+            <div class="method-example">(3.14).real  →  3.14</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.imag (صفت)</div>
+            <div class="method-desc">بخش موهومی عدد را برمی‌گرداند (همیشه ۰)</div>
+            <div class="method-example">(3.14).imag  →  0.0</div>
+        </div>
+    </div>
+
+    <h2>🎯 مثال عملی: محاسبات اعشاری</h2>
+    <div class="code-block">
+        <span class="comment"># کار با اعداد اعشاری</span>
+        x = <span class="number">3.14</span>
+        y = <span class="number">2.0</span>
+        
+        <span class="comment"># بررسی صحیح بودن</span>
+        <span class="function">print</span>(y.<span class="function">is_integer</span>())  <span class="comment"># True</span>
+        
+        <span class="comment"># تبدیل به کسر</span>
+        <span class="function">print</span>(x.<span class="function">as_integer_ratio</span>())  <span class="comment"># (157, 50)</span>
+        
+        <span class="comment"># بخش‌های عدد</span>
+        <span class="function">print</span>(x.<span class="function">real</span>)  <span class="comment"># 3.14</span>
+        <span class="function">print</span>(x.<span class="function">imag</span>)  <span class="comment"># 0.0</span>
+    </div>
+
+    <div class="exercise-box">
+        <strong>🏋️ تمرین:</strong>
+        <p>
+            اعداد زیر را بررسی کنید:
+            <br><span style="color: #f5b81b;">a = 7.0</span>
+            <br><span style="color: #f5b81b;">b = 3.5</span>
+            <br>
+            با استفاده از متدهای float مشخص کنید:
+            <br>۱. کدام یک عدد صحیح است؟
+            <br>۲. کسر معادل هر کدام چیست؟
+            <br>۳. نمایش هگزادسیمال a را پیدا کنید
+        </p>
+    </div>
+
+    <div class="highlight-box">
+        💚 <strong>دمت گرم!</strong> با متدهای اعداد اعشاری آشنا شدی. 
+        اعداد اعشاری در محاسبات علمی و مهندسی خیلی کاربرد دارن! 🚀
+    </div>
+
+    <a href="#" class="back-link">← بازگشت به صفحه اصلی</a>
+</div>

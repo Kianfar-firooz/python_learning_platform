@@ -1,0 +1,33 @@
+<div class="lesson-content-wrapper">
+    <h1>📍 دستور pwd (Print Working Directory)</h1>
+    
+    <p>این دستور کوتاه برای این است که بدانی در کدام پوشه (دایرکتوری) ایستاده‌ای. وقتی ترمینال را باز می‌کنی، سیستم معمولاً تو را در پوشه شخصی‌ات قرار می‌دهد، اما با جابجایی بین پوشه‌ها ممکن است فراموش کنی کجا هستی. <code>pwd</code> دقیقاً به تو می‌گوید که الان کجا هستی.</p>
+    
+    <h2>📖 ترجمه راهنمای (Man) این دستور</h2>
+    <p>اگر در ترمینال دستور <code>man pwd</code> را بزنی، راهنمای سیستم به تو می‌گوید که این دستور مسیر کامل پوشه فعلی را از "ریشه" (/) تا اینجا چاپ می‌کند. دو حالت یا سوییچ اصلی دارد:</p>
+    <ul>
+        <li><strong><code>-L</code> (Logical):</strong> این حالت پیش‌فرض است. اگر پوشه‌ای که در آن هستی یک میانبر (لینک) باشد، همان مسیر میانبر را نشان می‌دهد.</li>
+        <li><strong><code>-P</code> (Physical):</strong> این حالت به تو مسیر واقعی و اصلی (بدون توجه به میانبرها) را نشان می‌دهد.</li>
+    </ul>
+
+    <h2>🖥 مثال عملی و خروجی رنگی ترمینال</h2>
+    <p>فرض کنیم در پوشه Downloads هستیم. دستور را تایپ می‌کنیم:</p>
+    <div class="code-block">
+        pwd
+    </div>
+    
+    <p>خروجی دقیق در ترمینال اوبونتو:</p>
+    <div class="code-block-output">
+        <span class="function">/home/username/Downloads</span>
+    </div>
+
+    <p>حالا فرض کنیم پوشه ما یک میانبر است و می‌خواهیم مسیر واقعی را ببینیم:</p>
+    <div class="code-block">
+        pwd <span class="string">-P</span>
+    </div>
+
+    <p>خروجی (اگر مسیر اصلی متفاوت باشد):</p>
+    <div class="code-block-output">
+        <span class="function">/media/drive/actual_folder/Downloads</span>
+    </div>
+</div>

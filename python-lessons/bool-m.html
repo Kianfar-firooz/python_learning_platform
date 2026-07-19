@@ -1,0 +1,92 @@
+<div class="lesson-content-wrapper">
+    <h1>✅ متدهای <span>بولین</span> در پایتون</h1>
+    
+    <p>
+        بولین (Boolean) یکی از <strong>ساده‌ترین</strong> دیتا تایپ‌های پایتونه که فقط دو مقدار داره: 
+        <strong style="color: #f5b81b;">True</strong> (درست) و <strong style="color: #f5b81b;">False</strong> (نادرست).
+    </p>
+
+    <h2>📌 بولین چیه؟</h2>
+    <p>
+        بولین یک <strong>نوع داده منطقی</strong> هست که برای نشان دادن <span style="color: #f5b81b;">درستی</span> یا <span style="color: #f5b81b;">نادرستی</span> یک شرط استفاده میشه.
+        در پایتون، <span style="color: #50fa7b;">True</span> و <span style="color: #50fa7b;">False</span> با حروف بزرگ نوشته میشن.
+    </p>
+
+    <div class="code-block">
+        <span class="comment"># مقادیر بولین</span>
+        is_ok = <span class="keyword">True</span>
+        is_error = <span class="keyword">False</span>
+        
+        <span class="comment"># نتیجه مقایسه‌ها</span>
+        <span class="function">print</span>(<span class="number">5</span> > <span class="number">3</span>)   <span class="comment"># True</span>
+        <span class="function">print</span>(<span class="number">5</span> == <span class="number">3</span>)  <span class="comment"># False</span>
+    </div>
+
+    <h2>🧰 متدهای بولین</h2>
+
+    <p style="color: #ff79c6; font-size: 1.2em; text-align: center; padding: 20px 0;">
+        ❌ نوع داده بولین <strong style="color: #f5b81b;">هیچ متد خاصی</strong> ندارد!
+    </p>
+
+    <div class="highlight-box">
+        <strong>💡 اما:</strong> می‌تونید از توابع زیر برای تبدیل به بولین استفاده کنید:
+        <br>
+        <span style="color: #50fa7b; font-family: 'Fira Code', monospace;">bool(0)    → False</span>
+        <br>
+        <span style="color: #50fa7b; font-family: 'Fira Code', monospace;">bool(42)   → True</span>
+        <br>
+        <span style="color: #50fa7b; font-family: 'Fira Code', monospace;">bool("")   → False</span>
+        <br>
+        <span style="color: #50fa7b; font-family: 'Fira Code', monospace;">bool("hi") → True</span>
+        <br>
+        <span style="color: #50fa7b; font-family: 'Fira Code', monospace;">bool([])   → False</span>
+        <br>
+        <span style="color: #50fa7b; font-family: 'Fira Code', monospace;">bool([1])  → True</span>
+    </div>
+
+    <h2>📊 جدول تبدیل به بولین</h2>
+    <div class="code-block">
+        <span class="comment"># مقادیر False در پایتون:</span>
+        <span class="keyword">False</span>, <span class="number">0</span>, <span class="number">0.0</span>, <span class="string">""</span>, <span class="keyword">None</span>, <span class="function">[]</span>, <span class="function">{}</span>, <span class="function">set()</span>, <span class="function">()</span>
+        
+        <span class="comment"># بقیه مقادیر همگی True هستن</span>
+        <span class="function">print</span>(<span class="keyword">bool</span>(<span class="string">"سلام"</span>))  <span class="comment"># True</span>
+        <span class="function">print</span>(<span class="keyword">bool</span>([<span class="number">1</span>, <span class="number">2</span>])) <span class="comment"># True</span>
+        <span class="function">print</span>(<span class="keyword">bool</span>({<span class="string">"a"</span>: <span class="number">1</span>}))  <span class="comment"># True</span>
+    </div>
+
+    <h2>🎯 مثال عملی: استفاده در شرط‌ها</h2>
+    <div class="code-block">
+        <span class="comment"># بررسی وضعیت کاربر</span>
+        is_logged_in = <span class="keyword">True</span>
+        has_permission = <span class="keyword">False</span>
+        
+        <span class="keyword">if</span> is_logged_in <span class="keyword">and</span> has_permission:
+            <span class="function">print</span>(<span class="string">"دسترسی کامل"</span>)
+        <span class="keyword">elif</span> is_logged_in:
+            <span class="function">print</span>(<span class="string">"دسترسی محدود"</span>)
+        <span class="keyword">else</span>:
+            <span class="function">print</span>(<span class="string">"لطفاً وارد شوید"</span>)
+    </div>
+
+    <div class="exercise-box">
+        <strong>🏋️ تمرین:</strong>
+        <p>
+            مقدار بولین عبارات زیر را پیش‌بینی کنید:
+            <br><span style="color: #f5b81b;">bool(0)</span>  →  ?
+            <br><span style="color: #f5b81b;">bool(-5)</span>  →  ?
+            <br><span style="color: #f5b81b;">bool("False")</span>  →  ?
+            <br><span style="color: #f5b81b;">bool([])</span>  →  ?
+            <br><span style="color: #f5b81b;">bool(None)</span>  →  ?
+            <br>
+            <br>سپس کد را اجرا کنید و نتیجه را بررسی کنید.
+        </p>
+    </div>
+
+    <div class="highlight-box">
+        💚 <strong>آفرین!</strong> با نوع داده بولین آشنا شدی. 
+        بولین پایه و اساس <strong>شرط‌ها</strong> و <strong>حلقه‌ها</strong> در برنامه‌نویسیه! 🚀
+    </div>
+
+    <a href="#" class="back-link">← بازگشت به صفحه اصلی</a>
+</div>

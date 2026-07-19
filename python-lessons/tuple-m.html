@@ -1,0 +1,71 @@
+<div class="lesson-content-wrapper">
+    <h1>📦 متدهای <span>تاپل</span> در پایتون</h1>
+    
+    <p>
+        تاپل (Tuple) یکی از <strong>دیتا تایپ‌های</strong> پایتونه که شبیه لیسته، اما <strong style="color: #f5b81b;">تغییرناپذیر</strong> (immutable) هست.
+        در این درس با <strong style="color: #f5b81b;">متدهای تاپل</strong> آشنا میشیم.
+    </p>
+
+    <h2>📌 تاپل چیه؟</h2>
+    <p>
+        تاپل یک <strong>دنباله تغییرناپذیر</strong> از اشیاءه که با <span style="color: #f5b81b;">( )</span> تعریف میشه.
+        تاپل‌ها <strong>سریع‌تر</strong> از لیست‌ها هستن و برای داده‌هایی که نباید تغییر کنن مناسب‌ترن.
+    </p>
+
+    <div class="code-block">
+        <span class="comment"># تعریف یک تاپل</span>
+        my_tuple = (<span class="number">1</span>, <span class="string">"سلام"</span>, <span class="number">3.14</span>)
+        <span class="function">print</span>(my_tuple[<span class="number">0</span>])  <span class="comment"># خروجی: 1</span>
+        
+        <span class="comment"># تاپل یک عضوی (به کاما توجه کنید!)</span>
+        single = (<span class="number">5</span>,)
+    </div>
+
+    <h2>🧰 متدهای تاپل</h2>
+
+    <div class="method-grid">
+        <div class="method-card">
+            <div class="method-name">.count(x)</div>
+            <div class="method-desc">تعداد دفعات تکرار x را برمی‌گرداند</div>
+            <div class="method-example">(1, 2, 2, 3).count(2)  →  2</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.index(x, start, end)</div>
+            <div class="method-desc">ایندکس اولین رخداد x را برمی‌گرداند</div>
+            <div class="method-example">(1, 2, 3).index(2)  →  1</div>
+        </div>
+    </div>
+
+    <h2>🎯 مثال عملی: ذخیره اطلاعات ثابت</h2>
+    <div class="code-block">
+        <span class="comment"># اطلاعات یک دانشجو (تغییرناپذیر)</span>
+        student = (<span class="string">"علی"</span>, <span class="number">20</span>, <span class="string">"علوم کامپیوتر"</span>)
+        
+        <span class="comment"># دریافت اطلاعات</span>
+        name, age, major = student  <span class="comment"># unpacking</span>
+        
+        <span class="comment"># شمارش تعداد یک مقدار</span>
+        <span class="function">print</span>(student.<span class="function">count</span>(<span class="string">"علی"</span>))  <span class="comment"># 1</span>
+        
+        <span class="comment"># پیدا کردن ایندکس</span>
+        <span class="function">print</span>(student.<span class="function">index</span>(<span class="number">20</span>))  <span class="comment"># 1</span>
+    </div>
+
+    <div class="exercise-box">
+        <strong>🏋️ تمرین:</strong>
+        <p>
+            یک تاپل از ۵ عدد مختلف بسازید.
+            <br>سپس:
+            <br>۱. تعداد دفعات تکرار یک عدد خاص را بشمارید
+            <br>۲. ایندکس یک عدد دیگر را پیدا کنید
+        </p>
+    </div>
+
+    <div class="highlight-box">
+        💚 <strong>آفرین!</strong> با متدهای تاپل آشنا شدی. 
+        تاپل‌ها برای داده‌های ثابت و غیرقابل تغییر خیلی مناسب‌ن! 🚀
+    </div>
+
+    <a href="#" class="back-link">← بازگشت به صفحه اصلی</a>
+</div>

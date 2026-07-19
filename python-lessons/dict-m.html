@@ -1,0 +1,128 @@
+<div class="lesson-content-wrapper">
+    <h1>📚 متدهای <span>دیکشنری</span> در پایتون</h1>
+    
+    <p>
+        دیکشنری یکی از <strong>قدرتمندترین</strong> دیتا تایپ‌های پایتونه که داده‌ها رو به صورت <strong style="color: #f5b81b;">کلید-مقدار</strong> ذخیره می‌کنه. 
+        در این درس با <strong style="color: #f5b81b;">همه متدهای دیکشنری</strong> آشنا میشیم.
+    </p>
+
+    <h2>📌 دیکشنری چیه؟</h2>
+    <p>
+        دیکشنری یک <strong>دنباله تغییرپذیر</strong> (mutable) از زوج‌های کلید-مقداره که با <span style="color: #f5b81b;">{ }</span> تعریف میشه.
+        کلیدها باید <strong>تغییرناپذیر</strong> (immutable) باشن و مقادیر می‌تونن هر نوع داده‌ای باشن.
+    </p>
+
+    <div class="code-block">
+        <span class="comment"># تعریف یک دیکشنری ساده</span>
+        person = {
+            <span class="string">"name"</span>: <span class="string">"علی"</span>,
+            <span class="string">"age"</span>: <span class="number">25</span>,
+            <span class="string">"city"</span>: <span class="string">"تهران"</span>
+        }
+        <span class="function">print</span>(person[<span class="string">"name"</span>])  <span class="comment"># خروجی: علی</span>
+    </div>
+
+    <h2>🧰 همه متدهای دیکشنری</h2>
+
+    <div class="method-grid">
+        <div class="method-card">
+            <div class="method-name">.clear()</div>
+            <div class="method-desc">همه زوج‌های کلید-مقدار را حذف می‌کند</div>
+            <div class="method-example">{'a': 1}.clear()  →  {}</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.copy()</div>
+            <div class="method-desc">یک کپی سطحی از دیکشنری برمی‌گرداند</div>
+            <div class="method-example">{'a': 1}.copy()  →  {'a': 1}</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.fromkeys(iterable, value)</div>
+            <div class="method-desc">دیکشنری جدید از کلیدها می‌سازد (متد کلاس)</div>
+            <div class="method-example">dict.fromkeys(['a','b'], 0)  →  {'a': 0, 'b': 0}</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.get(key, default)</div>
+            <div class="method-desc">مقدار کلید را برمی‌گرداند (در صورت نبود default)</div>
+            <div class="method-example">{'a': 1}.get('b', 0)  →  0</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.items()</div>
+            <div class="method-desc">view از زوج‌های (کلید، مقدار) برمی‌گرداند</div>
+            <div class="method-example">{'a': 1}.items()  →  dict_items([('a', 1)])</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.keys()</div>
+            <div class="method-desc">view از کلیدها برمی‌گرداند</div>
+            <div class="method-example">{'a': 1}.keys()  →  dict_keys(['a'])</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.pop(key, default)</div>
+            <div class="method-desc">کلید را حذف و مقدار آن را برمی‌گرداند</div>
+            <div class="method-example">{'a': 1}.pop('a')  →  1</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.popitem()</div>
+            <div class="method-desc">آخرین زوج کلید-مقدار را حذف و برمی‌گرداند</div>
+            <div class="method-example">{'a':1, 'b':2}.popitem()  →  ('b', 2)</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.setdefault(key, default)</div>
+            <div class="method-desc">اگر کلید نبود، با مقدار پیش‌فرض اضافه می‌کند</div>
+            <div class="method-example">{'a':1}.setdefault('b',2)  →  {'a':1, 'b':2}</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.update(other)</div>
+            <div class="method-desc">دیکشنری را با دیکشنری دیگر به‌روز می‌کند</div>
+            <div class="method-example">{'a':1}.update({'b':2})  →  {'a':1, 'b':2}</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.values()</div>
+            <div class="method-desc">view از مقادیر برمی‌گرداند</div>
+            <div class="method-example">{'a': 1}.values()  →  dict_values([1])</div>
+        </div>
+    </div>
+
+    <h2>🎯 مثال عملی: مدیریت اطلاعات دانشجو</h2>
+    <div class="code-block">
+        <span class="comment"># دیکشنری اطلاعات دانشجو</span>
+        student = {
+            <span class="string">"name"</span>: <span class="string">"مریم"</span>,
+            <span class="string">"age"</span>: <span class="number">22</span>,
+            <span class="string">"grades"</span>: [<span class="number">18</span>, <span class="number">19.5</span>, <span class="number">17</span>]
+        }
+        
+        <span class="comment"># اضافه کردن کلید جدید</span>
+        student[<span class="string">"university"</span>] = <span class="string">"تهران"</span>
+        
+        <span class="comment"># گرفتن مقدار با get</span>
+        age = student.<span class="function">get</span>(<span class="string">"age"</span>, <span class="number">0</span>)
+        
+        <span class="comment"># نمایش همه کلیدها</span>
+        <span class="function">print</span>(student.<span class="function">keys</span>())  <span class="comment"># dict_keys(['name', 'age', 'grades', 'university'])</span>
+    </div>
+
+    <div class="exercise-box">
+        <strong>🏋️ تمرین:</strong>
+        <p>
+            یک دیکشنری از محصولات فروشگاه با کلید <span style="color: #f5b81b;">نام محصول</span> و مقدار <span style="color: #f5b81b;">قیمت</span> بسازید.
+            سپس با متدهای مناسب، قیمت یک محصول را بگیرید، یک محصول جدید اضافه کنید و همه محصولات را نمایش دهید.
+        </p>
+    </div>
+
+    <div class="highlight-box">
+        💚 <strong>آفرین!</strong> با متدهای دیکشنری آشنا شدی. 
+        دیکشنری یکی از پرکاربردترین دیتا تایپ‌های پایتونه، پس حتماً تمرین کن! 🚀
+    </div>
+
+    <a href="#" class="back-link">← بازگشت به صفحه اصلی</a>
+</div>

@@ -1,0 +1,184 @@
+<div class="lesson-content-wrapper">
+    <h1>📝 متدهای <span>رشته</span> در پایتون</h1>
+    
+    <p>
+        رشته (String) یکی از <strong>پرکاربردترین</strong> دیتا تایپ‌های پایتونه که برای کار با متن استفاده میشه. 
+        در این درس با <strong style="color: #f5b81b;">مهم‌ترین متدهای رشته</strong> آشنا میشیم.
+    </p>
+
+    <h2>📌 رشته چیه؟</h2>
+    <p>
+        رشته یک <strong>دنباله تغییرناپذیر</strong> (immutable) از کاراکترهاست که با <span style="color: #f5b81b;">' '</span> یا <span style="color: #f5b81b;">" "</span> تعریف میشه.
+        هر کاراکتر در رشته یک ایندکس داره که از <span style="color: #50fa7b;">0</span> شروع میشه.
+    </p>
+
+    <div class="code-block">
+        <span class="comment"># تعریف یک رشته</span>
+        text = <span class="string">"سلام دنیا!"</span>
+        <span class="function">print</span>(text[<span class="number">0</span>])  <span class="comment"># خروجی: س</span>
+        <span class="function">print</span>(len(text))  <span class="comment"># خروجی: 9</span>
+    </div>
+
+    <h2>🧰 متدهای پرکاربرد رشته</h2>
+
+    <div class="method-group">
+        <h3>🔤 تغییر حروف</h3>
+        <div class="method-grid">
+            <div class="method-card">
+                <div class="method-name">.capitalize()</div>
+                <div class="method-desc">حرف اول را بزرگ، بقیه را کوچک می‌کند</div>
+                <div class="method-example">"hello".capitalize() → "Hello"</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.upper()</div>
+                <div class="method-desc">همه حروف را بزرگ می‌کند</div>
+                <div class="method-example">"hello".upper() → "HELLO"</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.lower()</div>
+                <div class="method-desc">همه حروف را کوچک می‌کند</div>
+                <div class="method-example">"HELLO".lower() → "hello"</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.swapcase()</div>
+                <div class="method-desc">کوچک↔بزرگ را عوض می‌کند</div>
+                <div class="method-example">"Hello".swapcase() → "hELLO"</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.title()</div>
+                <div class="method-desc">هر کلمه را با حرف بزرگ شروع می‌کند</div>
+                <div class="method-example">"hello world".title() → "Hello World"</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="method-group">
+        <h3>🔍 جستجو و پیدا کردن</h3>
+        <div class="method-grid">
+            <div class="method-card">
+                <div class="method-name">.find(sub)</div>
+                <div class="method-desc">ایندکس اولین رخداد را برمی‌گرداند (یا -1)</div>
+                <div class="method-example">"hello".find("l") → 2</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.index(sub)</div>
+                <div class="method-desc">مثل find اما در صورت نبود خطا می‌دهد</div>
+                <div class="method-example">"hello".index("e") → 1</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.count(sub)</div>
+                <div class="method-desc">تعداد رخدادهای زیررشته را برمی‌گرداند</div>
+                <div class="method-example">"hello".count("l") → 2</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.startswith(prefix)</div>
+                <div class="method-desc">آیا با prefix شروع می‌شود؟</div>
+                <div class="method-example">"hello".startswith("he") → True</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.endswith(suffix)</div>
+                <div class="method-desc">آیا با suffix تمام می‌شود؟</div>
+                <div class="method-example">"hello".endswith("lo") → True</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="method-group">
+        <h3>✂️ برش و اتصال</h3>
+        <div class="method-grid">
+            <div class="method-card">
+                <div class="method-name">.split(sep)</div>
+                <div class="method-desc">رشته را به لیست تقسیم می‌کند</div>
+                <div class="method-example">"a,b,c".split(",") → ['a', 'b', 'c']</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.join(iterable)</div>
+                <div class="method-desc">اعضا را با رشته به هم متصل می‌کند</div>
+                <div class="method-example">"-".join(["a","b"]) → "a-b"</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.strip()</div>
+                <div class="method-desc">فاصله‌های ابتدا و انتها را حذف می‌کند</div>
+                <div class="method-example">"  hi  ".strip() → "hi"</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.replace(old, new)</div>
+                <div class="method-desc">زیررشته را جایگزین می‌کند</div>
+                <div class="method-example">"hello".replace("l","x") → "hexxo"</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.partition(sep)</div>
+                <div class="method-desc">رشته را به ۳ بخش تقسیم می‌کند</div>
+                <div class="method-example">"a-b-c".partition("-") → ('a','-','b-c')</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="method-group">
+        <h3>✅ بررسی‌ها (is...)</h3>
+        <div class="method-grid">
+            <div class="method-card">
+                <div class="method-name">.isalpha()</div>
+                <div class="method-desc">همه کاراکترها حرف هستند؟</div>
+                <div class="method-example">"hello".isalpha() → True</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.isdigit()</div>
+                <div class="method-desc">همه کاراکترها رقم هستند؟</div>
+                <div class="method-example">"123".isdigit() → True</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.isalnum()</div>
+                <div class="method-desc">همه حروف یا اعداد هستند؟</div>
+                <div class="method-example">"hello123".isalnum() → True</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.isspace()</div>
+                <div class="method-desc">همه کاراکترها فاصله هستند؟</div>
+                <div class="method-example">"   ".isspace() → True</div>
+            </div>
+            <div class="method-card">
+                <div class="method-name">.islower() / .isupper()</div>
+                <div class="method-desc">همه حروف کوچک/بزرگ هستند؟</div>
+                <div class="method-example">"hello".islower() → True</div>
+            </div>
+        </div>
+    </div>
+
+    <h2>🎯 مثال عملی: پردازش متن</h2>
+    <div class="code-block">
+        <span class="comment"># یک متن نمونه</span>
+        text = <span class="string">"  سلام دنیا!  "</span>
+        
+        <span class="comment"># پاکسازی متن</span>
+        cleaned = text.<span class="function">strip</span>()
+        
+        <span class="comment"># بزرگ کردن حروف</span>
+        upper_text = cleaned.<span class="function">upper</span>()
+        
+        <span class="comment"># تقسیم به کلمات</span>
+        words = cleaned.<span class="function">split</span>()
+        
+        <span class="function">print</span>(cleaned)   <span class="comment"># "سلام دنیا!"</span>
+        <span class="function">print</span>(words)     <span class="comment"># ['سلام', 'دنیا!']</span>
+    </div>
+
+    <div class="exercise-box">
+        <strong>🏋️ تمرین:</strong>
+        <p>
+            یک رشته مانند <span style="color: #f5b81b;">"python programming"</span> دارید. 
+            با متدهای مناسب:
+            <br>۱. حرف اول را بزرگ کنید
+            <br>۲. همه را به بزرگ تبدیل کنید
+            <br>۳. تعداد حرف 'p' را بشمارید
+            <br>۴. رشته را به دو کلمه تقسیم کنید
+        </p>
+    </div>
+
+    <div class="highlight-box">
+        💚 <strong>عالی!</strong> با متدهای رشته آشنا شدی. 
+        رشته‌ها در پایتون خیلی قدرتمندن، پس حتماً تمرین کن! 🚀
+    </div>
+
+    <a href="#" class="back-link">← بازگشت به صفحه اصلی</a>
+</div>

@@ -1,0 +1,94 @@
+<div class="lesson-content-wrapper">
+    <h1>❌ متدهای <span>NoneType</span> در پایتون</h1>
+    
+    <p>
+        <span style="color: #f5b81b; font-weight: bold;">None</span> یکی از <strong>خاص‌ترین</strong> دیتا تایپ‌های پایتونه که نشان‌دهنده <strong style="color: #f5b81b;">"هیچ مقداری"</strong> یا <strong style="color: #f5b81b;">"تهی"</strong> هست.
+    </p>
+
+    <h2>📌 None چیه؟</h2>
+    <p>
+        <span style="color: #50fa7b; font-family: 'Fira Code';">None</span> یک شیء از نوع <span style="color: #ff79c6; font-family: 'Fira Code';">NoneType</span> هست که نشان‌دهنده <strong>عدم وجود مقدار</strong> است.
+        در پایتون، <span style="color: #50fa7b;">None</span> با حرف بزرگ نوشته میشه و معادل <span style="color: #f5b81b;">null</span> یا <span style="color: #f5b81b;">nil</span> در زبان‌های دیگهست.
+    </p>
+
+    <div class="code-block">
+        <span class="comment"># تعریف None</span>
+        nothing = <span class="keyword">None</span>
+        <span class="function">print</span>(nothing)  <span class="comment"># None</span>
+        <span class="function">print</span>(type(nothing))  <span class="comment"># &lt;class 'NoneType'&gt;</span>
+    </div>
+
+    <h2>🧰 متدهای NoneType</h2>
+
+    <p style="color: #ff79c6; font-size: 1.2em; text-align: center; padding: 20px 0;">
+        ❌ نوع داده NoneType <strong style="color: #f5b81b;">هیچ متدی ندارد!</strong>
+    </p>
+
+    <div class="highlight-box">
+        <strong>💡 ولی:</strong> می‌تونید از <span style="color: #50fa7b; font-family: 'Fira Code';">is</span> برای مقایسه با None استفاده کنید:
+        <br>
+        <span style="color: #50fa7b; font-family: 'Fira Code';">x is None  →  True</span>
+        <br>
+        <span style="color: #50fa7b; font-family: 'Fira Code';">x is not None  →  False</span>
+    </div>
+
+    <h2>📊 کجاها از None استفاده میشه؟</h2>
+
+    <div class="method-grid">
+        <div class="method-card">
+            <div class="method-name">مقدار پیش‌فرض</div>
+            <div class="method-desc">برای متغیرهایی که مقدار اولیه ندارن</div>
+            <div class="method-example">result = None</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">بازگشت از توابع</div>
+            <div class="method-desc">توابعی که مقداری برنمی‌گردونن</div>
+            <div class="method-example">print(print("hi")) → None</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">مقدار پیش‌فرض آرگومان</div>
+            <div class="method-desc">برای آرگومان‌های اختیاری</div>
+            <div class="method-example">def func(x=None):</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">حذف یک مقدار</div>
+            <div class="method-desc">برای پاک کردن یک متغیر</div>
+            <div class="method-example">del x (متغیر حذف میشه)</div>
+        </div>
+    </div>
+
+    <h2>🎯 مثال عملی: استفاده از None</h2>
+    <div class="code-block">
+        <span class="comment"># تابعی که ممکن است مقداری برنگرداند</span>
+        <span class="keyword">def</span> <span class="function">find_user</span>(user_id):
+            <span class="keyword">if</span> user_id == <span class="number">1</span>:
+                <span class="keyword">return</span> <span class="string">"علی"</span>
+            <span class="keyword">return</span> <span class="keyword">None</span>  <span class="comment"># کاربر پیدا نشد</span>
+        
+        <span class="comment"># استفاده از تابع</span>
+        user = find_user(<span class="number">2</span>)
+        <span class="keyword">if</span> user <span class="keyword">is</span> <span class="keyword">None</span>:
+            <span class="function">print</span>(<span class="string">"کاربر وجود ندارد!"</span>)
+        <span class="keyword">else</span>:
+            <span class="function">print</span>(<span class="string">f"کاربر: {user}"</span>)
+    </div>
+
+    <div class="exercise-box">
+        <strong>🏋️ تمرین:</strong>
+        <p>
+            یک تابع بنویسید که یک لیست را دریافت کند و اگر لیست خالی بود، <span style="color: #f5b81b;">None</span> برگرداند، 
+            در غیر این صورت اولین عضو لیست را برگرداند.
+            <br>سپس تابع را با لیست‌های مختلف تست کنید.
+        </p>
+    </div>
+
+    <div class="highlight-box">
+        💚 <strong>دمت گرم!</strong> با None آشنا شدی. 
+        None یکی از پرکاربردترین مفاهیم در پایتونه که مدیریت <strong>عدم وجود مقدار</strong> رو راحت‌تر میکنه! 🚀
+    </div>
+
+    <a href="#" class="back-link">← بازگشت به صفحه اصلی</a>
+</div>

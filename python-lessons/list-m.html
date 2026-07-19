@@ -1,0 +1,123 @@
+<div class="lesson-content-wrapper">
+    <h1>📋 متدهای <span>لیست</span> در پایتون</h1>
+    
+    <p>
+        لیست یکی از پرکاربردترین <strong>دیتا تایپ‌های</strong> پایتونه که می‌تونه هر نوع داده‌ای رو در خودش ذخیره کنه. 
+        در این درس با <strong style="color: #f5b81b;">همه متدهای لیست</strong> آشنا میشیم.
+    </p>
+
+    <h2>📌 لیست چیه؟</h2>
+    <p>
+        لیست یک <strong>دنباله تغییرپذیر</strong> (mutable) از اشیاءه که با <span style="color: #f5b81b;">[ ]</span> تعریف میشه.
+        می‌تونه اعضای تکراری داشته باشه و ایندکس‌گذاری از <span style="color: #50fa7b;">0</span> شروع میشه.
+    </p>
+
+    <div class="code-block">
+        <span class="comment"># تعریف یک لیست ساده</span>
+        my_list = [<span class="number">1</span>, <span class="string">"سلام"</span>, <span class="number">3.14</span>, <span class="keyword">True</span>]
+        <span class="function">print</span>(my_list[<span class="number">0</span>])  <span class="comment"># خروجی: 1</span>
+    </div>
+
+    <h2>🧰 همه متدهای لیست</h2>
+
+    <div class="method-grid">
+        <div class="method-card">
+            <div class="method-name">.append(x)</div>
+            <div class="method-desc">یک عضو به انتهای لیست اضافه می‌کند</div>
+            <div class="method-example">[1, 2].append(3)  →  [1, 2, 3]</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.extend(iterable)</div>
+            <div class="method-desc">اعضای یک iterable را به انتها اضافه می‌کند</div>
+            <div class="method-example">[1, 2].extend([3, 4])  →  [1, 2, 3, 4]</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.insert(i, x)</div>
+            <div class="method-desc">عضو x را در ایندکس i قرار می‌دهد</div>
+            <div class="method-example">[1, 3].insert(1, 2)  →  [1, 2, 3]</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.remove(x)</div>
+            <div class="method-desc">اولین رخداد x را حذف می‌کند</div>
+            <div class="method-example">[1, 2, 1].remove(1)  →  [2, 1]</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.pop(i=-1)</div>
+            <div class="method-desc">عضو ایندکس i را حذف و برمی‌گرداند</div>
+            <div class="method-example">[1, 2, 3].pop(1)  →  2</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.clear()</div>
+            <div class="method-desc">همه اعضا را حذف می‌کند</div>
+            <div class="method-example">[1, 2].clear()  →  []</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.index(x, start, end)</div>
+            <div class="method-desc">ایندکس اولین رخداد x را برمی‌گرداند</div>
+            <div class="method-example">[1, 2, 3].index(2)  →  1</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.count(x)</div>
+            <div class="method-desc">تعداد دفعات تکرار x را برمی‌گرداند</div>
+            <div class="method-example">[1, 2, 2, 3].count(2)  →  2</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.sort(key=None, reverse=False)</div>
+            <div class="method-desc">لیست را مرتب می‌کند</div>
+            <div class="method-example">[3, 1, 2].sort()  →  [1, 2, 3]</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.reverse()</div>
+            <div class="method-desc">ترتیب اعضا را معکوس می‌کند</div>
+            <div class="method-example">[1, 2, 3].reverse()  →  [3, 2, 1]</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.copy()</div>
+            <div class="method-desc">یک کپی سطحی از لیست برمی‌گرداند</div>
+            <div class="method-example">[1, 2].copy()  →  [1, 2]</div>
+        </div>
+    </div>
+
+    <h2>🎯 مثال عملی: مدیریت لیست دانشجویان</h2>
+    <div class="code-block">
+        <span class="comment"># لیست دانشجویان</span>
+        students = [<span class="string">"علی"</span>, <span class="string">"مریم"</span>, <span class="string">"رضا"</span>]
+        
+        <span class="comment"># اضافه کردن دانشجوی جدید</span>
+        students.<span class="function">append</span>(<span class="string">"سارا"</span>)
+        
+        <span class="comment"># حذف آخرین دانشجو</span>
+        last = students.<span class="function">pop</span>()
+        
+        <span class="comment"># مرتب کردن اسامی</span>
+        students.<span class="function">sort</span>()
+        
+        <span class="function">print</span>(students)  <span class="comment"># ['رضا', 'علی', 'مریم']</span>
+    </div>
+
+    <div class="exercise-box">
+        <strong>🏋️ تمرین:</strong>
+        <p>
+            لیستی از اعداد <span style="color: #f5b81b;">[5, 2, 8, 1, 9, 3]</span> دارید. 
+            با استفاده از متدهای لیست، آن را مرتب کنید، عدد ۷ را به انتها اضافه کنید و سپس عدد ۲ را حذف کنید.
+            کد نهایی را بنویسید.
+        </p>
+    </div>
+
+    <div class="highlight-box">
+        💚 <strong>دمت گرم!</strong> که با متدهای لیست آشنا شدی. 
+        لیست یکی از قدرتمندترین ابزارهای پایتونه، پس حتماً تمرین کن! 🚀
+    </div>
+
+    <a href="#" class="back-link">← بازگشت به صفحه اصلی</a>
+</div>

@@ -1,0 +1,121 @@
+<div class="lesson-content-wrapper">
+    <h1>🔢 متدهای <span>اعداد صحیح</span> در پایتون</h1>
+    
+    <p>
+        اعداد صحیح (Integer) یکی از <strong>پایه‌ای‌ترین</strong> دیتا تایپ‌های پایتون برای ذخیره اعداد <strong style="color: #f5b81b;">بدون اعشار</strong> هستن.
+        در این درس با <strong style="color: #f5b81b;">همه متدهای اعداد صحیح</strong> آشنا میشیم.
+    </p>
+
+    <h2>📌 عدد صحیح چیه؟</h2>
+    <p>
+        عدد صحیح یک <strong>عدد کامل</strong> (بدون ممیز) هست که می‌تونه مثبت، منفی یا صفر باشه.
+        در پایتون با <span style="color: #50fa7b;">int</span> شناخته میشه و محدودیت اندازه نداره!
+    </p>
+
+    <div class="code-block">
+        <span class="comment"># تعریف اعداد صحیح</span>
+        age = <span class="number">25</span>
+        temperature = -<span class="number">5</span>
+        big_number = <span class="number">12345678901234567890</span>  <span class="comment"># بدون محدودیت!</span>
+        
+        <span class="function">print</span>(type(age))  <span class="comment"># &lt;class 'int'&gt;</span>
+    </div>
+
+    <h2>🧰 همه متدهای اعداد صحیح</h2>
+
+    <div class="method-grid">
+        <div class="method-card">
+            <div class="method-name">.as_integer_ratio()</div>
+            <div class="method-desc">عدد را به صورت کسر (صورت، مخرج) برمی‌گرداند</div>
+            <div class="method-example">(5).as_integer_ratio()  →  (5, 1)</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.bit_count()</div>
+            <div class="method-desc">تعداد بیت‌های ۱ را در نمایش دودویی برمی‌گرداند</div>
+            <div class="method-example">(5).bit_count()  →  2</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.bit_length()</div>
+            <div class="method-desc">تعداد بیت‌های مورد نیاز برای نمایش عدد در دودویی</div>
+            <div class="method-example">(5).bit_length()  →  3</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.to_bytes(length, byteorder, *, signed=False)</div>
+            <div class="method-desc">عدد را به آرایه‌ای از بایت‌ها تبدیل می‌کند</div>
+            <div class="method-example">(1024).to_bytes(2, 'big')  →  b'\x04\x00'</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.from_bytes(bytes, byteorder, *, signed=False)</div>
+            <div class="method-desc">آرایه بایت را به عدد صحیح تبدیل می‌کند (متد کلاس)</div>
+            <div class="method-example">int.from_bytes(b'\x04\x00', 'big')  →  1024</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.real (صفت)</div>
+            <div class="method-desc">بخش حقیقی عدد را برمی‌گرداند (خود عدد)</div>
+            <div class="method-example">(5).real  →  5</div>
+        </div>
+
+        <div class="method-card">
+            <div class="method-name">.imag (صفت)</div>
+            <div class="method-desc">بخش موهومی عدد را برمی‌گرداند (همیشه ۰)</div>
+            <div class="method-example">(5).imag  →  0</div>
+        </div>
+    </div>
+
+    <h2>📊 سیستم‌های شمارش در پایتون</h2>
+    <div class="code-block">
+        <span class="comment"># نمایش اعداد در مبناهای مختلف</span>
+        <span class="function">print</span>(<span class="number">0b1010</span>)   <span class="comment"># دودویی (binary) → 10</span>
+        <span class="function">print</span>(<span class="number">0o12</span>)    <span class="comment"># هشتی (octal) → 10</span>
+        <span class="function">print</span>(<span class="number">0xA</span>)     <span class="comment"># هگزادسیمال (hex) → 10</span>
+        
+        <span class="comment"># تبدیل به رشته در مبناهای مختلف</span>
+        <span class="function">print</span>(bin(<span class="number">10</span>))   <span class="comment"># '0b1010'</span>
+        <span class="function">print</span>(oct(<span class="number">10</span>))   <span class="comment"># '0o12'</span>
+        <span class="function">print</span>(hex(<span class="number">10</span>))   <span class="comment"># '0xa'</span>
+    </div>
+
+    <h2>🎯 مثال عملی: عملیات بیتی و تبدیلات</h2>
+    <div class="code-block">
+        <span class="comment"># کار با بیت‌ها</span>
+        num = <span class="number">42</span>  <span class="comment"># 101010 در دودویی</span>
+        
+        <span class="comment"># تعداد بیت‌های ۱</span>
+        <span class="function">print</span>(num.<span class="function">bit_count</span>())  <span class="comment"># 3</span>
+        
+        <span class="comment"># تعداد بیت‌های مورد نیاز</span>
+        <span class="function">print</span>(num.<span class="function">bit_length</span>())  <span class="comment"># 6</span>
+        
+        <span class="comment"># تبدیل به بایت</span>
+        bytes_data = num.<span class="function">to_bytes</span>(<span class="number">1</span>, <span class="string">'big'</span>)
+        <span class="function">print</span>(bytes_data)  <span class="comment"># b'*'</span>
+        
+        <span class="comment"># تبدیل از بایت</span>
+        <span class="function">print</span>(int.<span class="function">from_bytes</span>(b'*', <span class="string">'big'</span>))  <span class="comment"># 42</span>
+    </div>
+
+    <div class="exercise-box">
+        <strong>🏋️ تمرین:</strong>
+        <p>
+            عدد <span style="color: #f5b81b;">255</span> را در نظر بگیرید.
+            <br>
+            با استفاده از متدهای int:
+            <br>۱. تعداد بیت‌های ۱ را پیدا کنید
+            <br>۲. تعداد بیت‌های مورد نیاز برای نمایش را پیدا کنید
+            <br>۳. عدد را به آرایه ۲ بایتی تبدیل کنید
+            <br>۴. کسر معادل آن را پیدا کنید
+        </p>
+    </div>
+
+    <div class="highlight-box">
+        💚 <strong>دمت گرم!</strong> با متدهای اعداد صحیح آشنا شدی. 
+        اعداد صحیح در <strong>محاسبات، ایندکس‌گذاری، حلقه‌ها</strong> و خیلی جاهای دیگه کاربرد دارن! 🚀
+    </div>
+
+    <a href="#" class="back-link">← بازگشت به صفحه اصلی</a>
+</div>

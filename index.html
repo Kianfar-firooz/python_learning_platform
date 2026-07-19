@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آکادمی چیز کد | CheeseCode</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background: linear-gradient(rgba(13, 13, 13, 0.7), rgba(13, 13, 13, 0.7)), url('logo.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex; flex-direction: column; align-items: center; padding: 2rem 1rem; min-height: 100vh;
+        }
+
+        /* ظرف لوگو که فاصله ایجاد می‌کند */
+        .logo-wrapper {
+            width: 100%; max-width: 350px;
+            padding: 30px; /* ایجاد فاصله ۳۰ پیکسلی از اطراف */
+            margin-bottom: 1rem;
+        }
+
+        .main-logo { width: 100%; height: auto; display: block; border-radius: 20px; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 2rem;
+            width: 100%; max-width: 500px;
+            text-align: center;
+        }
+
+        h1 { color: #f5b81b; margin-bottom: 1rem; }
+        
+        .course-card { 
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.2rem; border-radius: 20px; color: #fff;
+            text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 1rem;
+            margin-top: 1rem; transition: 0.3s;
+        }
+        .course-card:hover { background: rgba(245, 184, 27, 0.3); }
+
+        /* استایل پاپ‌آپ شیشه‌ای */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-content { background: rgba(20, 20, 20, 0.85); border: 1px solid rgba(245, 184, 27, 0.5); padding: 2rem; border-radius: 30px; width: 90%; max-width: 400px; text-align: center; backdrop-filter: blur(10px); }
+        .btn-link { display: block; margin: 12px 0; padding: 12px; background: #f5b81b; color: #000; border-radius: 15px; text-decoration: none; font-weight: bold; }
+    </style>
+    <script src="mysite-config.js"></script>
+</head>
+<body>
+
+    <div class="logo-wrapper">
+        <img src="logo.jpg" class="main-logo" alt="Logo">
+    </div>
+
+    <div class="glass-card">
+        <h1>آکادمی چیز کد</h1>
+        <p>مسیر خود را انتخاب کنید</p>
+        <div id="course-list"></div>
+    </div>
+
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+            <h2>🎓 خوش آمدید</h2>
+            <p style="margin:1rem 0;">آموزش ساده پایتون مثل خوردن پنیر!</p>
+            <a href="https://ble.ir/cheesecode" class="btn-link">👉 ورود به کانال بله</a>
+            <a href="https://ble.ir/cheese_code" class="btn-link" style="background:transparent; color:#f5b81b; border:1px solid #f5b81b;">ارتباط با ادمین</a>
+            <button onclick="document.getElementById('welcomeModal').style.display='none'" style="margin-top:10px; background:none; border:none; color:#888; cursor:pointer;">بستن</button>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() { document.getElementById('welcomeModal').style.display = 'flex'; };
+
+        var container = document.getElementById('course-list');
+        if(typeof coursesConfig !== 'undefined') {
+            coursesConfig.forEach(function(course) {
+                var link = document.createElement('a');
+                link.className = 'course-card';
+                link.href = course.url;
+                link.innerHTML = '🚀 ' + course.title;
+                container.appendChild(link);
+            });
+        }
+    </script>
+</body>
+</html>
