@@ -20,7 +20,7 @@ body {
     position: relative;
 
     /* پس‌زمینه مثل ایندکس */
-    background: linear-gradient(rgba(13, 13, 13, 0.6), rgba(13, 13, 13, 0.6)), url('/CheeseCode-Academi-site/images/logo.jpg');
+    background: linear-gradient(rgba(13, 13, 13, 0.6), rgba(13, 13, 13, 0.6)), url('/images/logo.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
