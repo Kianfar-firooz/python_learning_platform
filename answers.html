@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آکادمی چیز کد | جواب تمارین</title>
+    <link rel="stylesheet" href="styles/python-linux-style.css">
+    <link rel="icon" type="image/jpeg" href="images/logo.png">
+    
+    <script src="js/cheese-utils.js"></script>
+    <script src="configs/answers-config.js"></script>
+</head>
+<body>
+
+    <header class="hero-panel">
+        <div class="brand">
+            <img src="images/logo.jpg" alt="Logo" class="brand-logo" id="logoBtn">
+            <div class="brand-text"><h1>آکادمی چیز کد</h1><p>CheeseCode Academy</p></div>
+        </div>
+        <div style="display:flex; gap:0.5rem; align-items:center;">
+            <button id="themeToggle" class="action-btn" style="background:transparent; border:1px solid rgba(0,255,65,0.1);">☀️</button>
+            <button class="action-btn" id="infoButton">📢 اطلاعات کانال</button>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <!-- 📊 پیشرفت -->
+            <div class="progress-container">
+                <div class="progress-header">
+                    <span>📊 پیشرفت دوره</span>
+                    <span id="progressText">۰ / ۰ جواب</span>
+                </div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progressBar" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <!-- 🔍 جستجو -->
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 جستجوی جواب...">
+            </div>
+
+            <!-- ▶️ ادامه -->
+            <button id="resumeBtn" class="resume-btn" style="display:none;">
+                ▶️ ادامه از آخرین جواب
+            </button>
+
+            <h2 class="sidebar-header">📚 جواب تمارین</h2>
+            <nav class="lessons-list" id="answers-menu"></nav>
+        </aside>
+    </div>
+
+    <!-- ===== مودال درس ===== -->
+    <div id="lessonModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeLesson">&times;</span>
+            <div id="modal-body-content"></div>
+        </div>
+    </div>
+
+    <!-- ===== مودال اطلاعات کانال ===== -->
+    <div id="channelModal" class="modal">
+        <div class="modal-content" style="max-width: 450px; text-align: center; border-top-color: #f5b81b;">
+            <span class="close-modal" id="closeChannel">&times;</span>
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎓</div>
+            <h3 style="color: #f5b81b; font-weight: 700; font-size: 1.4rem;">آکادمی چیزکد | CheeseCode</h3>
+            <p style="margin: 1rem 0; color: rgba(255,255,255,0.5);">🍕 آموزش ساده پایتون مثل خوردن پنیر</p>
+            <p style="color: rgba(255,255,255,0.7);">
+                ارتباط با ادمین: 
+                <span style="background: rgba(245, 184, 27, 0.08); color: #f5b81b; padding: 0.3rem 1rem; border-radius: 60px; border: 1px solid rgba(245, 184, 27, 0.1); display: inline-block; backdrop-filter: blur(4px);">
+                    @cheese_code
+                </span>
+            </p>
+            <p style="margin-top: 1.5rem;">
+                <a href="https://ble.ir/cheesecode" target="_blank" class="channel-link" style="color: #f5b81b; text-decoration: none; font-size: 0.95rem; font-weight: 600; display: inline-block; background: rgba(245, 184, 27, 0.08); padding: 0.5rem 1.8rem; border-radius: 60px; border: 1px solid rgba(245, 184, 27, 0.1); transition: all 0.3s ease; backdrop-filter: blur(8px);" 
+                   onmouseover="this.style.background='rgba(245, 184, 27, 0.2)'; this.style.transform='scale(1.05)'; this.style.boxShadow='0 0 40px rgba(245, 184, 27, 0.1)';"
+                   onmouseout="this.style.background='rgba(245, 184, 27, 0.08)'; this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                    👈 ورود به کانال بله 👉
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        var menuContainer = document.getElementById('answers-menu');
+        var lessonModal = document.getElementById('lessonModal');
+        var modalBody = document.getElementById('modal-body-content');
+        var closeLesson = document.getElementById('closeLesson');
+        var channelModal = document.getElementById('channelModal');
+        var logoBtn = document.getElementById('logoBtn');
+        var infoButton = document.getElementById('infoButton');
+        var closeChannel = document.getElementById('closeChannel');
+
+        // ============================================
+        // چک کردن config
+        // ============================================
+        if (typeof answersConfig === 'undefined') {
+            menuContainer.innerHTML = '<p style="color: #ff6b6b; padding: 1rem;">❌ خطا: فایل answers-config.js یافت نشد!</p>';
+            console.error('answersConfig is undefined!');
+            return;
+        }
+
+        console.log('🧀 تعداد جواب‌ها:', answersConfig.length);
+
+        // ============================================
+        // تابع بستن مودال
+        // ============================================
+        function closeModal() {
+            lessonModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            if (window.CheeseUtils) {
+                setTimeout(function() {
+                    window.CheeseUtils.updateProgress(answersConfig.length);
+                }, 100);
+            }
+        }
+
+        // ============================================
+        // تابع باز کردن جواب
+        // ============================================
+        function loadAnswer(answer) {
+            var cacheKey = 'answers_' + answer.file;
+            var cached = window.CheeseUtils ? window.CheeseUtils.getFromCache(cacheKey) : null;
+            
+            if (cached) {
+                modalBody.innerHTML = cached;
+                lessonModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                if (window.CheeseUtils) {
+                    window.CheeseUtils.saveLastLesson(answer.file, answer.title);
+                }
+                return;
+            }
+
+            modalBody.innerHTML = '<div style="text-align:center;padding:2rem;">⏳ در حال بارگذاری...</div>';
+            lessonModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+
+            fetch('answers/' + answer.file)
+                .then(function(res) {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    return res.text();
+                })
+                .then(function(html) {
+                    modalBody.innerHTML = html;
+                    if (window.CheeseUtils) {
+                        window.CheeseUtils.saveToCache(cacheKey, html);
+                        window.CheeseUtils.saveLastLesson(answer.file, answer.title);
+                    }
+                })
+                .catch(function(err) {
+                    console.error('❌ خطا:', err);
+                    modalBody.innerHTML = '<div style="text-align:center;padding:2rem;">❌ خطا در بارگذاری<br><span style="font-size:0.8rem;color:rgba(255,255,255,0.3);">' + err.message + '</span></div>';
+                });
+        }
+
+        // ============================================
+        // ساخت منو
+        // ============================================
+        menuContainer.innerHTML = '';
+
+        for (var i = 0; i < answersConfig.length; i++) {
+            (function(index) {
+                var answer = answersConfig[index];
+                var button = document.createElement('button');
+                button.className = 'menu-item';
+                button.setAttribute('data-index', index + 1);
+                button.innerHTML = '<span>🧀</span> ' + (index + 1) + '. ' + answer.title;
+                
+                button.addEventListener('click', function() {
+                    loadAnswer(answer);
+                });
+                
+                menuContainer.appendChild(button);
+            })(i);
+        }
+
+        console.log('🧀 منو ساخته شد با', answersConfig.length, 'دکمه');
+
+        // ============================================
+        // Event Listeners
+        // ============================================
+        
+        closeLesson.addEventListener('click', closeModal);
+        
+        infoButton.addEventListener('click', function() {
+            channelModal.style.display = 'block';
+        });
+        
+        logoBtn.addEventListener('click', function() {
+            channelModal.style.display = 'block';
+        });
+        
+        closeChannel.addEventListener('click', function() {
+            channelModal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', function(e) {
+            if (e.target === lessonModal) {
+                closeModal();
+            }
+            if (e.target === channelModal) {
+                channelModal.style.display = 'none';
+            }
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (lessonModal.style.display === 'block') {
+                    closeModal();
+                }
+                if (channelModal.style.display === 'block') {
+                    channelModal.style.display = 'none';
+                }
+            }
+        });
+
+        // ============================================
+        // راه‌اندازی ابزارها
+        // ============================================
+        
+        if (window.CheeseUtils) {
+            window.CheeseUtils.updateProgress(answersConfig.length);
+            window.CheeseUtils.setupResume();
+            setTimeout(function() {
+                window.CheeseUtils.setupSearch();
+            }, 100);
+        } else {
+            console.warn('⚠️ CheeseUtils پیدا نشد!');
+        }
+
+        console.log('🧀 Answers page ready!');
+
+    })();
+    </script>
+</body>
+</html>

@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>آکادمی چیز کد | آموزش لینوکس</title>
     <link rel="stylesheet" href="styles/python-linux-style.css">
-    <script src="configs/linux-config.js"></script>
     <link rel="icon" type="image/jpeg" href="images/logo.png">
+    
+    <script src="js/cheese-utils.js"></script>
+    <script src="configs/linux-config.js"></script>
 </head>
 <body>
 
@@ -15,18 +17,42 @@
             <img src="images/logo.jpg" alt="Logo" class="brand-logo" id="logoBtn">
             <div class="brand-text"><h1>آکادمی چیز کد</h1><p>CheeseCode Academy</p></div>
         </div>
-        <button class="action-btn" id="infoButton">📢 اطلاعات کانال</button>
+        <div style="display:flex; gap:0.5rem; align-items:center;">
+            <button id="themeToggle" class="action-btn" style="background:transparent; border:1px solid rgba(0,255,65,0.1);">☀️</button>
+            <button class="action-btn" id="infoButton">📢 اطلاعات کانال</button>
+        </div>
     </header>
 
     <div class="main-container">
         <aside class="sidebar">
+            <div class="progress-container">
+                <div class="progress-header">
+                    <span>📊 پیشرفت دوره</span>
+                    <span id="progressText">۰ / ۰ درس</span>
+                </div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progressBar" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 جستجوی درس...">
+            </div>
+
+            <button id="resumeBtn" class="resume-btn" style="display:none;">
+                ▶️ ادامه از آخرین درس
+            </button>
+
             <h2 class="sidebar-header">📚 جهت شروع، روی درس کلیک کنید</h2>
             <nav class="lessons-list" id="lessons-menu"></nav>
         </aside>
     </div>
 
     <div id="lessonModal" class="modal">
-        <div class="modal-content"><span class="close-modal" id="closeLesson">&times;</span><div id="modal-body-content"></div></div>
+        <div class="modal-content">
+            <span class="close-modal" id="closeLesson">&times;</span>
+            <div id="modal-body-content"></div>
+        </div>
     </div>
 
     <div id="channelModal" class="modal">
@@ -52,7 +78,7 @@
     </div>
 
     <script>
-        window.addEventListener('DOMContentLoaded', function() {
+        (function() {
             var menuContainer = document.getElementById('lessons-menu');
             var lessonModal = document.getElementById('lessonModal');
             var modalBody = document.getElementById('modal-body-content');
@@ -61,55 +87,105 @@
             var logoBtn = document.getElementById('logoBtn');
             var infoButton = document.getElementById('infoButton');
             var closeChannel = document.getElementById('closeChannel');
-
-            if (typeof lessonsConfig === 'undefined') { 
-                menuContainer.innerHTML = '<p style="color: #ff6b6b; padding: 1rem;">خطا: فایل linux-config.js یافت نشد!</p>';
-                return; 
+        
+            if (typeof lessonsConfig === 'undefined') {
+                menuContainer.innerHTML = '<p style="color: #ff6b6b; padding: 1rem;">خطا: فایل config.js یافت نشد!</p>';
+                return;
             }
+        
+            function closeModal() {
+                lessonModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                if (window.CheeseUtils) {
+                    setTimeout(function() {
+                        window.CheeseUtils.updateProgress(lessonsConfig.length);
+                    }, 100);
+                }
+            }
+        
+            function loadLesson(lesson) {
+                var cached = window.CheeseUtils ? window.CheeseUtils.getFromCache(lesson.file) : null;
+                
+                if (cached) {
+                    modalBody.innerHTML = cached;
+                    lessonModal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                    if (window.CheeseUtils) {
+                        window.CheeseUtils.saveLastLesson(lesson.file, lesson.title);
+                    }
+                    return;
+                }
+        
+                modalBody.innerHTML = '<div style="text-align:center;padding:2rem;">⏳ در حال بارگذاری...</div>';
+                lessonModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+        
+                fetch('linux-lessons/' + lesson.file)
+                    .then(function(res) {
+                        if (!res.ok) throw new Error('HTTP ' + res.status);
+                        return res.text();
+                    })
+                    .then(function(html) {
+                        modalBody.innerHTML = html;
+                        if (window.CheeseUtils) {
+                            window.CheeseUtils.saveLastLesson(lesson.file, lesson.title);
+                        }
+                    })
+                    .catch(function() {
+                        modalBody.innerHTML = '<div style="text-align:center;padding:2rem;">❌ خطا در بارگذاری</div>';
+                    });
+            }
+        
             menuContainer.innerHTML = '';
-
+        
             for (var i = 0; i < lessonsConfig.length; i++) {
                 (function(index) {
                     var lesson = lessonsConfig[index];
                     var button = document.createElement('button');
                     button.className = 'menu-item';
+                    button.setAttribute('data-index', index + 1);
                     button.innerHTML = '<span>🧀</span> ' + (index + 1) + '. ' + lesson.title;
                     
                     button.addEventListener('click', function() {
-                        fetch('linux-lessons/' + lesson.file)
-                            .then(function(res) { return res.text(); })
-                            .then(function(html) {
-                                modalBody.innerHTML = html;
-                                lessonModal.style.display = 'block';
-                                document.body.style.overflow = 'hidden';
-                            })
-                            .catch(function() {
-                                modalBody.innerHTML = '<div style="text-align:center; padding:2rem;"><div style="font-size:3rem;">🧀</div><h3 style="color:#f5b81b;">خطا در بارگذاری فایل درس</h3><p style="color:rgba(255,255,255,0.4);">فایل مورد نظر پیدا نشد</p></div>';
-                                lessonModal.style.display = 'block';
-                            });
+                        loadLesson(lesson);
                     });
+                    
                     menuContainer.appendChild(button);
                 })(i);
             }
-
-            closeLesson.addEventListener('click', function() { lessonModal.style.display = 'none'; document.body.style.overflow = 'auto'; });
+        
+            closeLesson.addEventListener('click', closeModal);
             infoButton.addEventListener('click', function() { channelModal.style.display = 'block'; });
             logoBtn.addEventListener('click', function() { channelModal.style.display = 'block'; });
             closeChannel.addEventListener('click', function() { channelModal.style.display = 'none'; });
-            window.addEventListener('click', function(e) { if (e.target === lessonModal) { lessonModal.style.display = 'none'; document.body.style.overflow = 'auto'; } if (e.target === channelModal) { channelModal.style.display = 'none'; } });
-            
+            window.addEventListener('click', function(e) {
+                if (e.target === lessonModal) closeModal();
+                if (e.target === channelModal) channelModal.style.display = 'none';
+            });
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
-                    if (lessonModal.style.display === 'block') {
-                        lessonModal.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                    }
-                    if (channelModal.style.display === 'block') {
-                        channelModal.style.display = 'none';
-                    }
+                    if (lessonModal.style.display === 'block') closeModal();
+                    if (channelModal.style.display === 'block') channelModal.style.display = 'none';
                 }
             });
-        });
-    </script>
+        
+            // ============================================
+            // ✅ آپدیت نوار پیشرفت (با تاخیر)
+            // ============================================
+            if (window.CheeseUtils) {
+                // تاخیر ۵۰۰ میلی‌ثانیه برای اطمینان از ساخته شدن کامل منو
+                setTimeout(function() {
+                    window.CheeseUtils.updateProgress(lessonsConfig.length);
+                }, 500);
+                
+                window.CheeseUtils.setupResume();
+                setTimeout(function() {
+                    window.CheeseUtils.setupSearch();
+                }, 100);
+            }
+        
+            console.log('🧀 Linux page ready!');
+        })();
+        </script>
 </body>
 </html>

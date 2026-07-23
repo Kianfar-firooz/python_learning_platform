@@ -10,6 +10,18 @@
 </head>
 <body>
 
+    <!-- ===== هدر با دکمه‌ی تم ===== -->
+    <header style="width:100%; max-width:500px; display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; padding:0.5rem 1rem; background:rgba(0,10,0,0.5); border-radius:16px; border:1px solid rgba(0,255,65,0.04);">
+        <div style="display:flex; align-items:center; gap:0.8rem;">
+            <img src="images/logo.jpg" alt="Logo" style="width:40px; height:40px; border-radius:12px; object-fit:cover; border:1px solid rgba(0,255,65,0.1);">
+            <div>
+                <h1 style="font-size:1.1rem; color:#00ff41; margin:0; font-family:'Courier New',monospace;">آکادمی چیز کد</h1>
+                <p style="font-size:0.6rem; color:rgba(0,255,65,0.2); margin:0; letter-spacing:2px; font-family:'Courier New',monospace;">CheeseCode Academy</p>
+            </div>
+        </div>
+        <button id="themeToggle" style="background:transparent; border:1px solid rgba(0,255,65,0.06); padding:0.4rem 0.8rem; border-radius:8px; color:#00ff41; cursor:pointer; font-family:'Courier New',monospace; font-size:0.9rem; transition:all 0.3s ease;">☀️</button>
+    </header>
+
     <div class="logo-wrapper">
         <img src="images/logo.jpg" class="main-logo" alt="Logo">
     </div>
@@ -31,18 +43,53 @@
     </div>
 
     <script>
-        window.onload = function() { document.getElementById('welcomeModal').style.display = 'flex'; };
-
+    (function() {
+        // ============================================
+        // ۱. نمایش دوره‌ها
+        // ============================================
         var container = document.getElementById('course-list');
-        if(typeof coursesConfig !== 'undefined') {
-            coursesConfig.forEach(function(course) {
+        if (typeof coursesConfig !== 'undefined' && coursesConfig.length > 0) {
+            container.innerHTML = '';
+            for (var i = 0; i < coursesConfig.length; i++) {
+                var course = coursesConfig[i];
                 var link = document.createElement('a');
                 link.className = 'course-card';
                 link.href = course.url;
                 link.innerHTML = '🚀 ' + course.title;
                 container.appendChild(link);
+            }
+        }
+
+        // ============================================
+        // ۲. مودال خوش‌آمدگویی
+        // ============================================
+        if (localStorage.getItem('cheese_welcome_shown')) {
+            document.getElementById('welcomeModal').style.display = 'none';
+        } else {
+            document.getElementById('welcomeModal').style.display = 'flex';
+            localStorage.setItem('cheese_welcome_shown', 'true');
+        }
+
+        // ============================================
+        // ۳. دکمه‌ی تم
+        // ============================================
+        var themeBtn = document.getElementById('themeToggle');
+        if (themeBtn) {
+            var saved = localStorage.getItem('cheese_theme') || 'dark';
+            document.body.setAttribute('data-theme', saved);
+            themeBtn.textContent = saved === 'dark' ? '☀️' : '🌙';
+            
+            themeBtn.addEventListener('click', function() {
+                var current = document.body.getAttribute('data-theme') || 'dark';
+                var next = current === 'dark' ? 'light' : 'dark';
+                document.body.setAttribute('data-theme', next);
+                localStorage.setItem('cheese_theme', next);
+                this.textContent = next === 'dark' ? '☀️' : '🌙';
             });
         }
+
+        console.log('🧀 Index page ready!');
+    })();
     </script>
 </body>
 </html>

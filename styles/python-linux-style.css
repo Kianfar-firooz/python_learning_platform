@@ -1,6 +1,6 @@
 /* ============================================
-   استایل مخصوص صفحه پایتون
-   با استایل شیشه‌ای مشابه ایندکس
+   🧀💻 استایل هکر-پنیری | CheeseCode Academy
+   با رنگ‌های پررنگ
    ============================================ */
 
    * {
@@ -10,32 +10,68 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color: #fff;
+    font-family: 'Courier New', 'Fira Code', monospace;
+    color: #00ff41;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem 1rem;
     position: relative;
-
-    /* پس‌زمینه مثل ایندکس */
-    background: linear-gradient(rgba(13, 13, 13, 0.6), rgba(13, 13, 13, 0.6)), url('../images/logo.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: #0a0a0f;
+    overflow-x: hidden;
+    direction: rtl;
 }
 
-/* ===== کلاس‌های شیشه‌ای مثل ایندکس ===== */
-.glass,
+/* ============================================
+   💻 پس‌زمینه ماتریسی + دایره‌های پنیر (پررنگ)
+   ============================================ */
+
+/* لایه‌ی اصلی: کدهای ماتریس (پررنگ‌تر) */
+body::before {
+    content: '01001000 01100101 01101100 01101100 01101111 00100000 01010111 01101111 01110010 01101100 01100100 00100001 01000011 01101000 01100101 01100101 01110011 01100101 01000011 01101111 01100100 01100101 00100000 01000001 01100011 01100001 01100100 01100101 01101101 01111001 00100000 01001000 01100001 01100011 01101011 01100101 01110010 00100000 01010000 01111001 01110100 01101000 01101111 01101110 00100000 01001100 01101001 01101110 01110101 01111000 00100000 01000011 01101111 01100100 01100101 00100000 01001000 01100001 01100011 01101011 01100101 01110010';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    font-size: 14px;
+    color: rgba(0, 255, 65, 0.08); /* ← از 0.03 به 0.08 افزایش */
+    line-height: 2.5;
+    letter-spacing: 4px;
+    word-break: break-all;
+    white-space: pre-wrap;
+    pointer-events: none;
+}
+
+/* لایه‌ی دوم: دایره‌های پنیر (پررنگ‌تر) */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: 
+        radial-gradient(circle at 15% 20%, rgba(245, 184, 27, 0.15) 0%, transparent 120px),   /* ← از 0.06 به 0.15 */
+        radial-gradient(circle at 80% 10%, rgba(245, 184, 27, 0.12) 0%, transparent 100px),  /* ← از 0.04 به 0.12 */
+        radial-gradient(circle at 25% 65%, rgba(0, 255, 65, 0.10) 0%, transparent 140px),    /* ← از 0.03 به 0.10 */
+        radial-gradient(circle at 70% 55%, rgba(245, 184, 27, 0.13) 0%, transparent 110px),  /* ← از 0.05 به 0.13 */
+        radial-gradient(circle at 45% 85%, rgba(0, 255, 65, 0.08) 0%, transparent 130px),    /* ← از 0.02 به 0.08 */
+        radial-gradient(circle at 92% 80%, rgba(245, 184, 27, 0.10) 0%, transparent 90px),   /* ← از 0.03 به 0.10 */
+        radial-gradient(circle at 5% 45%, rgba(0, 255, 65, 0.12) 0%, transparent 80px);      /* ← از 0.04 به 0.12 */
+    pointer-events: none;
+}
+
+/* ============================================
+   💻 المنت‌های اصلی
+   ============================================ */
+
 .hero-panel,
 .sidebar,
 .modal-content {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px) saturate(1.2);
-    -webkit-backdrop-filter: blur(16px) saturate(1.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     position: relative;
     z-index: 1;
 }
@@ -44,13 +80,22 @@ body {
 .hero-panel {
     width: 100%;
     max-width: 1280px;
-    border-radius: 32px;
+    border-radius: 16px;
     padding: 1.2rem 2rem;
     margin-bottom: 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: all 0.3s ease;
+    background: rgba(0, 10, 0, 0.85);
+    border: 1px solid rgba(0, 255, 65, 0.15); /* ← از 0.08 به 0.15 */
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.05); /* ← از 0.02 به 0.05 */
+    transition: all 0.2s ease;
+    direction: rtl;
+}
+
+.hero-panel:hover {
+    border-color: rgba(0, 255, 65, 0.25);
+    box-shadow: 0 0 40px rgba(0, 255, 65, 0.08);
 }
 
 .brand {
@@ -59,55 +104,74 @@ body {
     gap: 1rem;
 }
 
+.brand-text h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #00ff41;
+    text-shadow: 0 0 30px rgba(0, 255, 65, 0.2); /* ← از 0.1 به 0.2 */
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.brand-text h1::after {
+    content: '█';
+    animation: cursorBlink 1s step-end infinite;
+    color: #f5b81b;
+    margin-right: 4px;
+}
+
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.brand-text p {
+    font-size: 0.8rem;
+    color: rgba(0, 255, 65, 0.3); /* ← از 0.2 به 0.3 */
+    letter-spacing: 4px;
+}
+
 .brand-logo {
     width: 45px;
     height: 45px;
     border-radius: 12px;
     object-fit: cover;
     cursor: pointer;
-    transition: transform 0.3s ease;
-}
-.brand-logo:hover {
-    transform: scale(1.1) rotate(-4deg);
-}
-.brand-text h1 {
-    font-size: 1.6rem;
-    background: linear-gradient(135deg, #f5b81b, #f7d875);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
-}
-.brand-text p {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.4);
+    transition: all 0.2s ease;
+    border: 1px solid rgba(0, 255, 65, 0.2); /* ← از 0.1 به 0.2 */
 }
 
-/* ===== دکمه اطلاعات کانال ===== */
+.brand-logo:hover {
+    transform: scale(1.05) rotate(-4deg);
+    border-color: rgba(0, 255, 65, 0.4);
+}
+
+/* ===== دکمه‌ها ===== */
 .action-btn {
-    background: rgba(245, 184, 27, 0.08);
-    border: 1px solid rgba(245, 184, 27, 0.15);
-    padding: 0.7rem 1.6rem;
-    border-radius: 60px;
-    color: #f5b81b;
+    background: rgba(0, 255, 65, 0.06); /* ← از 0.03 به 0.06 */
+    border: 1px solid rgba(0, 255, 65, 0.12); /* ← از 0.06 به 0.12 */
+    padding: 0.6rem 1.6rem;
+    border-radius: 8px;
+    color: #00ff41;
+    font-family: 'Courier New', monospace;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-}
-.action-btn:hover {
-    background: #f5b81b;
-    color: #0a0a0f;
-    transform: scale(1.05);
-    box-shadow: 0 0 40px rgba(245, 184, 27, 0.2);
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
 }
 
-/* ===== سایدبار و منو ===== */
+.action-btn:hover {
+    background: rgba(0, 255, 65, 0.10);
+    border-color: rgba(0, 255, 65, 0.20);
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.05);
+}
+
+/* ===== سایدبار ===== */
 .main-container {
     display: flex;
     width: 100%;
@@ -121,53 +185,87 @@ body {
 .sidebar {
     width: 100%;
     max-width: 500px;
-    border-radius: 32px;
+    border-radius: 16px;
     padding: 2rem;
     text-align: center;
+    background: rgba(0, 10, 0, 0.85); /* ← از 0.8 به 0.85 */
+    border: 1px solid rgba(0, 255, 65, 0.08); /* ← از 0.04 به 0.08 */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    direction: rtl;
 }
 
 .sidebar-header {
-    font-size: 1.4rem;
-    color: #f5b81b;
+    font-size: 1.2rem;
+    color: #00ff41;
     margin-bottom: 1.5rem;
     padding-bottom: 0.8rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.08); /* ← از 0.04 به 0.08 */
     font-weight: 600;
+    letter-spacing: 1px;
+    font-family: 'Courier New', monospace;
 }
 
+.sidebar-header::before {
+    content: '$ ';
+    color: #f5b81b;
+    opacity: 0.8; /* ← از 0.6 به 0.8 */
+}
+
+/* ===== دکمه‌های درس ===== */
 .lessons-list {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.6rem;
 }
 
 .menu-item {
     width: 100%;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    padding: 1.1rem 1.4rem;
-    border-radius: 18px;
+    background: rgba(0, 255, 65, 0.02); /* ← از 0.01 به 0.02 */
+    border: 1px solid rgba(0, 255, 65, 0.04); /* ← از 0.02 به 0.04 */
+    padding: 1rem 1.4rem;
+    border-radius: 12px;
     text-align: right;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.05rem;
+    color: rgba(0, 255, 65, 0.6); /* ← از 0.4 به 0.6 */
+    font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-}
-.menu-item:hover {
-    background: rgba(245, 184, 27, 0.1);
-    border-color: rgba(245, 184, 27, 0.25);
-    color: #f5b81b;
-    transform: translateX(-6px) scale(1.02);
-    box-shadow: 0 8px 30px rgba(245, 184, 27, 0.05);
+    font-family: 'Courier New', monospace;
+    position: relative;
+    direction: rtl;
 }
 
-/* ===== مودال ===== */
+.menu-item::before {
+    content: '[' attr(data-index) ']';
+    color: rgba(245, 184, 27, 0.4); /* ← از 0.2 به 0.4 */
+    font-size: 0.7rem;
+    margin-left: auto;
+}
+
+.menu-item:hover {
+    background: rgba(0, 255, 65, 0.04);
+    border-color: rgba(0, 255, 65, 0.10);
+    color: #00ff41;
+    transform: translateX(-4px);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.03);
+}
+
+.menu-item:hover::after {
+    content: ' ❯';
+    color: #f5b81b;
+}
+
+.menu-item span {
+    font-size: 1.1rem;
+}
+
+/* ============================================
+   💻 مودال
+   ============================================ */
+
 .modal {
     display: none;
     position: fixed;
@@ -176,31 +274,32 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background: rgba(0, 0, 0, 0.90); /* ← از 0.85 به 0.90 */
     overflow-y: auto;
     padding: 2rem 1rem;
+    direction: rtl;
 }
 
 .modal-content {
-    background: rgba(20, 20, 20, 0.8);
-    border: 1px solid rgba(245, 184, 27, 0.3);
+    background: rgba(0, 8, 0, 0.97); /* ← از 0.95 به 0.97 */
+    border: 1px solid rgba(0, 255, 65, 0.06); /* ← از 0.04 به 0.06 */
     margin: 2rem auto;
     padding: 2.5rem;
-    border-radius: 32px;
+    border-radius: 16px;
     width: 95%;
     max-width: 750px;
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
-    border-top: 6px solid #f5b81b;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    border-top: 2px solid #00ff41;
     position: relative;
-    animation: slideUp 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+    animation: terminalSlide 0.25s ease;
+    direction: rtl;
+    text-align: right;
 }
 
-@keyframes slideUp {
+@keyframes terminalSlide {
     from {
-        transform: translateY(50px) scale(0.96);
-        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+        opacity: 0.3;
     }
     to {
         transform: translateY(0) scale(1);
@@ -208,78 +307,167 @@ body {
     }
 }
 
+.modal-content::before {
+    content: '● ● ●';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0.6rem 1.5rem;
+    color: rgba(0, 255, 65, 0.08); /* ← از 0.05 به 0.08 */
+    font-size: 0.7rem;
+    letter-spacing: 6px;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.04);
+    background: rgba(0, 255, 65, 0.02);
+    border-radius: 16px 16px 0 0;
+}
+
 .close-modal {
     position: absolute;
     left: 1.5rem;
-    top: 1.2rem;
-    font-size: 1.8rem;
+    top: 0.4rem;
+    font-size: 1.2rem;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(0, 255, 65, 0.15); /* ← از 0.1 به 0.15 */
     cursor: pointer;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.03);
-    width: 44px;
-    height: 44px;
-    border-radius: 60px;
+    transition: all 0.2s ease;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    background: transparent;
+    border: 1px solid transparent;
+    font-family: 'Courier New', monospace;
+    z-index: 10;
 }
+
 .close-modal:hover {
-    color: #ff6b6b;
-    transform: scale(1.1) rotate(90deg);
-    background: rgba(255, 80, 80, 0.1);
+    color: #ff4444;
+    border-color: rgba(255, 68, 68, 0.05);
+    background: rgba(255, 68, 68, 0.02);
 }
 
-#channelModal .modal-content {
-    max-width: 450px;
-    text-align: center;
-    border-top-color: #f5b81b;
+/* ============================================
+   💻 محتوای درس
+   ============================================ */
+
+.lesson-content {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    font-family: 'Courier New', monospace;
+    text-align: right;
+    direction: rtl;
 }
 
-#channelModal .modal-content .channel-link {
-    display: inline-block;
-    background: rgba(245, 184, 27, 0.08);
-    padding: 0.5rem 1.8rem;
-    border-radius: 60px;
-    border: 1px solid rgba(245, 184, 27, 0.1);
-    transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
-    color: #f5b81b;
-    text-decoration: none;
+.lesson-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.lesson-content::-webkit-scrollbar-track {
+    background: rgba(0, 255, 65, 0.02);
+    border-radius: 10px;
+}
+
+.lesson-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 65, 0.15); /* ← از 0.1 به 0.15 */
+    border-radius: 10px;
+}
+
+.lesson-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 65, 0.25);
+}
+
+.lesson-title {
+    color: #00ff41;
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
     font-weight: 600;
-}
-#channelModal .modal-content .channel-link:hover {
-    background: rgba(245, 184, 27, 0.2);
-    transform: scale(1.05);
-    box-shadow: 0 0 40px rgba(245, 184, 27, 0.1);
+    letter-spacing: 1px;
 }
 
-/* ===== استایل‌های محتوای درسی ===== */
+.lesson-meta {
+    color: rgba(0, 255, 65, 0.25); /* ← از 0.15 به 0.25 */
+    font-size: 0.75rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.lesson-meta::before {
+    content: '// ';
+    color: rgba(245, 184, 27, 0.15);
+}
+
+.section {
+    margin: 1.2rem 0;
+}
+
+.section h2 {
+    color: #f5b81b;
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.section h2::before {
+    content: '>> ';
+    color: #00ff41;
+    opacity: 0.4; /* ← از 0.3 به 0.4 */
+}
+
+.section p {
+    color: rgba(0, 255, 65, 0.6); /* ← از 0.5 به 0.6 */
+    line-height: 1.8;
+    font-size: 0.9rem;
+}
+
+.section ul {
+    padding-right: 1.5rem;
+    color: rgba(0, 255, 65, 0.5); /* ← از 0.4 به 0.5 */
+    line-height: 2;
+}
+
+.section li {
+    margin-bottom: 0.2rem;
+}
+
+code {
+    background: rgba(0, 255, 65, 0.04);
+    color: #f5b81b;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(245, 184, 27, 0.04);
+}
+
 .code-block {
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-right: 5px solid #f5b81b;
-    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.7); /* ← از 0.6 به 0.7 */
+    border: 1px solid rgba(0, 255, 65, 0.04);
+    border-right: 2px solid #00ff41;
+    border-radius: 8px;
     padding: 1.2rem;
     font-family: 'Courier New', monospace;
-    font-size: 0.95rem;
-    color: #f0f0f5;
+    font-size: 0.85rem;
+    color: #00ff41;
     direction: ltr;
     text-align: left;
     margin: 1rem 0;
     overflow-x: auto;
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.02);
 }
+
 .code-block-output {
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-right: 5px solid #f5b81b;
-    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 68, 68, 0.04);
+    border-right: 2px solid #ff4444;
+    border-radius: 8px;
     padding: 1.2rem;
     font-family: 'Courier New', monospace;
-    font-size: 0.95rem;
-    color: #ff0000;
+    font-size: 0.85rem;
+    color: #ff4444;
     direction: ltr;
     text-align: left;
     margin: 1rem 0;
@@ -287,24 +475,99 @@ body {
 }
 
 .exercise-box {
-    background: rgba(245, 184, 27, 0.04);
-    border: 1px dashed rgba(245, 184, 27, 0.2);
-    border-radius: 12px;
-    padding: 1rem;
+    background: rgba(245, 184, 27, 0.02);
+    border: 1px dashed rgba(245, 184, 27, 0.05);
+    border-radius: 8px;
+    padding: 1.2rem;
     margin: 1rem 0;
-    color: rgba(255, 255, 255, 0.8);
+}
+
+.exercise-box p {
+    margin: 0.3rem 0;
+    color: rgba(0, 255, 65, 0.4); /* ← از 0.3 به 0.4 */
 }
 
 .highlight-box {
-    background: rgba(80, 250, 123, 0.05);
-    border-right: 4px solid #50fa7b;
+    background: rgba(0, 255, 65, 0.02);
+    border-right: 2px solid #00ff41;
     padding: 1rem;
     margin-top: 1.5rem;
-    color: rgba(200, 255, 210, 0.9);
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
-/* ===== واکنش‌گرایی ===== */
+.highlight-box p {
+    color: rgba(0, 255, 65, 0.4); /* ← از 0.3 به 0.4 */
+}
+
+/* ===== ناوبری ===== */
+.lesson-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 255, 65, 0.04);
+    flex-wrap: wrap;
+    direction: rtl;
+}
+
+.nav-btn {
+    background: rgba(0, 255, 65, 0.02);
+    border: 1px solid rgba(0, 255, 65, 0.04);
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    color: rgba(0, 255, 65, 0.3); /* ← از 0.2 به 0.3 */
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    font-family: 'Courier New', monospace;
+}
+
+.nav-btn:hover {
+    background: rgba(0, 255, 65, 0.04);
+    color: #00ff41;
+    border-color: rgba(0, 255, 65, 0.08);
+}
+
+/* ============================================
+   💻 مودال اطلاعات کانال
+   ============================================ */
+
+#channelModal .modal-content {
+    max-width: 450px;
+    text-align: center;
+    border-top-color: #f5b81b;
+}
+
+#channelModal .modal-content h3 {
+    color: #f5b81b;
+    font-weight: 600;
+}
+
+.channel-link {
+    display: inline-block;
+    background: rgba(245, 184, 27, 0.04);
+    padding: 0.5rem 1.8rem;
+    border-radius: 8px;
+    border: 1px solid rgba(245, 184, 27, 0.04);
+    transition: all 0.2s ease;
+    color: #f5b81b;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+}
+
+.channel-link:hover {
+    background: rgba(245, 184, 27, 0.06);
+    border-color: rgba(245, 184, 27, 0.08);
+    transform: scale(1.02);
+}
+
+/* ============================================
+   💻 واکنش‌گرایی
+   ============================================ */
+
 @media (max-width: 700px) {
     body {
         padding: 1rem 0.8rem;
@@ -315,19 +578,20 @@ body {
         align-items: flex-start;
         gap: 1rem;
         padding: 1.2rem 1.5rem;
-        border-radius: 24px;
+        border-radius: 12px;
     }
 
     .brand-text h1 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
     .brand-logo {
-        font-size: 2rem;
+        width: 38px;
+        height: 38px;
     }
 
     .sidebar {
         padding: 1.5rem 1rem;
-        border-radius: 24px;
+        border-radius: 12px;
     }
 
     .main-container {
@@ -336,30 +600,676 @@ body {
     }
 
     .modal-content {
-        padding: 2rem 1.2rem;
-        border-radius: 24px;
+        padding: 1.5rem 1rem;
+        border-radius: 12px;
+        margin: 1rem auto;
     }
 
     .menu-item {
-        font-size: 0.95rem;
-        padding: 0.9rem 1rem;
+        font-size: 0.9rem;
+        padding: 0.8rem 1rem;
     }
 
     .close-modal {
         left: 0.8rem;
-        top: 0.8rem;
-        width: 38px;
-        height: 38px;
-        font-size: 1.5rem;
+        top: 0.2rem;
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .lesson-title {
+        font-size: 1.2rem;
+    }
+
+    .lesson-navigation {
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .modal-content::before {
+        padding: 0.4rem 1rem;
+        font-size: 0.6rem;
     }
 }
 
 @media (max-width: 450px) {
     .action-btn {
-        font-size: 0.75rem;
-        padding: 0.4rem 1rem;
+        font-size: 0.7rem;
+        padding: 0.3rem 0.8rem;
     }
-    .brand-logo {
-        font-size: 1.8rem;
+    .brand-text h1 {
+        font-size: 1rem;
     }
+    .brand-text p {
+        font-size: 0.6rem;
+        letter-spacing: 2px;
+    }
+}
+
+/* ============================================
+   💻 انتخاب متن
+   ============================================ */
+
+::selection {
+    background: rgba(0, 255, 65, 0.10); /* ← از 0.05 به 0.10 */
+    color: #00ff41;
+}
+/* ============================================
+   📊 نوار پیشرفت
+   ============================================ */
+
+   .progress-container {
+    margin-bottom: 1.2rem;
+    padding: 1rem;
+    background: rgba(0, 10, 0, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 65, 0.04);
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: rgba(0, 255, 65, 0.4);
+    margin-bottom: 0.5rem;
+    font-family: 'Courier New', monospace;
+}
+
+.progress-bar-track {
+    width: 100%;
+    height: 6px;
+    background: rgba(0, 255, 65, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00ff41, #f5b81b);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+/* ============================================
+   🔍 باکس جستجو
+   ============================================ */
+
+.search-box {
+    margin-bottom: 1.2rem;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    padding-right: 2.8rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 65, 0.06);
+    background: rgba(0, 10, 0, 0.5);
+    color: #00ff41;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    outline: none;
+    direction: rtl;
+}
+
+.search-box input::placeholder {
+    color: rgba(0, 255, 65, 0.15);
+}
+
+.search-box input:focus {
+    border-color: rgba(0, 255, 65, 0.15);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.02);
+    background: rgba(0, 10, 0, 0.7);
+}
+
+.search-box::before {
+    content: '🔍';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* ============================================
+   ▶️ دکمه‌ی ادامه
+   ============================================ */
+
+.resume-btn {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(245, 184, 27, 0.08);
+    background: rgba(245, 184, 27, 0.03);
+    color: #f5b81b;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.resume-btn:hover {
+    background: rgba(245, 184, 27, 0.06);
+    border-color: rgba(245, 184, 27, 0.15);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   ❌ پیام "نتیجه‌ای یافت نشد"
+   ============================================ */
+
+.no-result {
+    text-align: center;
+    padding: 1.5rem;
+    color: rgba(0, 255, 65, 0.2);
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+}
+
+/* ============================================
+   ☀️ حالت روشن (Light Theme)
+   ============================================ */
+
+body[data-theme="light"] {
+    background: #f0f0f0;
+    color: #0a0a0f;
+}
+
+body[data-theme="light"] .hero-panel {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme="light"] .sidebar {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .brand-text h1 {
+    color: #0a0a0f;
+    text-shadow: none;
+}
+
+body[data-theme="light"] .menu-item {
+    color: rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .menu-item:hover {
+    color: #0a0a0f;
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+body[data-theme="light"] .sidebar-header {
+    color: #0a0a0f;
+}
+
+body[data-theme="light"] .action-btn {
+    color: #0a0a0f;
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme="light"] .action-btn:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body[data-theme="light"] .modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .modal-content::before {
+    color: rgba(0, 0, 0, 0.05);
+    border-bottom-color: rgba(0, 0, 0, 0.02);
+}
+
+body[data-theme="light"] .lesson-title {
+    color: #0a0a0f;
+}
+
+body[data-theme="light"] .section p {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+body[data-theme="light"] .code-block {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.03);
+    color: #0a0a0f;
+}
+
+body[data-theme="light"] .search-box input {
+    background: rgba(255, 255, 255, 0.5);
+    color: #0a0a0f;
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .search-box input::placeholder {
+    color: rgba(0, 0, 0, 0.15);
+}
+
+body[data-theme="light"] .progress-container {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .progress-header {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+body[data-theme="light"] .progress-bar-track {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .resume-btn {
+    color: #0a0a0f;
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .resume-btn:hover {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+body[data-theme="light"] .no-result {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+body[data-theme="light"] .close-modal {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+body[data-theme="light"] .close-modal:hover {
+    color: #ff4444;
+}
+
+body[data-theme="light"] .close-modal {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+body[data-theme="light"] .close-modal:hover {
+    color: #ff4444;
+}
+
+body[data-theme="light"] .code-block-output {
+    background: rgba(0, 0, 0, 0.03);
+    color: #ff4444;
+}
+
+body[data-theme="light"] .exercise-box {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .exercise-box p {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+body[data-theme="light"] .highlight-box {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body[data-theme="light"] .highlight-box p {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+body[data-theme="light"] .lesson-meta {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+body[data-theme="light"] .lesson-meta::before {
+    color: rgba(245, 184, 27, 0.15);
+}
+
+body[data-theme="light"] .section h2 {
+    color: #0a0a0f;
+}
+
+body[data-theme="light"] .section h2::before {
+    color: #0a0a0f;
+    opacity: 0.2;
+}
+
+body[data-theme="light"] .section ul {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+body[data-theme="light"] .brand-text p {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+body[data-theme="light"] .modal-content {
+    border-top-color: #0a0a0f;
+}
+
+body[data-theme="light"] #channelModal .modal-content h3 {
+    color: #0a0a0f;
+}
+
+body[data-theme="light"] .channel-link {
+    color: #0a0a0f;
+}
+
+body[data-theme="light"] .channel-link:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body[data-theme="light"] ::selection {
+    background: rgba(0, 0, 0, 0.05);
+    color: #0a0a0f;
+}
+/* ============================================
+   📊 نوار پیشرفت
+   ============================================ */
+
+.progress-container {
+    margin-bottom: 1.2rem;
+    padding: 1rem;
+    background: rgba(0, 10, 0, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 65, 0.04);
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: rgba(0, 255, 65, 0.4);
+    margin-bottom: 0.5rem;
+    font-family: 'Courier New', monospace;
+}
+
+.progress-bar-track {
+    width: 100%;
+    height: 6px;
+    background: rgba(0, 255, 65, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00ff41, #f5b81b);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+/* ============================================
+   🔍 باکس جستجو
+   ============================================ */
+
+.search-box {
+    margin-bottom: 1.2rem;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    padding-right: 2.8rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 65, 0.06);
+    background: rgba(0, 10, 0, 0.5);
+    color: #00ff41;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    outline: none;
+    direction: rtl;
+}
+
+.search-box input::placeholder {
+    color: rgba(0, 255, 65, 0.15);
+}
+
+.search-box input:focus {
+    border-color: rgba(0, 255, 65, 0.15);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.02);
+    background: rgba(0, 10, 0, 0.7);
+}
+
+.search-box::before {
+    content: '🔍';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* ============================================
+   ▶️ دکمه‌ی ادامه
+   ============================================ */
+
+.resume-btn {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(245, 184, 27, 0.08);
+    background: rgba(245, 184, 27, 0.03);
+    color: #f5b81b;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.resume-btn:hover {
+    background: rgba(245, 184, 27, 0.06);
+    border-color: rgba(245, 184, 27, 0.15);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   ❌ پیام "نتیجه‌ای یافت نشد"
+   ============================================ */
+
+.no-result {
+    text-align: center;
+    padding: 1.5rem;
+    color: rgba(0, 255, 65, 0.2);
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+}
+
+/* ============================================
+   ☀️ حالت روشن (Light Theme)
+   ============================================ */
+
+body[data-theme="light"] {
+    background: #f0f0f0;
+    color: #0a0a0f;
+}
+
+body[data-theme="light"] .hero-panel {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme="light"] .sidebar {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .brand-text h1 {
+    color: #0a0a0f;
+    text-shadow: none;
+}
+
+body[data-theme="light"] .menu-item {
+    color: rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .menu-item:hover {
+    color: #0a0a0f;
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+body[data-theme="light"] .sidebar-header {
+    color: #0a0a0f;
+}
+
+body[data-theme="light"] .action-btn {
+    color: #0a0a0f;
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme="light"] .action-btn:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body[data-theme="light"] .modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .modal-content::before {
+    color: rgba(0, 0, 0, 0.05);
+    border-bottom-color: rgba(0, 0, 0, 0.02);
+}
+
+body[data-theme="light"] .lesson-title {
+    color: #0a0a0f;
+}
+
+body[data-theme="light"] .section p {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+body[data-theme="light"] .code-block {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.03);
+    color: #0a0a0f;
+}
+
+body[data-theme="light"] .search-box input {
+    background: rgba(255, 255, 255, 0.5);
+    color: #0a0a0f;
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .search-box input::placeholder {
+    color: rgba(0, 0, 0, 0.15);
+}
+
+body[data-theme="light"] .progress-container {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .progress-header {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+body[data-theme="light"] .progress-bar-track {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .resume-btn {
+    color: #0a0a0f;
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .resume-btn:hover {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+body[data-theme="light"] .no-result {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+body[data-theme="light"] .close-modal {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+body[data-theme="light"] .close-modal:hover {
+    color: #ff4444;
+}
+
+body[data-theme="light"] .code-block-output {
+    background: rgba(0, 0, 0, 0.03);
+    color: #ff4444;
+}
+
+body[data-theme="light"] .exercise-box {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .exercise-box p {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+body[data-theme="light"] .highlight-box {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body[data-theme="light"] .highlight-box p {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+body[data-theme="light"] .lesson-meta {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+body[data-theme="light"] .lesson-meta::before {
+    color: rgba(245, 184, 27, 0.15);
+}
+
+body[data-theme="light"] .section h2 {
+    color: #0a0a0f;
+}
+
+body[data-theme="light"] .section h2::before {
+    color: #0a0a0f;
+    opacity: 0.2;
+}
+
+body[data-theme="light"] .section ul {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+body[data-theme="light"] .brand-text p {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+body[data-theme="light"] .modal-content {
+    border-top-color: #0a0a0f;
+}
+
+body[data-theme="light"] #channelModal .modal-content h3 {
+    color: #0a0a0f;
+}
+
+body[data-theme="light"] .channel-link {
+    color: #0a0a0f;
+}
+
+body[data-theme="light"] .channel-link:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body[data-theme="light"] ::selection {
+    background: rgba(0, 0, 0, 0.05);
+    color: #0a0a0f;
 }
