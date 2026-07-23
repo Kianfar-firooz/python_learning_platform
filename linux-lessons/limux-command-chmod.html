@@ -1,0 +1,173 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">🔐 دستور chmod – تغییر مجوزهای دسترسی</h1>
+    <div class="lesson-meta">سطح: متوسط | زمان مطالعه: ۱۲ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>chmod</code> – تغییر مجوزهای دسترسی (permissions) فایل‌ها و پوشه‌ها</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">chmod [گزینه] [مجوز] [فایل/پوشه]</pre>
+        <p><strong>توضیح:</strong> مجوزهای خواندن، نوشتن و اجرا را برای مالک، گروه و دیگران تغییر می‌دهد. این دستور برای مدیریت امنیت فایل‌ها و پوشه‌ها بسیار مهم است.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>chmod</code> (مخفف Change Mode) برای تغییر مجوزهای دسترسی فایل‌ها و پوشه‌ها استفاده می‌شود. هر فایل یا پوشه در لینوکس دارای سه سطح دسترسی است:</p>
+        <ul>
+            <li><strong>مالک (Owner):</strong> کاربری که فایل را ایجاد کرده است.</li>
+            <li><strong>گروه (Group):</strong> گروهی که فایل به آن تعلق دارد.</li>
+            <li><strong>دیگران (Others):</strong> همه‌ی کاربران دیگر.</li>
+        </ul>
+        <p>هر سطح دسترسی می‌تواند دارای سه نوع مجوز باشد:</p>
+        <ul>
+            <li><strong>خواندن (Read - r):</strong> امکان دیدن محتوای فایل یا لیست گرفتن از پوشه.</li>
+            <li><strong>نوشتن (Write - w):</strong> امکان تغییر، ویرایش یا حذف فایل یا پوشه.</li>
+            <li><strong>اجرا (Execute - x):</strong> امکان اجرای فایل (اگر برنامه باشد) یا ورود به پوشه.</li>
+        </ul>
+        <p>مجوزها به دو روش <strong>حرفی (Symbolic)</strong> و <strong>عددی (Octal)</strong> قابل تنظیم هستند.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-R</code> – تغییر مجوزها به صورت بازگشتی (برای پوشه‌ها و زیرپوشه‌ها).</li>
+            <li><code>-v</code> – نمایش جزئیات تغییرات (verbose).</li>
+            <li><code>-c</code> – فقط تغییرات اعمال‌شده را نمایش می‌دهد.</li>
+            <li><code>-f</code> – نمایش خطاها را غیرفعال می‌کند.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>📖 روش‌های تنظیم مجوز</h2>
+        <h3>روش حرفی (Symbolic):</h3>
+        <ul>
+            <li><code>u</code> – مالک (user)</li>
+            <li><code>g</code> – گروه (group)</li>
+            <li><code>o</code> – دیگران (others)</li>
+            <li><code>a</code> – همه (all = ugo)</li>
+            <li><code>+</code> – اضافه کردن مجوز</li>
+            <li><code>-</code> – حذف مجوز</li>
+            <li><code>=</code> – تنظیم دقیق مجوز (بازنویسی)</li>
+        </ul>
+        <h3>روش عددی (Octal):</h3>
+        <ul>
+            <li><code>4</code> – خواندن (r)</li>
+            <li><code>2</code> – نوشتن (w)</li>
+            <li><code>1</code> – اجرا (x)</li>
+        </ul>
+        <p>اعداد را جمع می‌زنیم تا مجوز نهایی به دست آید. مثلاً <code>7</code> = <code>4+2+1</code> یعنی همه‌ی مجوزها.</p>
+        <p>مجوز نهایی به صورت سه عدد (مالک، گروه، دیگران) نوشته می‌شود. مثلاً <code>755</code> یعنی مالک همه‌ی مجوزها (7) و گروه و دیگران فقط خواندن و اجرا (5).</p>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: اضافه کردن مجوز اجرا به یک فایل (حرفی)</h3>
+            <pre class="code-block">chmod +x script.sh</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، مجوز اجرا اضافه می‌شود)</pre>
+            </div>
+            <p>به همه‌ی کاربران (مالک، گروه، دیگران) مجوز اجرا را برای <code>script.sh</code> اضافه می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: تنظیم مجوز عددی</h3>
+            <pre class="code-block">chmod 755 file.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، مجوزها تغییر می‌کنند)</pre>
+            </div>
+            <p>مجوز <code>file.txt</code> را به <code>755</code> تنظیم می‌کند (مالک: خواندن، نوشتن، اجرا - گروه و دیگران: خواندن و اجرا).</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: حذف مجوز نوشتن از گروه</h3>
+            <pre class="code-block">chmod g-w file.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، مجوز نوشتن گروه حذف می‌شود)</pre>
+            </div>
+            <p>مجوز نوشتن را از گروه (g) برای <code>file.txt</code> حذف می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: تنظیم مجوز بازگشتی برای یک پوشه</h3>
+            <pre class="code-block">chmod -R 755 myfolder</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(مجوزها برای all محتویات پوشه تغییر می‌کند)</pre>
+            </div>
+            <p>مجوز <code>755</code> را به صورت بازگشتی برای پوشه‌ی <code>myfolder</code> و تمام فایل‌ها و زیرپوشه‌های آن اعمال می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: تنظیم دقیق مجوز با =</h3>
+            <pre class="code-block">chmod u=rwx,g=rx,o=r file.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، مجوزها دقیقاً تنظیم می‌شوند)</pre>
+            </div>
+            <p>مجوز مالک را به <code>rwx</code>، گروه را به <code>rx</code> و دیگران را به <code>r</code> تنظیم می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۶: تنظیم مجوز 600 (فایل خصوصی)</h3>
+            <pre class="code-block">chmod 600 private.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، مجوزها تغییر می‌کنند)</pre>
+            </div>
+            <p>مجوز <code>600</code> را تنظیم می‌کند (مالک: خواندن و نوشتن - گروه و دیگران: هیچ مجوزی). این برای فایل‌های خصوصی مناسب است.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>📘 جدول مجوزهای عددی رایج</h2>
+        <ul>
+            <li><code>777</code> – همه‌ی مجوزها برای همه (خطرناک!)</li>
+            <li><code>755</code> – مالک همه‌چیز، گروه و دیگران فقط خواندن و اجرا (رایج برای پوشه‌ها)</li>
+            <li><code>644</code> – مالک خواندن و نوشتن، گروه و دیگران فقط خواندن (رایج برای فایل‌های معمولی)</li>
+            <li><code>600</code> – فقط مالک خواندن و نوشتن (فایل‌های خصوصی)</li>
+            <li><code>700</code> – فقط مالک همه‌ی مجوزها (پوشه‌های خصوصی)</li>
+            <li><code>400</code> – فقط مالک خواندن (فایل‌های فقط خواندنی)</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> برای تغییر مجوز فایل‌هایی که مالک آن‌ها نیستید، باید از <code>sudo</code> استفاده کنید.</p>
+            <p><strong>نکته:</strong> مجوز <code>777</code> بسیار خطرناک است و به همه کاربران اجازه می‌دهد فایل را تغییر دهند. فقط در صورت لزوم استفاده کنید.</p>
+            <p><strong>نکته:</strong> برای دیدن مجوزهای فعلی یک فایل، از <code>ls -l</code> استفاده کنید.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> یک فایل خالی بسازید و با <code>ls -l</code> مجوزهای آن را ببینید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>chmod 600</code> مجوز فایل را به حالت خصوصی تغییر دهید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>chmod +x</code> مجوز اجرا را به یک فایل اضافه کنید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>chmod -R 755</code> مجوز یک پوشه و محتویات آن را تغییر دهید.</p>
+        </div>
+    </section>
+<!-- ===== بخش جواب تمرین ===== -->
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=19" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

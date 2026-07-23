@@ -1,0 +1,115 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">💾 دستور df – نمایش فضای دیسک</h1>
+    <div class="lesson-meta">سطح: متوسط | زمان مطالعه: ۷ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>df</code> – گزارش از فضای استفاده‌شده و آزاد دیسک</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">df [گزینه] [مسیر]</pre>
+        <p><strong>توضیح:</strong> فضای استفاده‌شده و آزاد دیسک را در سیستم فایل‌های مختلف نمایش می‌دهد.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>df</code> (مخفف Disk Free) اطلاعاتی درباره‌ی فضای دیسک در تمام سیستم‌فایل‌های نصب‌شده (مانند <code>/</code>، <code>/home</code>، <code>/var</code> و ...) ارائه می‌دهد.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-h</code> – نمایش اعداد به صورت قابل خواندن (human-readable).</li>
+            <li><code>-H</code> – نمایش اعداد با پایه ۱۰۰۰ (به جای ۱۰۲۴).</li>
+            <li><code>-T</code> – نمایش نوع سیستم فایل (مثل ext4, xfs).</li>
+            <li><code>-t</code> – نمایش فقط سیستم‌فایل‌های یک نوع خاص (مثلاً <code>-t ext4</code>).</li>
+            <li><code>-x</code> – نمایش همه‌ی سیستم‌فایل‌ها به جز یک نوع خاص.</li>
+            <li><code>--total</code> – نمایش مجموع فضای دیسک.</li>
+            <li><code>-i</code> – نمایش استفاده از inodes به جای فضای دیسک.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: نمایش فضای دیسک</h3>
+            <pre class="code-block">df -h</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1       100G   50G   50G  50% /
+/dev/sdb1        50G   20G   30G  40% /home</pre>
+            </div>
+            <p>فضای دیسک را در تمام سیستم‌فایل‌ها به صورت قابل خواندن نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: نمایش فضای دیسک با نوع سیستم فایل</h3>
+            <pre class="code-block">df -hT</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Filesystem     Type      Size  Used Avail Use% Mounted on
+/dev/sda1      ext4      100G   50G   50G  50% /
+/dev/sdb1      ext4       50G   20G   30G  40% /home</pre>
+            </div>
+            <p>نوع سیستم فایل (مثل ext4) را نیز نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: نمایش فضای یک مسیر خاص</h3>
+            <pre class="code-block">df -h /home</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdb1        50G   20G   30G  40% /home</pre>
+            </div>
+            <p>فقط فضای دیسک مربوط به پوشه‌ی <code>/home</code> را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: نمایش مجموع فضای دیسک</h3>
+            <pre class="code-block">df -h --total</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1       100G   50G   50G  50% /
+/dev/sdb1        50G   20G   30G  40% /home
+total           150G   70G   80G  47% -</pre>
+            </div>
+            <p>مجموع فضای دیسک را در انتهای خروجی نمایش می‌دهد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> اگر فضای دیسک کم است، از دستور <code>du</code> برای پیدا کردن پوشه‌های حجیم استفاده کنید.</p>
+            <p><strong>نکته:</strong> <code>df</code> فقط فضای سیستم‌فایل‌های نصب‌شده را نشان می‌دهد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>df -h</code> فضای دیسک را ببینید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>df -hT</code> نوع سیستم‌فایل را نیز مشاهده کنید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>df -h --total</code> مجموع فضای دیسک را ببینید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=37" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

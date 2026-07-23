@@ -1,0 +1,156 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">⏰ دستور cron و crontab – اجرای خودکار دستورات در زمان مشخص</h1>
+    <div class="lesson-meta">سطح: پیشرفته | زمان مطالعه: ۱۲ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>cron</code> – برنامه‌ریز وظایف (Task Scheduler) در لینوکس</p>
+        <p><code>crontab</code> – مدیریت وظایف زمان‌بندی‌شده برای هر کاربر</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">crontab [گزینه] [فایل]</pre>
+        <p><strong>توضیح:</strong> <code>cron</code> یک سرویس است که دستورات را در زمان‌های مشخص (هر دقیقه، ساعت، روز، ماه یا روز هفته) اجرا می‌کند. <code>crontab</code> ابزاری برای ویرایش لیست وظایف هر کاربر است.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p><code>cron</code> یکی از قدرتمندترین ابزارهای لینوکس برای خودکارسازی کارهاست. با استفاده از آن می‌توانید کارهای تکراری مانند بک‌آپ‌گیری، پاکسازی لاگ‌ها، به‌روزرسانی سیستم و ارسال ایمیل را به‌طور خودکار انجام دهید.</p>
+        <p>هر کاربر می‌تواند crontab مخصوص خود را داشته باشد. فایل crontab شامل خطوطی است که هر خط یک وظیفه را تعریف می‌کند.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-e</code> – ویرایش crontab کاربر فعلی.</li>
+            <li><code>-l</code> – نمایش محتوای crontab کاربر فعلی.</li>
+            <li><code>-r</code> – حذف crontab کاربر فعلی.</li>
+            <li><code>-u [user]</code> – مدیریت crontab یک کاربر خاص (فقط root).</li>
+            <li><code>-i</code> – قبل از حذف، تأیید می‌گیرد (با <code>-r</code> استفاده شود).</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>📖 ساختار زمان‌بندی در crontab</h2>
+        <p>هر خط در crontab از ۵ ستون برای زمان و یک ستون برای دستور تشکیل شده است:</p>
+        <pre class="code-block">* * * * * /path/to/command</pre>
+        <ul>
+            <li><strong>ستون ۱:</strong> دقیقه (۰ تا ۵۹)</li>
+            <li><strong>ستون ۲:</strong> ساعت (۰ تا ۲۳)</li>
+            <li><strong>ستون ۳:</strong> روز ماه (۱ تا ۳۱)</li>
+            <li><strong>ستون ۴:</strong> ماه (۱ تا ۱۲)</li>
+            <li><strong>ستون ۵:</strong> روز هفته (۰ تا ۶ که ۰=یکشنبه)</li>
+            <li><strong>ستون ۶:</strong> دستوری که باید اجرا شود</li>
+        </ul>
+        <p><strong>مثال‌های زمان‌بندی:</strong></p>
+        <ul>
+            <li><code>0 2 * * *</code> – هر روز ساعت ۲ بامداد</li>
+            <li><code>*/15 * * * *</code> – هر ۱۵ دقیقه</li>
+            <li><code>0 0 * * 1</code> – هر دوشنبه ساعت ۱۲ شب</li>
+            <li><code>0 0 1 * *</code> – اول هر ماه ساعت ۱۲ شب</li>
+            <li><code>@daily</code> – معادل <code>0 0 * * *</code></li>
+            <li><code>@weekly</code> – معادل <code>0 0 * * 0</code></li>
+            <li><code>@reboot</code> – اجرا در هر بار راه‌اندازی سیستم</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: ویرایش crontab کاربر فعلی</h3>
+            <pre class="code-block">crontab -e</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(یک ویرایشگر (معمولاً nano یا vim) باز می‌شود)</pre>
+            </div>
+            <p>اولین بار که از این دستور استفاده کنید، از شما می‌خواهد ویرایشگر دلخواه خود را انتخاب کنید.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: اضافه کردن یک وظیفه به crontab</h3>
+            <p>با <code>crontab -e</code> فایل را باز کنید و خط زیر را اضافه کنید:</p>
+            <pre class="code-block">30 2 * * * /usr/bin/backup.sh</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، وظیفه ذخیره می‌شود)</pre>
+            </div>
+            <p>اسکریپت <code>backup.sh</code> را هر روز ساعت ۲:۳۰ بامداد اجرا می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: نمایش وظایف crontab</h3>
+            <pre class="code-block">crontab -l</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">30 2 * * * /usr/bin/backup.sh
+0 * * * * /usr/bin/clean-logs.sh</pre>
+            </div>
+            <p>لیست تمام وظایف زمان‌بندی‌شده برای کاربر فعلی را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: حذف همه‌ی وظایف</h3>
+            <pre class="code-block">crontab -r</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، همه‌ی وظایف حذف می‌شوند)</pre>
+            </div>
+            <p>تمام وظایف زمان‌بندی‌شده را حذف می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: اجرای یک دستور هر دقیقه</h3>
+            <p>این دستور را به crontab اضافه کنید:</p>
+            <pre class="code-block">* * * * * /usr/bin/date >> /tmp/date.log</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هر دقیقه تاریخ و زمان در /tmp/date.log ذخیره می‌شود)</pre>
+            </div>
+            <p>هر دقیقه تاریخ و زمان را در فایل <code>/tmp/date.log</code> ذخیره می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۶: اجرای یک دستور در زمان بوت</h3>
+            <pre class="code-block">@reboot /usr/bin/myscript.sh</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هر بار سیستم روشن می‌شود، myscript.sh اجرا می‌شود)</pre>
+            </div>
+            <p>اسکریپت <code>myscript.sh</code> را هر بار که سیستم بوت می‌شود اجرا می‌کند.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> مسیر کامل دستورات را در crontab بنویسید، چون محیط cron ممکن است PATH متفاوتی داشته باشد.</p>
+            <p><strong>نکته:</strong> خروجی دستورات cron به ایمیل کاربر ارسال می‌شود. برای جلوگیری از این کار، خروجی را به <code>/dev/null</code> هدایت کنید: <code>0 2 * * * /backup.sh > /dev/null 2>&1</code>.</p>
+            <p><strong>نکته:</strong> برای عیب‌یابی cron، لاگ‌های آن را در <code>/var/log/syslog</code> یا با <code>grep CRON /var/log/syslog</code> بررسی کنید.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>crontab -e</code> یک وظیفه اضافه کنید که هر ۵ دقیقه تاریخ را در یک فایل ذخیره کند.</p>
+            <p><strong>تمرین ۲:</strong> با <code>crontab -l</code> وظایف خود را ببینید.</p>
+            <p><strong>تمرین ۳:</strong> یک وظیفه اضافه کنید که هر روز ساعت ۱۲ شب یک بک‌آپ بگیرد.</p>
+            <p><strong>تمرین ۴:</strong> با <code>crontab -r</code> همه‌ی وظایف را حذف کنید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=31" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

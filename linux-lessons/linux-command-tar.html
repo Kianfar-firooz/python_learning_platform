@@ -1,0 +1,154 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📦 دستور tar – فشرده‌سازی و بسته‌بندی فایل‌ها</h1>
+    <div class="lesson-meta">سطح: متوسط | زمان مطالعه: ۱۲ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>tar</code> – ابزار بایگانی (Archive) برای ذخیره‌سازی چندین فایل در یک فایل واحد</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">tar [گزینه] [فایل خروجی] [فایل‌های ورودی]</pre>
+        <p><strong>توضیح:</strong> <code>tar</code> (مخفف Tape Archive) یکی از قدیمی‌ترین و پرکاربردترین ابزارهای بسته‌بندی و فشرده‌سازی در لینوکس است. این دستور می‌تواند چندین فایل و پوشه را در یک فایل (با پسوند <code>.tar</code>) جمع‌آوری کند و با الگوریتم‌های مختلف فشرده‌سازی کند.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>tar</code> برای ایجاد فایل‌های بایگانی (Archive) و فشرده‌سازی آن‌ها استفاده می‌شود. این دستور می‌تواند فایل‌ها را به صورت فشرده یا غیرفشرده ذخیره کند. پسوندهای رایج عبارتند از:</p>
+        <ul>
+            <li><code>.tar</code> – بدون فشرده‌سازی (فقط بسته‌بندی).</li>
+            <li><code>.tar.gz</code> یا <code>.tgz</code> – فشرده‌سازی با <code>gzip</code>.</li>
+            <li><code>.tar.bz2</code> – فشرده‌سازی با <code>bzip2</code>.</li>
+            <li><code>.tar.xz</code> – فشرده‌سازی با <code>xz</code> (نسبت فشرده‌سازی بهتر).</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <h3>عملیات اصلی (Operation mode):</h3>
+        <ul>
+            <li><code>-c</code> – ایجاد یک بایگانی جدید (create).</li>
+            <li><code>-x</code> – استخراج (extract) فایل‌ها از بایگانی.</li>
+            <li><code>-t</code> – نمایش لیست محتویات بایگانی (table of contents).</li>
+            <li><code>-r</code> – اضافه کردن فایل به انتهای بایگانی (append).</li>
+            <li><code>-u</code> – به‌روزرسانی فایل‌ها در بایگانی (update).</li>
+            <li><code>-d</code> – مقایسه (diff) بایگانی با سیستم فایل.</li>
+        </ul>
+        <h3>گزینه‌های فشرده‌سازی:</h3>
+        <ul>
+            <li><code>-z</code> – فشرده‌سازی با <code>gzip</code> (پسوند <code>.gz</code>).</li>
+            <li><code>-j</code> – فشرده‌سازی با <code>bzip2</code> (پسوند <code>.bz2</code>).</li>
+            <li><code>-J</code> – فشرده‌سازی با <code>xz</code> (پسوند <code>.xz</code>).</li>
+            <li><code>--lzma</code> – فشرده‌سازی با <code>lzma</code>.</li>
+        </ul>
+        <h3>گزینه‌های دیگر:</h3>
+        <ul>
+            <li><code>-f [file]</code> – نام فایل بایگانی را مشخص می‌کند.</li>
+            <li><code>-v</code> – نمایش جزئیات عملیات (verbose).</li>
+            <li><code>-p</code> – حفظ مجوزهای دسترسی.</li>
+            <li><code>--exclude=[pattern]</code> – استثنا کردن فایل‌هایی که با الگو مطابقت دارند.</li>
+            <li><code>-C [dir]</code> – تغییر پوشه قبل از اجرای عملیات.</li>
+            <li><code>-X [file]</code> – خواندن لیست استثناها از یک فایل.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: ایجاد یک بایگانی (بدون فشرده‌سازی)</h3>
+            <pre class="code-block">tar -cf archive.tar file1.txt file2.txt folder/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، فایل archive.tar ساخته می‌شود)</pre>
+            </div>
+            <p>فایل‌های <code>file1.txt</code>، <code>file2.txt</code> و پوشه‌ی <code>folder/</code> را در <code>archive.tar</code> بسته‌بندی می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: ایجاد بایگانی با فشرده‌سازی gzip</h3>
+            <pre class="code-block">tar -czf archive.tar.gz folder/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، archive.tar.gz ساخته می‌شود)</pre>
+            </div>
+            <p>پوشه‌ی <code>folder/</code> را با فشرده‌سازی <code>gzip</code> بسته‌بندی می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: استخراج یک بایگانی</h3>
+            <pre class="code-block">tar -xf archive.tar.gz</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، فایل‌ها استخراج می‌شوند)</pre>
+            </div>
+            <p><code>archive.tar.gz</code> را در پوشه‌ی فعلی استخراج می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: استخراج در یک پوشه خاص</h3>
+            <pre class="code-block">tar -xf archive.tar.gz -C /tmp/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، فایل‌ها در /tmp/ استخراج می‌شوند)</pre>
+            </div>
+            <p><code>archive.tar.gz</code> را در پوشه‌ی <code>/tmp/</code> استخراج می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: نمایش محتویات بایگانی</h3>
+            <pre class="code-block">tar -tf archive.tar.gz</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">folder/
+folder/file1.txt
+folder/file2.txt</pre>
+            </div>
+            <p>لیست فایل‌های موجود در <code>archive.tar.gz</code> را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۶: ایجاد بایگانی با استثنا (exclude)</h3>
+            <pre class="code-block">tar -czf backup.tar.gz --exclude="*.log" /home/user/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(همه‌ی فایل‌ها به جز فایل‌های با پسوند .log بسته‌بندی می‌شوند)</pre>
+            </div>
+            <p>همه‌ی پوشه‌ی <code>/home/user/</code> را بسته‌بندی می‌کند، اما فایل‌های <code>.log</code> را از بایگانی حذف می‌کند.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> برای بسته‌بندی پوشه‌ها، حتماً از <code>-c</code> و <code>-f</code> استفاده کنید. ترتیب گزینه‌ها مهم است: <code>-cf</code> با <code>-fc</code> تفاوت دارد.</p>
+            <p><strong>نکته:</strong> برای استخراج فایل‌ها در پوشه‌ای که نیاز به دسترسی root دارد، از <code>sudo</code> استفاده کنید.</p>
+            <p><strong>نکته:</strong> پسوند فایل خروجی را با روش فشرده‌سازی هماهنگ کنید (مثلاً <code>.tar.gz</code> برای <code>-z</code>).</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> یک پوشه بسازید و چند فایل در آن ایجاد کنید. با <code>tar -cf</code> آن را بسته‌بندی کنید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>tar -czf</code> همان پوشه را با فشرده‌سازی gzip بسته‌بندی کنید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>tar -xf</code> بایگانی را استخراج کنید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>tar -tf</code> محتویات بایگانی را ببینید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=25" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+
+</div>

@@ -1,0 +1,132 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📊 دستور top – مانیتورینگ لحظه‌ای سیستم</h1>
+    <div class="lesson-meta">سطح: متوسط | زمان مطالعه: ۱۰ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>top</code> – نمایش فرآیندهای در حال اجرا و استفاده از سیستم به‌صورت زنده</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">top [گزینه]</pre>
+        <p><strong>توضیح:</strong> <code>top</code> یک نمای کلی از سیستم به‌صورت زنده (Real-time) ارائه می‌دهد. این دستور اطلاعاتی مثل فرآیندهای در حال اجرا، استفاده از CPU، حافظه و بار سیستم را نمایش می‌دهد.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>top</code> یکی از قدرتمندترین ابزارهای مانیتورینگ در لینوکس است که به‌صورت پویا (زنده) اطلاعات سیستم را به‌روزرسانی می‌کند. این دستور برای عیب‌یابی و مدیریت سیستم بسیار مفید است.</p>
+        <p><strong>بخش‌های اصلی خروجی top:</strong></p>
+        <ul>
+            <li><strong>خط اول:</strong> زمان، مدت زمان فعالیت، تعداد کاربران و بار متوسط.</li>
+            <li><strong>خط دوم:</strong> تعداد فرآیندها، وضعیت آن‌ها (در حال اجرا، خوابیده، زامبی).</li>
+            <li><strong>خط سوم:</strong> استفاده از CPU (کاربر، سیستم، idle و ...).</li>
+            <li><strong>خط چهارم:</strong> استفاده از حافظه‌ی فیزیکی (RAM).</li>
+            <li><strong>خط پنجم:</strong> استفاده از حافظه‌ی Swap.</li>
+            <li><strong>لیست فرآیندها:</strong> هر فرآیند با جزئیات کامل (PID، کاربر، CPU، حافظه و ...).</li>
+        </ul>
+        <p><strong>میانبرهای کلیدی در top:</strong></p>
+        <ul>
+            <li><code>q</code> – خروج از top.</li>
+            <li><code>P</code> – مرتب‌سازی بر اساس مصرف CPU.</li>
+            <li><code>M</code> – مرتب‌سازی بر اساس مصرف حافظه.</li>
+            <li><code>k</code> – kill کردن یک فرآیند (سپس PID را وارد کنید).</li>
+            <li><code>r</code> – تغییر اولویت (nice) یک فرآیند.</li>
+            <li><code>d</code> – تغییر فاصله‌ی به‌روزرسانی (بر حسب ثانیه).</li>
+            <li><code>h</code> – نمایش راهنما.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-u [user]</code> – نمایش فرآیندهای یک کاربر خاص.</li>
+            <li><code>-p [PID]</code> – نمایش یک فرآیند خاص.</li>
+            <li><code>-b</code> – اجرا در حالت دسته‌ای (batch mode).</li>
+            <li><code>-n [count]</code> – تعداد دفعات به‌روزرسانی.</li>
+            <li><code>-d [sec]</code> – تنظیم زمان به‌روزرسانی (پیش‌فرض ۳ ثانیه).</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: اجرای top</h3>
+            <pre class="code-block">top</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی (نمونه):</span>
+                <pre class="code-block-output">top - 10:00:00 up 3 days, 2:15, 3 users,  load average: 0.15, 0.12, 0.10
+Tasks: 120 total,   1 running, 119 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  5.2 us,  2.1 sy,  0.0 ni, 92.0 id,  0.5 wa,  0.0 hi,  0.2 si,  0.0 st
+MiB Mem :  16000.0 total,   8000.0 free,   4000.0 used,   4000.0 buff/cache
+MiB Swap:   4096.0 total,   4090.0 free,      6.0 used.  10000.0 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1234 user      20   0  500000  100000  50000 S   5.0   0.6   0:15.23 chrome
+   5678 user      20   0  200000   50000  25000 S   2.0   0.3   0:05.12 python3
+    ...</pre>
+            </div>
+            <p>نمایی کلی از سیستم و فرآیندها.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: نمایش فرآیندهای یک کاربر خاص</h3>
+            <pre class="code-block">top -u alice</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(فقط فرآیندهای کاربر alice نمایش داده می‌شوند)</pre>
+            </div>
+            <p>با این گزینه، فقط فرآیندهای کاربر <code>alice</code> را نشان می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: مرتب‌سازی بر اساس حافظه</h3>
+            <p>در داخل top، کلید <code>M</code> را بزنید تا فرآیندها بر اساس مصرف حافظه مرتب شوند.</p>
+            <div class="output-box">
+                <span class="output-label">نتیجه:</span>
+                <pre class="code-block-output">(فرآیندهای پرمصرف‌ترین حافظه در بالای لیست قرار می‌گیرند)</pre>
+            </div>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: kill کردن یک فرآیند</h3>
+            <p>در داخل top، کلید <code>k</code> را بزنید و سپس PID مورد نظر را وارد کنید.</p>
+            <div class="output-box">
+                <span class="output-label">نتیجه:</span>
+                <pre class="code-block-output">(فرآیند مورد نظر خاتمه می‌یابد)</pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> <code>top</code> یکی از ابزارهای اصلی برای عیب‌یابی زمانی است که سیستم کند کار می‌کند.</p>
+            <p><strong>نکته:</strong> برای نسخه‌ی پیشرفته‌تر با رابط کاربری بهتر، از <code>htop</code> استفاده کنید.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>top</code> وضعیت سیستم را ببینید.</p>
+            <p><strong>تمرین ۲:</strong> در داخل top، با کلید <code>P</code> فرآیندها را بر اساس CPU مرتب کنید.</p>
+            <p><strong>تمرین ۳:</strong> با کلید <code>M</code> فرآیندها را بر اساس حافظه مرتب کنید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>top -u</code> فرآیندهای یک کاربر خاص را ببینید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=39" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

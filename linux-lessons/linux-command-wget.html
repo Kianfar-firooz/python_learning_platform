@@ -1,0 +1,140 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📥 دستور wget – دانلود فایل از اینترنت</h1>
+    <div class="lesson-meta">سطح: متوسط | زمان مطالعه: ۸ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>wget</code> – ابزار غیرتعاملی (Non-interactive) برای دانلود فایل‌ها از اینترنت</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">wget [گزینه] [URL]</pre>
+        <p><strong>توضیح:</strong> <code>wget</code> یکی از محبوب‌ترین ابزارهای دانلود در لینوکس است که می‌تواند فایل‌ها را از HTTP، HTTPS و FTP دانلود کند. این دستور در پس‌زمینه و بدون نیاز به ورودی کاربر کار می‌کند.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p><code>wget</code> یک ابزار خط فرمان برای دانلود فایل‌ها است که قابلیت‌های زیر را دارد:</p>
+        <ul>
+            <li>دانلود در پس‌زمینه (Background).</li>
+            <li>از سرگیری دانلود‌های ناقص (Resume).</li>
+            <li>دانلود بازگشتی (Mirroring) کل وب‌سایت‌ها.</li>
+            <li>محدود کردن پهنای باند (Bandwidth limiting).</li>
+            <li>پشتیبانی از پروکسی (Proxy).</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-O [file]</code> – ذخیره خروجی با یک نام خاص.</li>
+            <li><code>-c</code> – ادامه‌ی دانلود ناقص (Continue).</li>
+            <li><code>-b</code> – اجرا در پس‌زمینه (Background).</li>
+            <li><code>-q</code> – حالت بی‌صدا (Quiet).</li>
+            <li><code>-v</code> – نمایش جزئیات (Verbose).</li>
+            <li><code>-r</code> – دانلود بازگشتی (Recursive).</li>
+            <li><code>-l [depth]</code> – عمق بازگشت (پیش‌فرض ۵).</li>
+            <li><code>-np</code> – عدم رفتن به پوشه‌های بالاتر (No Parent).</li>
+            <li><code>-A [extension]</code> – دانلود فقط فایل‌های با پسوند خاص (Accept).</li>
+            <li><code>-R [extension]</code> – استثنا کردن فایل‌های با پسوند خاص (Reject).</li>
+            <li><code>--limit-rate=[rate]</code> – محدود کردن سرعت دانلود.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: دانلود یک فایل</h3>
+            <pre class="code-block">wget https://example.com/file.zip</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">--2024-07-21 10:00:00--  https://example.com/file.zip
+Resolving example.com (example.com)... 93.184.216.34
+Connecting to example.com (example.com)|93.184.216.34|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1048576 (1.0M) [application/zip]
+Saving to: ‘file.zip’
+
+file.zip            100%[===================>]   1.00M   100KB/s    in 10s
+
+2024-07-21 10:00:10 (100 KB/s) - ‘file.zip’ saved [1048576/1048576]</pre>
+            </div>
+            <p>فایل <code>file.zip</code> را از آدرس داده شده دانلود می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: دانلود با نام خاص</h3>
+            <pre class="code-block">wget -O myfile.zip https://example.com/file.zip</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(فایل با نام myfile.zip ذخیره می‌شود)</pre>
+            </div>
+            <p>فایل را با نام <code>myfile.zip</code> ذخیره می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: ادامه‌ی دانلود ناقص</h3>
+            <pre class="code-block">wget -c https://example.com/file.zip</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(دانلود از جایی که قطع شده بود ادامه پیدا می‌کند)</pre>
+            </div>
+            <p>اگر دانلود قبلی ناقص بوده، از همان نقطه ادامه می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: محدود کردن سرعت دانلود</h3>
+            <pre class="code-block">wget --limit-rate=100k https://example.com/file.zip</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(دانلود با سرعت ۱۰۰ کیلوبایت بر ثانیه)</pre>
+            </div>
+            <p>سرعت دانلود را به ۱۰۰ کیلوبایت بر ثانیه محدود می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: دانلود در پس‌زمینه</h3>
+            <pre class="code-block">wget -b https://example.com/file.zip</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Continuing in background, pid 1234.
+Output will be written to ‘wget-log’.</pre>
+            </div>
+            <p>دانلود در پس‌زمینه اجرا می‌شود و خروجی در فایل <code>wget-log</code> ذخیره می‌شود.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> تفاوت <code>wget</code> و <code>curl</code> این است که <code>wget</code> برای دانلود طراحی شده است (پشتیبانی از Resume و Mirror)، در حالی که <code>curl</code> برای انتقال داده (API، POST و ...) قدرتمندتر است.</p>
+            <p><strong>نکته:</strong> برای دانلود کل یک وب‌سایت، از <code>wget -r -np</code> استفاده کنید.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>wget</code> یک فایل کوچک (مثلاً یک تصویر) دانلود کنید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>wget -O</code> فایل را با نام دیگری ذخیره کنید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>wget -c</code> یک دانلود ناقص را ادامه دهید (ابتدا دانلود را نیمه‌کاره متوقف کنید).</p>
+            <p><strong>تمرین ۴:</strong> با <code>wget -b</code> یک دانلود را در پس‌زمینه اجرا کنید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=41" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+
+</div>

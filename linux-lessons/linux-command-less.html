@@ -1,0 +1,160 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📖 دستور less – نمایش صفحه‌به‌صفحه فایل‌ها</h1>
+    <div class="lesson-meta">سطح: مقدماتی | زمان مطالعه: ۱۰ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>less</code> – نمایش محتوای فایل به صورت صفحه‌به‌صفحه با قابلیت حرکت و جستجو</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">less [گزینه] [فایل]</pre>
+        <p><strong>توضیح:</strong> فایل را صفحه‌به‌صفحه نمایش می‌دهد و امکان حرکت بالا/پایین، جستجو و مشاهده‌ی فایل‌های بزرگ را فراهم می‌کند. این دستور برای فایل‌های بزرگ بسیار مفید است.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>less</code> یک نمایش‌دهنده‌ی متنی (Text Viewer) قدرتمند است که به شما اجازه می‌دهد فایل‌های بزرگ را به صورت صفحه‌به‌صفحه مشاهده کنید. برخلاف <code>cat</code> که کل فایل را یکجا چاپ می‌کند، <code>less</code> فقط یک صفحه از فایل را نشان می‌دهد و شما می‌توانید با کلیدها و میانبرهای مختلف در فایل حرکت کنید.</p>
+        <p>این دستور همچنین دارای قابلیت‌های جستجو، حرکت به ابتدا/انتهای فایل، و نمایش اطلاعات وضعیت است.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-N</code> – نمایش شماره خطوط.</li>
+            <li><code>-S</code> – خطوط بلند را به خط بعد نمی‌برد (چپ-راست اسکرول با کلیدهای جهت‌نما).</li>
+            <li><code>-g</code> – جستجو را به صورت حساس به حروف بزرگ و کوچک انجام می‌دهد.</li>
+            <li><code>-i</code> – جستجوی غیرحساس به حروف بزرگ و کوچک (مثل <code>search</code> و <code>SEARCH</code> یکی هستند).</li>
+            <li><code>-p</code> – جستجوی یک الگو در فایل و نمایش اولین جایی که آن الگو پیدا شد.</li>
+            <li><code>-Q</code> – خروج بی‌صدا (عدم نمایش صدای هشدار).</li>
+            <li><code>-X</code> – عدم پاک‌سازی صفحه قبل از نمایش (مفید برای نمایش خروجی در ترمینال).</li>
+            <li><code>-e</code> – خروج خودکار بعد از رسیدن به انتهای فایل.</li>
+            <li><code>-E</code> – مانند <code>-e</code>، اما خروج با خطا اگر فایل پایانی نداشته باشد.</li>
+            <li><code>-f</code> – باز کردن فایل‌های غیرمعمول (مثل فایل‌های باینری).</li>
+            <li><code>-R</code> – نمایش رنگ‌ها و کنترل‌کاراکترها در خروجی.</li>
+            <li><code>-t</code> – نمایش تگ‌های (tags) موجود در فایل.</li>
+            <li><code>-s</code> – فشرده‌سازی خطوط خالی تکراری.</li>
+            <li><code>-k</code> – استفاده از فایل کلید برای تعیین میانبرهای خاص.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+        <p><strong>میانبرهای کلیدی در <code>less</code>:</strong></p>
+        <ul>
+            <li><code>Space</code> یا <code>f</code> – یک صفحه به پایین</li>
+            <li><code>b</code> – یک صفحه به بالا</li>
+            <li><code>j</code> یا <code>↓</code> – یک خط به پایین</li>
+            <li><code>k</code> یا <code>↑</code> – یک خط به بالا</li>
+            <li><code>g</code> – رفتن به ابتدای فایل</li>
+            <li><code>G</code> – رفتن به انتهای فایل</li>
+            <li><code>/[الگو]</code> – جستجوی رو به جلو</li>
+            <li><code>?[الگو]</code> – جستجوی رو به عقب</li>
+            <li><code>n</code> – جستجوی بعدی</li>
+            <li><code>N</code> – جستجوی قبلی</li>
+            <li><code>q</code> یا <code>Q</code> – خروج از <code>less</code></li>
+            <li><code>v</code> – باز کردن فایل در ویرایشگر (پیش‌فرض vim)</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: نمایش فایل با less</h3>
+            <p>ساده‌ترین حالت استفاده از <code>less</code>:</p>
+            <pre class="code-block">less longfile.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(اولین صفحه از فایل نمایش داده می‌شود)
+این خط اول است.
+این خط دوم است.
+:
+(نشان می‌دهد که هنوز ادامه دارد)</pre>
+            </div>
+            <p><code>longfile.txt</code> را صفحه‌به‌صفحه نمایش می‌دهد. با <code>Space</code> صفحه بعد و با <code>q</code> خارج می‌شوید.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: نمایش با شماره خطوط</h3>
+            <p>با گزینه‌ی <code>-N</code>، شماره خطوط نمایش داده می‌شود:</p>
+            <pre class="code-block">less -N longfile.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">1 این خط اول است.
+2 این خط دوم است.
+3 این خط سوم است.
+:
+(نشان می‌دهد که هنوز ادامه دارد)</pre>
+            </div>
+            <p>همراه با شماره خطوط نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: جستجوی یک عبارت در فایل</h3>
+            <p>با گزینه‌ی <code>-p</code>، اولین جایی که عبارت "error" در آن آمده را نمایش می‌دهد:</p>
+            <pre class="code-block">less -p "error" logfile.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(اولین جایی که کلمه‌ی "error" در آن آمده، نمایش داده می‌شود)
+Error: connection failed.</pre>
+            </div>
+            <p>با <code>n</code> می‌توانید به جستجوی بعدی بروید.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: حرکت در فایل با less</h3>
+            <p>بعد از باز کردن فایل با <code>less</code>، می‌توانید از کلیدهای زیر استفاده کنید:</p>
+            <ul>
+                <li><code>Space</code> – یک صفحه به پایین</li>
+                <li><code>b</code> – یک صفحه به بالا</li>
+                <li><code>g</code> – رفتن به ابتدای فایل</li>
+                <li><code>G</code> – رفتن به انتهای فایل</li>
+                <li><code>/error</code> – جستجوی کلمه‌ی "error" به سمت جلو</li>
+                <li><code>?error</code> – جستجوی کلمه‌ی "error" به سمت عقب</li>
+                <li><code>q</code> – خروج</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> <code>less</code> بسیار قدرتمندتر از <code>more</code> (نسخه‌ی قدیمی‌تر) است و قابلیت حرکت به عقب را نیز دارد. به همین دلیل، معمولاً به جای <code>more</code> از <code>less</code> استفاده می‌شود.</p>
+            <p><strong>نکته:</strong> برای فایل‌های بسیار بزرگ (چند گیگابایت)، <code>less</code> به خوبی کار می‌کند و فقط بخش‌های مورد نیاز را در حافظه بارگذاری می‌کند.</p>
+            <p><strong>نکته:</strong> می‌توانید از <code>less</code> برای مشاهده‌ی خروجی دستورات دیگر نیز استفاده کنید. مثلاً: <code>dmesg | less</code>.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>📘 همچنین ببینید (SEE ALSO)</h2>
+        <ul>
+            <li><code>man cat</code> – نمایش سریع فایل‌های کوچک</li>
+            <li><code>man more</code> – نمایش صفحه‌به‌صفحه (نسخه‌ی قدیمی‌تر)</li>
+            <li><code>man head</code> – نمایش ابتدای فایل</li>
+            <li><code>man tail</code> – نمایش انتهای فایل</li>
+            <li><code>man grep</code> – جستجو در فایل‌ها</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> یک فایل متنی با ۵۰ خط محتوا بسازید و با <code>less</code> آن را باز کنید.</p>
+            <p><strong>تمرین ۲:</strong> در <code>less</code> با کلیدهای <code>Space</code> و <code>b</code> حرکت کنید و به انتهای فایل بروید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>/</code> یک کلمه را جستجو کنید و با <code>n</code> به جستجوی بعدی بروید.</p>
+            <p><strong>تمرین ۴:</strong> با گزینه‌ی <code>-N</code> فایل را باز کنید و شماره خطوط را ببینید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=12" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+
+</div>

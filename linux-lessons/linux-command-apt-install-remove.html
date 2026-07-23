@@ -1,0 +1,175 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📦 دستور apt – نصب، حذف و مدیریت بسته‌ها</h1>
+    <div class="lesson-meta">سطح: مقدماتی | زمان مطالعه: ۱۰ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>apt</code> – ابزار مدیریت بسته‌ها (نصب، حذف، جستجو و نمایش اطلاعات)</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">sudo apt install [نام_بسته]
+sudo apt remove [نام_بسته]
+sudo apt purge [نام_بسته]
+sudo apt search [کلمه_کلیدی]
+sudo apt show [نام_بسته]</pre>
+        <p><strong>توضیح:</strong> <code>apt</code> برای نصب، حذف، جستجو و نمایش اطلاعات بسته‌ها استفاده می‌شود.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p><code>apt</code> ابزار مدیریت بسته‌های اوبونتو است که با مخازن (repositories) رسمی اوبونتو کار می‌کند. این دستور برای نصب، حذف، جستجو و نمایش اطلاعات بسته‌ها استفاده می‌شود.</p>
+        <p><strong>عملیات‌های مهم apt:</strong></p>
+        <ul>
+            <li><strong><code>install [name]</code></strong> – نصب یک بسته از مخازن.</li>
+            <li><strong><code>remove [name]</code></strong> – حذف یک بسته (فایل‌های تنظیمات باقی می‌مانند).</li>
+            <li><strong><code>purge [name]</code></strong> – حذف کامل بسته به همراه فایل‌های تنظیمات.</li>
+            <li><strong><code>search [keyword]</code></strong> – جستجوی بسته‌ها با کلمه‌ی کلیدی.</li>
+            <li><strong><code>show [name]</code></strong> – نمایش اطلاعات کامل یک بسته (نسخه، توضیح، وابستگی‌ها).</li>
+            <li><strong><code>autoremove</code></strong> – حذف بسته‌های اضافی که دیگر نیازی نیستند.</li>
+            <li><strong><code>list --installed</code></strong> – نمایش لیست بسته‌های نصب‌شده.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: نصب یک بسته</h3>
+            <pre class="code-block">sudo apt install htop</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Reading package lists... Done
+Building dependency tree... Done
+The following NEW packages will be installed:
+  htop
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 76.8 kB of archives.
+After this operation, 232 kB of additional disk space will be used.
+Do you want to continue? [Y/n]</pre>
+            </div>
+            <p>برنامه‌ی <code>htop</code> را از مخازن نصب می‌کند. با <code>Y</code> تأیید کنید.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: نصب چند بسته با یک دستور</h3>
+            <pre class="code-block">sudo apt install nano vim git</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(سه بسته به طور همزمان نصب می‌شوند)</pre>
+            </div>
+            <p>سه بسته‌ی <code>nano</code>، <code>vim</code> و <code>git</code> را با یک دستور نصب می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: حذف یک بسته (remove)</h3>
+            <pre class="code-block">sudo apt remove htop</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Reading package lists... Done
+Building dependency tree... Done
+The following packages will be REMOVED:
+  htop
+0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.
+After this operation, 232 kB disk space will be freed.
+Do you want to continue? [Y/n]</pre>
+            </div>
+            <p><code>htop</code> را حذف می‌کند، اما فایل‌های تنظیمات آن باقی می‌مانند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: حذف کامل یک بسته (purge)</h3>
+            <pre class="code-block">sudo apt purge htop</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Reading package lists... Done
+Building dependency tree... Done
+The following packages will be REMOVED:
+  htop*
+0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.
+After this operation, 232 kB disk space will be freed.
+Do you want to continue? [Y/n]</pre>
+            </div>
+            <p><code>htop</code> را به همراه فایل‌های تنظیمات آن حذف می‌کند (علامت <code>*</code> نشان‌دهنده‌ی حذف کامل است).</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: جستجوی یک بسته</h3>
+            <pre class="code-block">apt search "text editor"</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">vim - Vi IMproved - enhanced vi editor
+nano - small, friendly text editor inspired by Pico
+gedit - official text editor of the GNOME desktop environment
+...</pre>
+            </div>
+            <p>بسته‌های مربوط به "text editor" را جستجو می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۶: نمایش اطلاعات یک بسته</h3>
+            <pre class="code-block">apt show htop</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Package: htop
+Version: 2.2.0-2build1
+Priority: optional
+Section: utils
+Maintainer: Ubuntu Developers
+Installed-Size: 232 kB
+Depends: libc6, libncursesw6, libtinfo6
+Description: interactive processes viewer
+ This is htop, an interactive process viewer for Linux.
+...</pre>
+            </div>
+            <p>اطلاعات کامل بسته‌ی <code>htop</code> را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۷: حذف بسته‌های اضافی (autoremove)</h3>
+            <pre class="code-block">sudo apt autoremove</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Reading package lists... Done
+Building dependency tree... Done
+The following packages will be REMOVED:
+  libpython3.8-minimal
+0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.
+Do you want to continue? [Y/n]</pre>
+            </div>
+            <p>بسته‌هایی که به عنوان وابستگی نصب شده‌اند ولی دیگر به آن‌ها نیازی نیست را حذف می‌کند.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> برای نصب یا حذف بسته‌ها حتماً از <code>sudo</code> استفاده کنید.</p>
+            <p><strong>نکته:</strong> قبل از نصب یک بسته، با <code>apt search</code> یا <code>apt show</code> اطلاعات آن را بررسی کنید.</p>
+            <p><strong>نکته:</strong> بین <code>remove</code> و <code>purge</code> تفاوت وجود دارد: <code>purge</code> فایل‌های تنظیمات را هم حذف می‌کند.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>apt search</code> یک برنامه‌ی دلخواه را جستجو کنید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>sudo apt install</code> برنامه‌ی <code>nano</code> را نصب کنید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>apt show</code> اطلاعات بسته‌ی <code>nano</code> را ببینید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>sudo apt remove</code> برنامه‌ی نصب‌شده را حذف کنید.</p>
+            <p><strong>تمرین ۵:</strong> با <code>sudo apt autoremove</code> بسته‌های اضافی را حذف کنید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=18" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

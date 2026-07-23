@@ -1,0 +1,159 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">🛡️ دستور ufw – فایروال ساده (Uncomplicated Firewall)</h1>
+    <div class="lesson-meta">سطح: پیشرفته | زمان مطالعه: ۱۰ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>ufw</code> – ابزار مدیریت فایروال با رابط کاربری ساده</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">ufw [گزینه] [دستور]</pre>
+        <p><strong>توضیح:</strong> <code>ufw</code> (مخفف Uncomplicated Firewall) یک ابزار ساده برای مدیریت فایروال (iptables) در اوبونتو و سایر توزیع‌های لینوکس است. این دستور برای باز و بسته کردن پورت‌ها، محدود کردن دسترسی و مدیریت امنیت شبکه بسیار مفید است.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p><code>ufw</code> یک رابط کاربری ساده برای فایروال iptables است که به شما اجازه می‌دهد:</p>
+        <ul>
+            <li>پورت‌های خاص را باز یا بسته کنید.</li>
+            <li>دسترسی از یک آدرس IP خاص را محدود کنید.</li>
+            <li>فایروال را فعال یا غیرفعال کنید.</li>
+            <li>قوانین پیش‌فرض را تنظیم کنید.</li>
+        </ul>
+        <p><strong>نکته:</strong> قبل از استفاده از <code>ufw</code>، مطمئن شوید که به سرور خود از طریق SSH دسترسی دارید تا در صورت بسته شدن پورت SSH، ارتباط خود را از دست ندهید.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ دستورات اصلی</h2>
+        <ul>
+            <li><code>enable</code> – فعال‌سازی فایروال.</li>
+            <li><code>disable</code> – غیرفعال‌سازی فایروال.</li>
+            <li><code>status</code> – نمایش وضعیت فایروال و قوانین فعال.</li>
+            <li><code>allow [port]</code> – اجازه‌ی دسترسی به یک پورت.</li>
+            <li><code>deny [port]</code> – مسدود کردن یک پورت.</li>
+            <li><code>allow from [IP]</code> – اجازه‌ی دسترسی از یک آدرس IP خاص.</li>
+            <li><code>delete [rule]</code> – حذف یک قانون.</li>
+            <li><code>reset</code> – بازنشانی فایروال به حالت اولیه.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: نمایش وضعیت فایروال</h3>
+            <pre class="code-block">sudo ufw status</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Status: inactive</pre>
+            </div>
+            <p>وضعیت فعلی فایروال را نشان می‌دهد (غیرفعال).</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: فعال‌سازی فایروال</h3>
+            <pre class="code-block">sudo ufw enable</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Firewall is active and enabled on system startup</pre>
+            </div>
+            <p>فایروال را فعال می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: باز کردن پورت SSH (۲۲)</h3>
+            <pre class="code-block">sudo ufw allow 22</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Rules updated
+Rules updated (v6)</pre>
+            </div>
+            <p>پورت ۲۲ (SSH) را باز می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: باز کردن پورت HTTP (۸۰) و HTTPS (۴۴۳)</h3>
+            <pre class="code-block">sudo ufw allow 80
+sudo ufw allow 443</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(پورت‌های ۸۰ و ۴۴۳ باز می‌شوند)</pre>
+            </div>
+            <p>پورت‌های وب (HTTP و HTTPS) را باز می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: بستن یک پورت</h3>
+            <pre class="code-block">sudo ufw deny 8080</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Rules updated
+Rules updated (v6)</pre>
+            </div>
+            <p>پورت ۸۰۸۰ را مسدود می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۶: اجازه‌ی دسترسی فقط از یک IP خاص</h3>
+            <pre class="code-block">sudo ufw allow from 192.168.1.50</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Rules updated</pre>
+            </div>
+            <p>به آدرس IP <code>192.168.1.50</code> اجازه‌ی دسترسی کامل می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۷: نمایش قوانین فعال</h3>
+            <pre class="code-block">sudo ufw status numbered</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Status: active
+
+     To                         Action      From
+     --                         ------      ----
+[ 1] 22                         ALLOW IN    Anywhere
+[ 2] 80                         ALLOW IN    Anywhere
+[ 3] 443                        ALLOW IN    Anywhere
+[ 4] 192.168.1.50               ALLOW IN    Anywhere</pre>
+            </div>
+            <p>قوانین فعال را به همراه شماره نمایش می‌دهد (برای حذف مفید است).</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> قبل از فعال‌سازی فایروال، حتماً پورت SSH را باز کنید (در غیر این صورت، دسترسی خود را به سرور از دست می‌دهید).</p>
+            <p><strong>نکته:</strong> <code>ufw</code> به‌طور پیش‌فرض همه‌ی ترافیک ورودی را مسدود و همه‌ی ترافیک خروجی را مجاز می‌کند.</p>
+            <p><strong>نکته:</strong> با <code>sudo ufw delete [number]</code> می‌توانید یک قانون را با شماره آن حذف کنید.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>sudo ufw status</code> وضعیت فایروال را ببینید.</p>
+            <p><strong>تمرین ۲:</strong> پورت ۲۲ (SSH) را با <code>sudo ufw allow 22</code> باز کنید.</p>
+            <p><strong>تمرین ۳:</strong> فایروال را با <code>sudo ufw enable</code> فعال کنید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>sudo ufw status numbered</code> قوانین فعال را ببینید.</p>
+            <p><strong>تمرین ۵:</strong> با <code>sudo ufw delete</code> یک قانون را حذف کنید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=49" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+
+</div>

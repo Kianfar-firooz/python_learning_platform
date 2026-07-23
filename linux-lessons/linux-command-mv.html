@@ -1,0 +1,115 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📦 دستور mv – جابه‌جایی و تغییر نام</h1>
+    <div class="lesson-meta">سطح: مقدماتی | زمان مطالعه: ۸ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>mv</code> – جابه‌جایی (انتقال) فایل‌ها و پوشه‌ها یا تغییر نام آن‌ها</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">mv [گزینه] [منبع] [مقصد]</pre>
+        <p><strong>توضیح:</strong> فایل یا پوشه‌ی منبع را به مکان جدید منتقل می‌کند. اگر منبع و مقصد در یک پوشه باشند، عملاً نام فایل تغییر می‌کند.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>mv</code> (مخفف Move) برای جابه‌جایی فایل‌ها و پوشه‌ها از یک مکان به مکان دیگر یا تغییر نام آن‌ها استفاده می‌شود. این دستور یکی از مهم‌ترین دستورات مدیریت فایل در لینوکس است.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-i</code> – قبل از بازنویسی فایل‌های موجود، تأیید می‌گیرد.</li>
+            <li><code>-u</code> – فقط فایل‌هایی را جابه‌جا می‌کند که جدیدتر از فایل مقصد هستند یا وجود ندارند.</li>
+            <li><code>-v</code> – نمایش جزئیات جابه‌جایی (verbose).</li>
+            <li><code>-f</code> – جابه‌جایی اجباری (در صورت وجود فایل مقصد، بدون سوال بازنویسی می‌کند).</li>
+            <li><code>-n</code> – فایل‌های موجود را بازنویسی نمی‌کند.</li>
+            <li><code>-b</code> – قبل از بازنویسی، از فایل مقصد یک بک‌آپ با پسوند <code>~</code> می‌سازد.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: تغییر نام یک فایل</h3>
+            <pre class="code-block">mv oldname.txt newname.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، نام فایل تغییر می‌کند)</pre>
+            </div>
+            <p>نام فایل <code>oldname.txt</code> را به <code>newname.txt</code> تغییر می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: جابه‌جایی فایل به پوشه‌ی دیگر</h3>
+            <pre class="code-block">mv file.txt /home/username/Documents/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(فایل به پوشه‌ی مقصد منتقل می‌شود)</pre>
+            </div>
+            <p><code>file.txt</code> را به پوشه‌ی <code>Documents</code> منتقل می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: جابه‌جایی با تأیید</h3>
+            <pre class="code-block">mv -i file.txt backup/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">mv: overwrite 'backup/file.txt'? (y/n)</pre>
+            </div>
+            <p>اگر فایل مقصد وجود داشته باشد، قبل از بازنویسی تأیید می‌گیرد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: جابه‌جایی یک پوشه</h3>
+            <pre class="code-block">mv myfolder /tmp/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(همه‌ی محتویات پوشه به مقصد جدید منتقل می‌شود)</pre>
+            </div>
+            <p>کل پوشه‌ی <code>myfolder</code> را به <code>/tmp/</code> منتقل می‌کند.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته مهم</h2>
+        <div class="highlight-box">
+            <p><strong>تفاوت cp و mv:</strong> <code>cp</code> فایل را کپی می‌کند (یعنی نسخه‌ی اصلی باقی می‌ماند) ولی <code>mv</code> فایل را جابه‌جا می‌کند (یعنی نسخه‌ی اصلی از مکان قبلی حذف می‌شود).</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> یک فایل به نام <code>test.txt</code> بسازید و نام آن را به <code>sample.txt</code> تغییر دهید.</p>
+            <p><strong>تمرین ۲:</strong> فایل <code>sample.txt</code> را به پوشه‌ی <code>/tmp</code> منتقل کنید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>ls</code> بررسی کنید که فایل از مکان قبلی حذف شده است.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=1" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=9" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+
+</div>

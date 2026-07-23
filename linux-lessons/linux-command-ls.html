@@ -1,0 +1,174 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📂 دستور ls – لیست گرفتن از فایل‌ها و پوشه‌ها</h1>
+    <div class="lesson-meta">سطح: مقدماتی | زمان مطالعه: ۱۵ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>ls</code> – لیست گرفتن از محتویات یک پوشه</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">ls [گزینه] [فایل/پوشه]</pre>
+        <p><strong>توضیح:</strong> <code>گزینه</code> کارهایی که دستور باید انجام بده رو مشخص میکنه. <code>فایل/پوشه</code> مسیری هست که میخوای لیستش رو ببینی. اگه ندی، پوشه‌ی فعلی رو نشون میده.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>ls</code> اطلاعات مربوط به فایل‌ها و پوشه‌ها رو نشون میده. به‌طور پیش‌فرض، اسم فایل‌ها رو به ترتیب حروف الفبا لیست میکنه. اگه به جای فایل، یک پوشه بهش بدی، محتویات اون پوشه رو لیست میکنه. اگه چیزی بهش ندیا، پوشه‌ی فعلی رو لیست میکنه.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-l</code> – نمایش جزئیات کامل (حجم، تاریخ، مالک، مجوزها، تعداد لینک‌ها)</li>
+            <li><code>-a</code> – نمایش همه‌ی فایل‌ها، حتی فایل‌های مخفی (با نقطه شروع میشن)</li>
+            <li><code>-h</code> – نمایش حجم به صورت قابل‌خوانی (مثلاً 1K، 1M، 1G) – معمولاً با <code>-l</code> استفاده میشه</li>
+            <li><code>-R</code> – نمایش همه‌ی محتویات پوشه‌ها به صورت بازگشتی (زیرپوشه‌ها هم)</li>
+            <li><code>-S</code> – مرتب‌سازی بر اساس حجم (بزرگ‌ترین اول)</li>
+            <li><code>-t</code> – مرتب‌سازی بر اساس تاریخ تغییر (جدیدترین اول)</li>
+            <li><code>-r</code> – برعکس کردن ترتیب مرتب‌سازی (مثلاً با <code>-t</code> قدیمی‌ترین اول)</li>
+            <li><code>-i</code> – نمایش شماره‌ی inode (شناسه‌ی یکتا برای هر فایل)</li>
+            <li><code>-n</code> – نمایش ID عددی کاربر و گروه به جای اسم</li>
+            <li><code>-F</code> – اضافه کردن علامت به انتهای اسم‌ها (مثل <code>/</code> برای پوشه و <code>*</code> برای فایل‌های اجرایی)</li>
+            <li><code>-p</code> – اضافه کردن <code>/</code> به انتهای اسم پوشه‌ها</li>
+            <li><code>-d</code> – نمایش خود پوشه، نه محتویاتش (معمولاً با <code>-l</code> استفاده میشه)</li>
+            <li><code>-1</code> – نمایش هر فایل در یک خط جداگانه (حالت ستونی)</li>
+            <li><code>-m</code> – نمایش فایل‌ها به صورت جدا شده با کاما</li>
+            <li><code>-Q</code> – قرار دادن اسم فایل‌ها بین دو علامت کوتیشن ("")</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور</li>
+        </ul>
+        <p><strong>گزینه‌های مرتب‌سازی:</strong></p>
+        <ul>
+            <li><code>-f</code> – غیرفعال کردن مرتب‌سازی (همون ترتیبی که توی پوشه هست)</li>
+            <li><code>-U</code> – مرتب‌سازی بر اساس ترتیب ایجاد فایل (زمان خلق)</li>
+            <li><code>-c</code> – مرتب‌سازی بر اساس زمان تغییر وضعیت (ctime) با <code>-lt</code></li>
+            <li><code>-u</code> – مرتب‌سازی بر اساس زمان آخرین دسترسی (atime) با <code>-lt</code></li>
+        </ul>
+        <p><strong>گزینه‌های نمایش:</strong></p>
+        <ul>
+            <li><code>-C</code> – نمایش به صورت چند ستونی (حالت پیش‌فرض)</li>
+            <li><code>-x</code> – نمایش به صورت چند ستونی ولی به ترتیب سطری</li>
+            <li><code>-v</code> – مرتب‌سازی بر اساس نسخه (مثلاً file1, file2, file10)</li>
+            <li><code>-X</code> – مرتب‌سازی بر اساس پسوند فایل</li>
+        </ul>
+        <p><strong>گزینه‌های مربوط به رنگ:</strong></p>
+        <ul>
+            <li><code>--color</code> – نمایش با رنگ (مثلاً <code>--color=auto</code>)</li>
+            <li><code>--color=never</code> – غیرفعال کردن رنگ</li>
+            <li><code>--color=always</code> – همیشه نمایش با رنگ</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+        
+        <div class="example">
+            <h3>مثال ۱: ساده‌ترین حالت</h3>
+            <pre class="code-block">ls</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Documents  Downloads  Music  Pictures  Videos</pre>
+            </div>
+            <p>فقط اسم فایل‌ها و پوشه‌های پوشه‌ی فعلی رو نشون میده.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: نمایش جزئیات کامل</h3>
+            <pre class="code-block">ls -l</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">drwxr-xr-x 2 user user 4096 Jul 20 10:00 Documents
+-rw-r--r-- 1 user user  1024 Jul 19 15:30 note.txt</pre>
+            </div>
+            <p><strong>توضیح ستون‌ها:</strong></p>
+            <ul>
+                <li><strong>ستون اول:</strong> مجوزها (نوع فایل و دسترسی‌ها)</li>
+                <li><strong>ستون دوم:</strong> تعداد لینک‌های سخت</li>
+                <li><strong>ستون سوم:</strong> نام مالک</li>
+                <li><strong>ستون چهارم:</strong> نام گروه</li>
+                <li><strong>ستون پنجم:</strong> حجم (به بایت)</li>
+                <li><strong>ستون ششم تا هشتم:</strong> تاریخ آخرین تغییر</li>
+                <li><strong>ستون نهم:</strong> اسم فایل یا پوشه</li>
+            </ul>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: نمایش فایل‌های مخفی</h3>
+            <pre class="code-block">ls -a</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">.  ..  .bashrc  .profile  Documents  Downloads</pre>
+            </div>
+            <p>فایل‌هایی که با نقطه شروع میشن (مثل <code>.bashrc</code>) رو هم نشون میده. <code>.</code> یعنی پوشه‌ی فعلی و <code>..</code> یعنی پوشه‌ی بالاتر.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: نمایش حجم قابل‌خوانی</h3>
+            <pre class="code-block">ls -lh</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">drwxr-xr-x 2 user user 4.0K Jul 20 10:00 Documents
+-rw-r--r-- 1 user user 1.0K Jul 19 15:30 note.txt</pre>
+            </div>
+            <p>حجم فایل‌ها رو به صورت قابل‌خوانی (K, M, G) نشون میده.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: نمایش همه‌چیز با جزئیات و مخفی‌ها</h3>
+            <pre class="code-block">ls -la</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">total 48
+drwxr-xr-x 5 user user 4096 Jul 20 10:00 .
+drwxr-xr-x 3 root root 4096 Jul 19 08:00 ..
+-rw-r--r-- 1 user user  220 Jul 19 08:00 .bash_logout
+-rw-r--r-- 1 user user 3771 Jul 19 08:00 .bashrc
+drwxr-xr-x 2 user user 4096 Jul 20 10:00 Documents
+-rw-r--r-- 1 user user  1024 Jul 19 15:30 note.txt</pre>
+            </div>
+            <p>ترکیب <code>-l</code> و <code>-a</code> برای نمایش همه‌ی فایل‌ها با جزئیات کامل.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> بعضی از گزینه‌ها ممکنه توی نسخه‌های مختلف لینوکس کمی فرق کنن. برای دیدن گزینه‌های دقیق نسخه‌ی خودت، از <code>ls --help</code> استفاده کن.</p>
+            <p><strong>نکته:</strong> گزینه‌های <code>-l</code> و <code>-a</code> رو می‌تونی به هم بچسبونی: <code>ls -la</code> یا <code>ls -al</code> هر دو یک کار رو انجام میدن.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>📚 همچنین ببینید (SEE ALSO)</h2>
+        <ul>
+            <li><code>man pwd</code> – دیدن مسیر فعلی</li>
+            <li><code>man cd</code> – تغییر پوشه</li>
+            <li><code>man tree</code> – نمایش درختی پوشه‌ها</li>
+            <li><code>man stat</code> – اطلاعات دقیق فایل</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> ترمینال رو باز کن و توی پوشه‌ی <code>/etc</code> برو. با <code>ls -l</code> لیست فایل‌ها رو ببین.</p>
+            <p><strong>تمرین ۲:</strong> با <code>ls -la</code> فایل‌های مخفی رو هم توی <code>/etc</code> ببین.</p>
+            <p><strong>تمرین ۳:</strong> با <code>ls -lhS</code> فایل‌ها رو بر اساس حجم (بزرگ‌ترین اول) و با حجم قابل‌خوانی ببین.</p>
+            <p><strong>تمرین ۴:</strong> با <code>ls -R</code> محتویات پوشه‌ی فعلی رو به صورت بازگشتی ببین.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=04" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+ 
+</div>

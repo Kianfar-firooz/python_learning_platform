@@ -1,0 +1,122 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">🧠 دستور free – نمایش استفاده از حافظه</h1>
+    <div class="lesson-meta">سطح: متوسط | زمان مطالعه: ۷ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>free</code> – نمایش میزان استفاده از حافظه (RAM) و حافظه‌ی Swap</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">free [گزینه]</pre>
+        <p><strong>توضیح:</strong> اطلاعات مربوط به حافظه‌ی فیزیکی (RAM) و حافظه‌ی Swap را نمایش می‌دهد.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>free</code> یکی از ابزارهای اصلی برای نظارت بر حافظه در لینوکس است. این دستور اطلاعات زیر را نمایش می‌دهد:</p>
+        <ul>
+            <li><strong>کل حافظه (total)</strong> – مقدار کل RAM.</li>
+            <li><strong>حافظه‌ی استفاده‌شده (used)</strong> – مقدار حافظه‌ای که در حال استفاده است.</li>
+            <li><strong>حافظه‌ی آزاد (free)</strong> – مقدار حافظه‌ای که استفاده نمی‌شود.</li>
+            <li><strong>حافظه‌ی مشترک (shared)</strong> – حافظه‌ای که بین چندین فرآیند مشترک است.</li>
+            <li><strong>بافر و کش (buff/cache)</strong> – حافظه‌ای که برای کش کردن فایل‌ها استفاده می‌شود.</li>
+            <li><strong>available</strong> – حافظه‌ای که می‌تواند بدون نیاز به Swap در اختیار برنامه‌ها قرار گیرد.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-h</code> – نمایش اعداد به صورت قابل خواندن (human-readable).</li>
+            <li><code>-m</code> – نمایش اعداد به مگابایت.</li>
+            <li><code>-g</code> – نمایش اعداد به گیگابایت.</li>
+            <li><code>-t</code> – نمایش مجموع (Total) در پایین خروجی.</li>
+            <li><code>-s [sec]</code> – به‌روزرسانی هر چند ثانیه.</li>
+            <li><code>-c [count]</code> – تعداد دفعات به‌روزرسانی.</li>
+            <li><code>-w</code> – نمایش ستون‌های cache و buffer به صورت جداگانه.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: نمایش استفاده از حافظه</h3>
+            <pre class="code-block">free</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">              total        used        free      shared  buff/cache   available
+Mem:       16384000     4096000     8192000      102400     4096000    10240000
+Swap:       4194304      102400     4091904</pre>
+            </div>
+            <p>مقادیر به کیلوبایت نمایش داده می‌شوند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: نمایش به صورت قابل خواندن</h3>
+            <pre class="code-block">free -h</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">              total        used        free      shared  buff/cache   available
+Mem:           15.6Gi       3.9Gi       7.8Gi       100Mi       3.9Gi       9.8Gi
+Swap:          4.0Gi       100Mi       3.9Gi</pre>
+            </div>
+            <p>مقادیر به صورت قابل خواندن (GB, MB) نمایش داده می‌شوند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: نمایش با مجموع</h3>
+            <pre class="code-block">free -ht</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">              total        used        free      shared  buff/cache   available
+Mem:           15.6Gi       3.9Gi       7.8Gi       100Mi       3.9Gi       9.8Gi
+Swap:          4.0Gi       100Mi       3.9Gi
+Total:         19.6Gi       4.0Gi       11.7Gi</pre>
+            </div>
+            <p>مجموع RAM و Swap را نیز نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: به‌روزرسانی هر ۲ ثانیه</h3>
+            <pre class="code-block">free -s 2</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هر ۲ ثانیه خروجی به‌روز می‌شود تا Ctrl+C بزنید)</pre>
+            </div>
+            <p>اطلاعات حافظه را هر ۲ ثانیه به‌روزرسانی می‌کند.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> ستون <code>available</code> مقدار واقعی حافظه‌ای است که برنامه‌ها می‌توانند از آن استفاده کنند (شامل کش و بافر).</p>
+            <p><strong>نکته:</strong> اگر Swap استفاده شده باشد، یعنی سیستم به حافظه‌ی کمتری نیاز دارد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>free -h</code> استفاده از حافظه را ببینید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>free -ht</code> مجموع حافظه را ببینید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>free -s 5</code> اطلاعات را هر ۵ ثانیه به‌روزرسانی کنید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=36" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

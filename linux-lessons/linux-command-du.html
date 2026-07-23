@@ -1,0 +1,117 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📊 دستور du – نمایش حجم پوشه‌ها و فایل‌ها</h1>
+    <div class="lesson-meta">سطح: متوسط | زمان مطالعه: ۸ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>du</code> – تخمین فضای استفاده‌شده توسط پوشه‌ها و فایل‌ها</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">du [گزینه] [مسیر]</pre>
+        <p><strong>توضیح:</strong> حجم دیسک استفاده‌شده توسط پوشه‌ها و فایل‌ها را نمایش می‌دهد. این دستور برای پیدا کردن پوشه‌های حجیم بسیار مفید است.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>du</code> (مخفف Disk Usage) اندازه‌ی فایل‌ها و پوشه‌ها را تخمین می‌زند. این دستور برای مدیریت فضای دیسک و پیدا کردن فایل‌های بزرگ بسیار کاربردی است.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-h</code> – نمایش اعداد به صورت قابل خواندن (human-readable).</li>
+            <li><code>-s</code> – نمایش خلاصه (مجموع) برای هر مسیر.</li>
+            <li><code>-c</code> – نمایش مجموع کل (total).</li>
+            <li><code>-a</code> – نمایش حجم همه‌ی فایل‌ها (نه فقط پوشه‌ها).</li>
+            <li><code>--exclude</code> – استثنا کردن فایل‌ها یا پوشه‌ها.</li>
+            <li><code>-d [depth]</code> – محدود کردن عمق جستجو.</li>
+            <li><code>-S</code> – نمایش حجم زیرپوشه‌ها به صورت جداگانه (بدون مجموع).</li>
+            <li><code>-L</code> – دنبال کردن لینک‌های سمبلیک.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: نمایش حجم یک پوشه</h3>
+            <pre class="code-block">du -sh /home/user</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">2.5G    /home/user</pre>
+            </div>
+            <p>حجم کل پوشه‌ی <code>/home/user</code> را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: نمایش حجم زیرپوشه‌ها</h3>
+            <pre class="code-block">du -h /home/user</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">1.2G    /home/user/Documents
+500M    /home/user/Downloads
+800M    /home/user/Videos
+2.5G    /home/user</pre>
+            </div>
+            <p>حجم هر زیرپوشه و مجموع کل را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: نمایش حجم با مجموع کل</h3>
+            <pre class="code-block">du -sch /home/user/*</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">1.2G    /home/user/Documents
+500M    /home/user/Downloads
+800M    /home/user/Videos
+2.5G    total</pre>
+            </div>
+            <p>حجم هر زیرپوشه را با مجموع کل نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: پیدا کردن پوشه‌های بزرگ</h3>
+            <pre class="code-block">du -sh /home/* | sort -h</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">500M    /home/user/Downloads
+800M    /home/user/Videos
+1.2G    /home/user/Documents</pre>
+            </div>
+            <p>پوشه‌های <code>/home</code> را بر اساس حجم مرتب‌سازی می‌کند.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> <code>du -sh * | sort -h</code> یکی از پرکاربردترین ترکیب‌ها برای پیدا کردن پوشه‌های بزرگ است.</p>
+            <p><strong>نکته:</strong> برای فایل‌های بسیار زیاد، <code>du</code> ممکن است زمان زیادی ببرد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>du -sh</code> حجم پوشه‌ی خانه خود را ببینید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>du -h</code> حجم زیرپوشه‌ها را ببینید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>du -sch</code> مجموع حجم یک مسیر را ببینید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>du -sh * | sort -h</code> بزرگ‌ترین پوشه‌ها را پیدا کنید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=38" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

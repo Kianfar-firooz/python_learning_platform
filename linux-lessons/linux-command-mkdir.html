@@ -1,0 +1,95 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📁 دستور mkdir – ساخت پوشه</h1>
+    <div class="lesson-meta">سطح: مقدماتی | زمان مطالعه: ۸ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>mkdir</code> – ساخت پوشه‌های جدید</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">mkdir [گزینه] [نام پوشه]</pre>
+        <p><strong>توضیح:</strong> این دستور یک یا چند پوشه‌ی جدید با نام‌های مشخص شده ایجاد می‌کند.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>mkdir</code> (مخفف Make Directory) برای ساخت پوشه‌های جدید در سیستم فایل استفاده میشه. به‌طور پیش‌فرض، پوشه‌ها با مجوزهای پیش‌فرض سیستم (معمولاً 755) ساخته می‌شوند.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-p</code> – اگر پوشه‌های میانی وجود نداشتند، آن‌ها را هم می‌سازد (مثلاً <code>mkdir -p a/b/c</code>).</li>
+            <li><code>-v</code> – هر پوشه‌ای که ساخته می‌شود را نمایش می‌دهد (verbose).</li>
+            <li><code>-m</code> – مجوزهای دسترسی را به صورت عددی (مثلاً <code>-m 755</code>) تنظیم می‌کند.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: ساخت یک پوشه‌ی ساده</h3>
+            <pre class="code-block">mkdir myfolder</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، پوشه ساخته می‌شود)</pre>
+            </div>
+            <p>یک پوشه به نام <code>myfolder</code> در مسیر فعلی می‌سازد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: ساخت پوشه با مجوز خاص</h3>
+            <pre class="code-block">mkdir -m 700 private</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(پوشه با مجوز 700 ساخته می‌شود)</pre>
+            </div>
+            <p>پوشه‌ای به نام <code>private</code> می‌سازد که فقط مالک آن به آن دسترسی دارد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: ساخت پوشه‌های تو در تو</h3>
+            <pre class="code-block">mkdir -p project/images/backup</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(همه‌ی پوشه‌های میانی ساخته می‌شوند)</pre>
+            </div>
+            <p>پوشه‌های <code>project</code>، <code>images</code> و <code>backup</code> را به ترتیب می‌سازد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: نمایش عملیات</h3>
+            <pre class="code-block">mkdir -v newfolder</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">mkdir: created directory 'newfolder'</pre>
+            </div>
+            <p>با گزینه‌ی <code>-v</code>، پیام ساخت پوشه را نشان می‌دهد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> یک پوشه به نام <code>test</code> در مسیر فعلی بسازید.</p>
+            <p><strong>تمرین ۲:</strong> با گزینه‌ی <code>-p</code>، پوشه‌های <code>a/b/c</code> را بسازید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>ls -l</code> مجوزهای پوشه‌های ساخته شده را ببینید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=6" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

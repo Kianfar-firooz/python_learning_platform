@@ -1,0 +1,153 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📦 دستور zip – فشرده‌سازی با فرمت ZIP</h1>
+    <div class="lesson-meta">سطح: متوسط | زمان مطالعه: ۱۰ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>zip</code> – فشرده‌سازی فایل‌ها با فرمت ZIP (سازگار با ویندوز و مک)</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">zip [گزینه] [فایل خروجی] [فایل‌های ورودی]</pre>
+        <p><strong>توضیح:</strong> <code>zip</code> یک ابزار فشرده‌سازی است که فایل‌ها را با فرمت ZIP (که در ویندوز و مک نیز قابل استفاده است) فشرده می‌کند. این دستور برای اشتراک‌گذاری فایل‌ها با کاربران ویندوز بسیار مفید است.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>zip</code> یک ابزار فشرده‌سازی است که فایل‌ها را به فرمت <code>.zip</code> تبدیل می‌کند. این فرمت در تمام سیستم‌عامل‌ها (ویندوز، مک، لینوکس) قابل استفاده است و برای اشتراک‌گذاری فایل‌ها بسیار رایج است.</p>
+        <p><code>zip</code> می‌تواند فایل‌ها را با رمز عبور محافظت کند و همچنین می‌تواند فایل‌های جدید را به یک آرشیو موجود اضافه کند.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-r</code> – فشرده‌سازی بازگشتی (برای پوشه‌ها و زیرپوشه‌ها).</li>
+            <li><code>-q</code> – حالت بی‌صدا (quiet).</li>
+            <li><code>-v</code> – نمایش جزئیات (verbose).</li>
+            <li><code>-d</code> – حذف فایل از آرشیو.</li>
+            <li><code>-u</code> – به‌روزرسانی فایل‌ها در آرشیو.</li>
+            <li><code>-e</code> – رمزگذاری با رمز عبور.</li>
+            <li><code>-P</code> – تنظیم رمز عبور (ناامن).</li>
+            <li><code>-T</code> – تست صحت فایل‌های فشرده.</li>
+            <li><code>-x</code> – استثنا کردن فایل‌ها (exclude).</li>
+            <li><code>-l</code> – نمایش لیست فایل‌های موجود در آرشیو.</li>
+            <li><code>-o</code> – تنظیم زمان آرشیو با آخرین فایل.</li>
+            <li><code>-z</code> – اضافه کردن توضیح به آرشیو.</li>
+            <li><code>-0</code> – بدون فشرده‌سازی (ذخیره فقط).</li>
+            <li><code>-1</code> تا <code>-9</code> – سطح فشرده‌سازی (1 = سریع‌ترین، 9 = بهترین).</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: فشرده‌سازی چند فایل</h3>
+            <pre class="code-block">zip archive.zip file1.txt file2.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">  adding: file1.txt (stored 0%)
+  adding: file2.txt (stored 0%)</pre>
+            </div>
+            <p>فایل‌های <code>file1.txt</code> و <code>file2.txt</code> را در <code>archive.zip</code> فشرده می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: فشرده‌سازی یک پوشه (بازگشتی)</h3>
+            <pre class="code-block">zip -r archive.zip myfolder/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">  adding: myfolder/ (stored 0%)
+  adding: myfolder/file1.txt (stored 0%)
+  adding: myfolder/file2.txt (stored 0%)</pre>
+            </div>
+            <p>پوشه‌ی <code>myfolder/</code> و تمام محتویات آن را فشرده می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: فشرده‌سازی با رمز عبور</h3>
+            <pre class="code-block">zip -e secure.zip secret.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Enter password:
+Verify password:
+  adding: secret.txt (stored 0%)</pre>
+            </div>
+            <p><code>secret.txt</code> را با رمز عبور فشرده می‌کند. با <code>-e</code> از شما رمز عبور می‌خواهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: استخراج فایل ZIP (با unzip)</h3>
+            <pre class="code-block">unzip archive.zip</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Archive:  archive.zip
+  inflating: file1.txt
+  inflating: file2.txt</pre>
+            </div>
+            <p><code>archive.zip</code> را در پوشه‌ی فعلی استخراج می‌کند. (دستور <code>unzip</code> برای استخراج استفاده می‌شود.)</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: استخراج در یک پوشه خاص</h3>
+            <pre class="code-block">unzip archive.zip -d /tmp/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Archive:  archive.zip
+  inflating: /tmp/file1.txt
+  inflating: /tmp/file2.txt</pre>
+            </div>
+            <p><code>archive.zip</code> را در پوشه‌ی <code>/tmp/</code> استخراج می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۶: نمایش لیست فایل‌های ZIP</h3>
+            <pre class="code-block">unzip -l archive.zip</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Archive:  archive.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+        0  2024-07-20 10:00   file1.txt
+        0  2024-07-20 10:01   file2.txt
+---------                     -------
+        0                     2 files</pre>
+            </div>
+            <p>لیست فایل‌های موجود در <code>archive.zip</code> را نمایش می‌دهد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> اگر <code>zip</code> روی سیستم شما نصب نیست، با <code>sudo apt install zip unzip</code> آن را نصب کنید.</p>
+            <p><strong>نکته:</strong> برای استخراج فایل‌های <code>.zip</code> از دستور <code>unzip</code> استفاده کنید.</p>
+            <p><strong>نکته:</strong> سطح فشرده‌سازی <code>-9</code> بهترین فشرده‌سازی را ارائه می‌دهد، اما زمان بیشتری می‌برد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> چند فایل بسازید و با <code>zip</code> آن‌ها را فشرده کنید.</p>
+            <p><strong>تمرین ۲:</strong> یک پوشه را با <code>zip -r</code> فشرده کنید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>unzip -l</code> محتویات فایل <code>.zip</code> را ببینید.</p>
+            <p><strong>تمرین ۴:</strong> فایل <code>.zip</code> را با <code>unzip</code> استخراج کنید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=26" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+
+</div>

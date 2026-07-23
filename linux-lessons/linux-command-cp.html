@@ -1,0 +1,99 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📋 دستور cp – کپی کردن فایل و پوشه</h1>
+    <div class="lesson-meta">سطح: مقدماتی | زمان مطالعه: ۱۰ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>cp</code> – کپی کردن فایل‌ها و پوشه‌ها</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">cp [گزینه] [منبع] [مقصد]</pre>
+        <p><strong>توضیح:</strong> فایل یا پوشه‌ی منبع را به مقصد کپی می‌کند. اگر مقصد یک پوشه باشد، فایل‌ها در آن پوشه کپی می‌شوند.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>cp</code> (مخفف Copy) برای کپی کردن فایل‌ها و پوشه‌ها از یک مکان به مکان دیگر استفاده می‌شود. این دستور یکی از پرکاربردترین دستورات لینوکس است.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-r</code> – کپی بازگشتی (برای کپی کردن پوشه‌ها و محتویاتشان).</li>
+            <li><code>-i</code> – قبل از بازنویسی فایل‌های موجود، تأیید می‌گیرد.</li>
+            <li><code>-u</code> – فقط فایل‌هایی را کپی می‌کند که جدیدتر از فایل مقصد هستند یا وجود ندارند.</li>
+            <li><code>-p</code> – ویژگی‌های فایل (مالک، زمان، مجوزها) را نیز کپی می‌کند.</li>
+            <li><code>-v</code> – نمایش جزئیات کپی (verbose).</li>
+            <li><code>-f</code> – کپی اجباری (در صورت وجود فایل مقصد، بدون سوال بازنویسی می‌کند).</li>
+            <li><code>-n</code> – فایل‌های موجود را بازنویسی نمی‌کند.</li>
+            <li><code>-a</code> – کپی با ویژگی‌ها (مشابه <code>-dpR</code>).</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: کپی یک فایل</h3>
+            <pre class="code-block">cp file1.txt file2.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، فایل کپی می‌شود)</pre>
+            </div>
+            <p><code>file1.txt</code> را با نام <code>file2.txt</code> کپی می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: کپی یک فایل در پوشه‌ی دیگر</h3>
+            <pre class="code-block">cp file.txt /home/username/Documents/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(فایل در پوشه‌ی مقصد کپی می‌شود)</pre>
+            </div>
+            <p><code>file.txt</code> را در پوشه‌ی <code>Documents</code> کپی می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: کپی یک پوشه (بازگشتی)</h3>
+            <pre class="code-block">cp -r myfolder /tmp/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(همه‌ی محتویات پوشه کپی می‌شود)</pre>
+            </div>
+            <p>کل پوشه‌ی <code>myfolder</code> را به همراه محتویاتش در <code>/tmp/</code> کپی می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: کپی با تأیید</h3>
+            <pre class="code-block">cp -i file.txt backup/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">cp: overwrite 'backup/file.txt'? (y/n)</pre>
+            </div>
+            <p>اگر فایل مقصد وجود داشته باشد، قبل از بازنویسی تأیید می‌گیرد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> یک فایل به نام <code>source.txt</code> بسازید و آن را با نام <code>dest.txt</code> کپی کنید.</p>
+            <p><strong>تمرین ۲:</strong> یک پوشه به نام <code>data</code> بسازید و یک فایل داخل آن کپی کنید.</p>
+            <p><strong>تمرین ۳:</strong> با گزینه‌ی <code>-v</code> کپی را انجام دهید و خروجی را ببینید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=8" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

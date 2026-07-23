@@ -1,0 +1,142 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">🗑️ دستور rm – حذف فایل‌ها و پوشه‌ها</h1>
+    <div class="lesson-meta">سطح: مقدماتی | زمان مطالعه: ۸ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>rm</code> – حذف فایل‌ها یا پوشه‌ها</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">rm [گزینه] [نام فایل/پوشه]</pre>
+        <p><strong>توضیح:</strong> یک یا چند فایل یا پوشه را به طور دائمی حذف می‌کند. این دستور بسیار قدرتمند است و باید با احتیاط استفاده شود.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>rm</code> (مخفف Remove) برای حذف فایل‌ها و پوشه‌ها از سیستم فایل استفاده می‌شود. برخلاف سطل زباله در ویندوز، فایل‌های حذف شده با <code>rm</code> به طور کامل از سیستم حذف می‌شوند و قابل بازیابی نیستند (مگر با ابزارهای خاص).</p>
+        <p>به همین دلیل، استفاده از این دستور نیاز به دقت بالایی دارد.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-f</code> – حذف اجباری (ignore nonexistent files, never prompt).</li>
+            <li><code>-i</code> – قبل از هر حذف، تأیید می‌گیرد (برای هر فایل جداگانه).</li>
+            <li><code>-I</code> – قبل از حذف بیش از ۳ فایل یا حذف بازگشتی، یک بار تأیید می‌گیرد.</li>
+            <li><code>-r</code> – حذف بازگشتی (برای حذف پوشه‌ها و محتویاتشان استفاده می‌شود).</li>
+            <li><code>-R</code> – مشابه <code>-r</code> (همان حذف بازگشتی).</li>
+            <li><code>-v</code> – نمایش جزئیات حذف (verbose).</li>
+            <li><code>-d</code> – حذف پوشه‌های خالی (با <code>-r</code> تفاوت دارد).</li>
+            <li><code>-r</code> – با <code>-f</code> ترکیب می‌شود و بدون هیچ تأییدی، همه‌چیز را حذف می‌کند.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: حذف یک فایل</h3>
+            <p>ساده‌ترین حالت استفاده از <code>rm</code>:</p>
+            <pre class="code-block">rm file.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، فایل حذف می‌شود)</pre>
+            </div>
+            <p>فایل <code>file.txt</code> را حذف می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: حذف چند فایل با یک دستور</h3>
+            <p>می‌توانید چندین فایل را با یک <code>rm</code> حذف کنید:</p>
+            <pre class="code-block">rm file1.txt file2.txt file3.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(سه فایل حذف می‌شوند)</pre>
+            </div>
+            <p>هر سه فایل را به طور همزمان حذف می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: حذف با تأیید (ایمن‌تر)</h3>
+            <p>با گزینه‌ی <code>-i</code>، قبل از هر حذف تأیید می‌گیرد:</p>
+            <pre class="code-block">rm -i file.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">rm: remove regular file 'file.txt'? (y/n)</pre>
+            </div>
+            <p>با <code>y</code> تأیید و با <code>n</code> لغو می‌کنید.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: حذف یک پوشه و محتویاتش (بازگشتی)</h3>
+            <p>با گزینه‌ی <code>-r</code>، کل پوشه و همه‌ی محتویات آن حذف می‌شود:</p>
+            <pre class="code-block">rm -r myfolder</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(همه‌ی محتویات پوشه حذف می‌شود)</pre>
+            </div>
+            <p>پوشه‌ی <code>myfolder</code> و تمام فایل‌ها و زیرپوشه‌های آن را حذف می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: حذف پوشه با تأیید (ایمن‌تر)</h3>
+            <p>ترکیب <code>-ri</code> برای حذف بازگشتی با تأیید:</p>
+            <pre class="code-block">rm -ri myfolder</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">rm: descend into directory 'myfolder'? (y/n)
+rm: remove 'myfolder/file1.txt'? (y/n)
+rm: remove 'myfolder/file2.txt'? (y/n)
+rm: remove directory 'myfolder'? (y/n)</pre>
+            </div>
+            <p>قبل از ورود به پوشه و قبل از حذف هر فایل، تأیید می‌گیرد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۶: حذف اجباری (خطرناک!)</h3>
+            <p>با ترکیب <code>-rf</code>، همه‌چیز بدون هیچ تأییدی حذف می‌شود:</p>
+            <pre class="code-block">rm -rf myfolder</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(همه‌چیز حذف می‌شود، بدون سوال)</pre>
+            </div>
+            <div class="highlight-box">
+                <p><strong>⚠️ هشدار:</strong> از این ترکیب بسیار بسیار با احتیاط استفاده کنید. یک اشتباه می‌تواند کل سیستم شما را حذف کند (مثلاً <code>rm -rf /</code>).</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>📘 همچنین ببینید (SEE ALSO)</h2>
+        <ul>
+            <li><code>man rmdir</code> – حذف پوشه‌های خالی</li>
+            <li><code>man unlink</code> – حذف یک فایل با استفاده از سیستم‌کال unlink</li>
+            <li><code>man shred</code> – حذف ایمن فایل‌ها (با بازنویسی محتوا)</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> یک فایل به نام <code>test.txt</code> بسازید و سپس آن را با <code>rm</code> حذف کنید.</p>
+            <p><strong>تمرین ۲:</strong> یک پوشه به نام <code>testdir</code> بسازید و داخل آن چند فایل خالی ایجاد کنید. سپس کل پوشه را با <code>rm -r</code> حذف کنید.</p>
+            <p><strong>تمرین ۳:</strong> با گزینه‌ی <code>-i</code> یک فایل را حذف کنید و ببینید چه پیامی می‌دهد.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=8" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+
+</div>

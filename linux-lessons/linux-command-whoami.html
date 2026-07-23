@@ -1,0 +1,100 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">👤 دستور whoami – نمایش نام کاربر فعلی</h1>
+    <div class="lesson-meta">سطح: مقدماتی | زمان مطالعه: ۵ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>whoami</code> – چاپ نام کاربر مؤثر فعلی</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">whoami [گزینه]</pre>
+        <p><strong>توضیح:</strong> نام کاربری که در حال حاضر با آن وارد سیستم شده‌اید را نمایش می‌دهد. این دستور برای زمانی که مطمئن نیستید با چه کاربری کار می‌کنید، بسیار مفید است.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>whoami</code> نام کاربر مؤثر فعلی (effective username) را چاپ می‌کند. این دستور معمولاً در اسکریپت‌ها برای بررسی کاربر فعلی استفاده می‌شود.</p>
+        <p>تفاوت <code>whoami</code> با <code>who am i</code> در این است که <code>whoami</code> فقط نام کاربر را نمایش می‌دهد، در حالی که <code>who am i</code> اطلاعات بیشتری (مانند ترمینال و زمان ورود) نشان می‌دهد.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+        <p><strong>نکته:</strong> این دستور معمولاً گزینه‌های دیگری ندارد و بسیار ساده است.</p>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: نمایش نام کاربر فعلی</h3>
+            <pre class="code-block">whoami</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">alice</pre>
+            </div>
+            <p>نام کاربری که با آن وارد سیستم شده‌اید را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: استفاده در اسکریپت</h3>
+            <p>می‌توانید از <code>whoami</code> در اسکریپت‌ها برای بررسی کاربر فعلی استفاده کنید:</p>
+            <pre class="code-block">#!/bin/bash
+if [ $(whoami) == "root" ]; then
+    echo "شما مدیر سیستم هستید"
+else
+    echo "شما یک کاربر معمولی هستید"
+fi</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی (اگر کاربر root باشد):</span>
+                <pre class="code-block-output">شما مدیر سیستم هستید</pre>
+            </div>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: تفاوت با who am i</h3>
+            <pre class="code-block">whoami
+who am i</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">alice
+alice   pts/0        2024-07-21 10:00 (192.168.1.100)</pre>
+            </div>
+            <p><code>whoami</code> فقط نام کاربر را نشان می‌دهد، اما <code>who am i</code> اطلاعات بیشتری مانند ترمینال و IP را نمایش می‌دهد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> <code>whoami</code> با <code>id -un</code> معادل است.</p>
+            <p><strong>نکته:</strong> این دستور برای بررسی اینکه آیا با کاربر root وارد شده‌اید یا نه، بسیار کاربردی است.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> دستور <code>whoami</code> را اجرا کنید و نام کاربری خود را ببینید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>sudo whoami</code> نام کاربر root را ببینید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>who am i</code> اطلاعات کامل ورود خود را ببینید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=32" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+
+</div>

@@ -1,14 +1,99 @@
-<div class="lesson-content-wrapper">
-    <h1>دستور cd</h1>
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📂 دستور cd – تغییر پوشه</h1>
+    <div class="lesson-meta">سطح: مقدماتی | زمان مطالعه: ۱۰ دقیقه</div>
 
-    <p>دایرکتوری که در آن هستیم را تغییر می دهد</p>
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>cd</code> – تغییر پوشه‌ی کاری جاری</p>
+    </section>
 
-    <h2>نمونه کد:</h2>
-    <div class="code-block">
-        ~$ cd Downloads
-    </div>
-    <h2>خروجی:</h2>
-    <div class="code-block-output">
-        ~/Downloads$
-    </div>
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">cd [مسیر]</pre>
+        <p><strong>توضیح:</strong> این دستور پوشه‌ی فعلی شما رو به مسیری که مشخص می‌کنید، تغییر میده. این یکی از پرکاربردترین دستورات لینوکسه.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>cd</code> (مخفف Change Directory) پوشه‌ی کاری جاری شما رو به پوشه‌ی مورد نظر تغییر میده. این دستور برای حرکت در ساختار درختی سیستم فایل استفاده میشه.</p>
+        <p>اگر مسیری مشخص نکنید، شما رو به پوشه‌ی خانه‌تان (<code>/home/username</code>) می‌برد.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-L</code> – (پیش‌فرض) از لینک‌های سمبلیک پیروی می‌کند و مسیر منطقی را نشان می‌دهد.</li>
+            <li><code>-P</code> – از لینک‌های سمبلیک عبور می‌کند و مسیر فیزیکی واقعی را نشان می‌دهد.</li>
+            <li><code>-e</code> – (با <code>-P</code>) اگر مسیر مورد نظر وجود نداشت، با خطا خارج می‌شود.</li>
+            <li><code>~</code> – میانبر برای پوشه‌ی خانه (home) کاربر فعلی.</li>
+            <li><code>-</code> – رفتن به پوشه‌ی قبلی (آخرین پوشه‌ای که در آن بودید).</li>
+            <li><code>..</code> – رفتن به پوشه‌ی بالاتر (والد).</li>
+            <li><code>.</code> – همان پوشه‌ی فعلی (معمولاً کاربردی ندارد).</li>
+            <li><code>/</code> – رفتن به ریشه‌ی سیستم فایل.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: رفتن به پوشه‌ی خانه</h3>
+            <pre class="code-block">cd ~</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، فقط مسیر تغییر می‌کند)</pre>
+            </div>
+            <p>شما را به پوشه‌ی خانه‌تان می‌برد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: رفتن به یک پوشه‌ی خاص</h3>
+            <pre class="code-block">cd /etc</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(مسیر به /etc تغییر می‌کند)</pre>
+            </div>
+            <p>شما را به پوشه‌ی <code>/etc</code> می‌برد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: رفتن به پوشه‌ی بالاتر</h3>
+            <pre class="code-block">cd ..</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(یک سطح به بالا می‌روید)</pre>
+            </div>
+            <p>از پوشه‌ی فعلی یک سطح به بالا می‌روید.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: رفتن به پوشه‌ی قبلی</h3>
+            <pre class="code-block">cd -</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">/home/username/Downloads</pre>
+            </div>
+            <p>شما را به آخرین پوشه‌ای که در آن بودید، برمی‌گرداند و مسیر آن را نشان می‌دهد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با دستور <code>cd</code> به پوشه‌ی <code>/var/log</code> بروید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>cd -</code> به پوشه‌ی قبلی برگردید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>cd ~</code> به پوشه‌ی خانه بروید و با <code>pwd</code> مسیر را ببینید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=5" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
 </div>

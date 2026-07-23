@@ -1,0 +1,103 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📂 عملگرهای > و >> – هدایت خروجی به فایل</h1>
+    <div class="lesson-meta">سطح: مقدماتی | زمان مطالعه: ۸ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 توضیح</h2>
+        <p>در لینوکس، خروجی دستورات معمولاً در ترمینال نمایش داده می‌شود. اما با استفاده از عملگرهای <code>></code> و <code>>></code> می‌توانید خروجی را به یک فایل هدایت کنید (ذخیره کنید).</p>
+        <ul>
+            <li><strong><code>></code></strong> – خروجی را در یک فایل جدید ذخیره می‌کند. اگر فایل وجود داشته باشد، آن را بازنویسی می‌کند (overwrite).</li>
+            <li><strong><code>>></code></strong> – خروجی را به انتهای یک فایل اضافه می‌کند (append). اگر فایل وجود نداشته باشد، آن را می‌سازد.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>💻 ساختار دستور</h2>
+        <pre class="code-block">دستور > نام_فایل
+دستور >> نام_فایل</pre>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: ذخیره خروجی در یک فایل جدید</h3>
+            <pre class="code-block">echo "سلام دنیا" > output.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی در ترمینال نمایش داده نمی‌شود)</pre>
+            </div>
+            <p>متن "سلام دنیا" در فایل <code>output.txt</code> ذخیره می‌شود. اگر فایل وجود داشته باشد، بازنویسی می‌شود.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: اضافه کردن به انتهای فایل</h3>
+            <pre class="code-block">echo "خط دوم" >> output.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی در ترمینال نمایش داده نمی‌شود)</pre>
+            </div>
+            <p>متن "خط دوم" به انتهای فایل <code>output.txt</code> اضافه می‌شود.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: ذخیره خروجی یک دستور</h3>
+            <pre class="code-block">ls -l > list.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(خروجی در list.txt ذخیره می‌شود)</pre>
+            </div>
+            <p>خروجی کامل دستور <code>ls -l</code> در فایل <code>list.txt</code> ذخیره می‌شود.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: هدایت خطاها به فایل</h3>
+            <p>با استفاده از <code>2></code> می‌توانید خطاها را به فایل هدایت کنید:</p>
+            <pre class="code-block">cat file_not_exist 2> error.log</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(خطا در error.log ذخیره می‌شود)</pre>
+            </div>
+            <p>خطای دستور در فایل <code>error.log</code> ذخیره می‌شود.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: ذخیره خروجی و خطا در یک فایل</h3>
+            <pre class="code-block">ls /root &> output.log</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(همه‌ی خروجی‌ها در output.log ذخیره می‌شوند)</pre>
+            </div>
+            <p>همه‌ی خروجی‌ها (استاندارد و خطا) در فایل <code>output.log</code> ذخیره می‌شوند.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> عملگر <code>></code> فایل مقصد را بازنویسی می‌کند. بنابراین اگر فایل مهمی دارید، از <code>>></code> استفاده کنید یا قبل از استفاده از آن بک‌آپ بگیرید.</p>
+            <p><strong>نکته:</strong> می‌توانید خروجی را به یک فایل و همچنین ترمینال هدایت کنید با استفاده از <code>tee</code> (مثلاً <code>echo "متن" | tee file.txt</code>).</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>echo</code> یک متن بنویسید و با <code>></code> آن را در یک فایل ذخیره کنید.</p>
+            <p><strong>تمرین ۲:</strong> یک متن دیگر را با <code>>></code> به همان فایل اضافه کنید.</p>
+            <p><strong>تمرین ۳:</strong> خروجی دستور <code>ls -la</code> را در یک فایل ذخیره کنید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>cat</code> محتوای فایل را ببینید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=14" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

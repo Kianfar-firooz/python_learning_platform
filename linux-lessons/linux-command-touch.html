@@ -1,0 +1,139 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📄 دستور touch – ساخت فایل خالی و به‌روز کردن زمان</h1>
+    <div class="lesson-meta">سطح: مقدماتی | زمان مطالعه: ۶ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>touch</code> – تغییر زمان دسترسی و تغییر فایل‌ها یا ساخت فایل‌های خالی</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">touch [گزینه] [نام فایل]</pre>
+        <p><strong>توضیح:</strong> زمان دسترسی و زمان تغییر فایل را به‌روز می‌کند. اگر فایل وجود نداشته باشد، یک فایل خالی با همان نام می‌سازد.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>touch</code> یکی از ساده‌ترین و پرکاربردترین دستورات لینوکس است که دو کار اصلی انجام می‌دهد:</p>
+        <ul>
+            <li>اگر فایل وجود داشته باشد، زمان آخرین دسترسی و زمان آخرین تغییر آن را به زمان فعلی به‌روز می‌کند.</li>
+            <li>اگر فایل وجود نداشته باشد، یک فایل خالی با همان نام ایجاد می‌کند.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-a</code> – فقط زمان دسترسی (access time) را تغییر می‌دهد.</li>
+            <li><code>-m</code> – فقط زمان تغییر (modification time) را تغییر می‌دهد.</li>
+            <li><code>-c</code> – اگر فایل وجود نداشت، فایل جدید نمی‌سازد (فقط زمان را به‌روز می‌کند).</li>
+            <li><code>-t</code> – زمان را به صورت مشخص شده تنظیم می‌کند (مثلاً <code>-t 202407201200</code> به معنی ۲۰ ژوئیه ۲۰۲۴، ساعت ۱۲:۰۰).</li>
+            <li><code>-r</code> – زمان را از یک فایل دیگر کپی می‌کند (مثلاً <code>touch -r ref.txt file.txt</code>).</li>
+            <li><code>-d</code> – زمان را با یک رشته توصیفی تنظیم می‌کند (مثلاً <code>-d "2024-07-20 12:00"</code>).</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: ساخت یک فایل خالی</h3>
+            <p>ساده‌ترین حالت استفاده از <code>touch</code> برای ساخت فایل خالی:</p>
+            <pre class="code-block">touch file.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، فایل ساخته می‌شود)</pre>
+            </div>
+            <p>یک فایل خالی به نام <code>file.txt</code> در مسیر فعلی می‌سازد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: به‌روز کردن زمان یک فایل</h3>
+            <p>اگر فایل وجود داشته باشد، زمان آن به زمان فعلی به‌روز می‌شود:</p>
+            <pre class="code-block">touch existing.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(زمان فایل به‌روز می‌شود)</pre>
+            </div>
+            <p>زمان دسترسی و تغییر فایل <code>existing.txt</code> را به زمان فعلی تغییر می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: فقط تغییر زمان دسترسی</h3>
+            <p>با گزینه‌ی <code>-a</code>، فقط زمان دسترسی فایل تغییر می‌کند:</p>
+            <pre class="code-block">touch -a file.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(فقط زمان دسترسی به‌روز می‌شود)</pre>
+            </div>
+            <p>زمان دسترسی (Access Time) فایل <code>file.txt</code> را به زمان فعلی تغییر می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: تنظیم زمان به صورت دستی</h3>
+            <p>با گزینه‌ی <code>-t</code>، زمان را به صورت مشخص تنظیم کنید:</p>
+            <pre class="code-block">touch -t 202407201200 file.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(زمان فایل به ۲۰ ژوئیه ۲۰۲۴، ساعت ۱۲:۰۰ تنظیم می‌شود)</pre>
+            </div>
+            <p><strong>توضیح:</strong> <code>202407201200</code> یعنی سال ۲۰۲۴، ماه ۰۷، روز ۲۰، ساعت ۱۲، دقیقه ۰۰.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: کپی زمان از یک فایل دیگر</h3>
+            <p>با گزینه‌ی <code>-r</code>، زمان یک فایل را به فایل دیگر کپی کنید:</p>
+            <pre class="code-block">touch -r ref.txt file.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(زمان file.txt برابر با زمان ref.txt می‌شود)</pre>
+            </div>
+            <p>زمان فایل <code>file.txt</code> را دقیقاً برابر با زمان فایل <code>ref.txt</code> می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۶: ساخت چند فایل با یک دستور</h3>
+            <p>می‌توانید با یک <code>touch</code> چندین فایل بسازید:</p>
+            <pre class="code-block">touch file1.txt file2.txt file3.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(سه فایل خالی ساخته می‌شود)</pre>
+            </div>
+            <p>سه فایل خالی با نام‌های <code>file1.txt</code>، <code>file2.txt</code> و <code>file3.txt</code> می‌سازد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>📘 همچنین ببینید (SEE ALSO)</h2>
+        <ul>
+            <li><code>man mkdir</code> – ساخت پوشه</li>
+            <li><code>man rm</code> – حذف فایل</li>
+            <li><code>man stat</code> – نمایش اطلاعات دقیق فایل (شامل زمان‌ها)</li>
+            <li><code>man date</code> – نمایش و تنظیم تاریخ و زمان سیستم</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> یک فایل خالی به نام <code>test.txt</code> با <code>touch</code> بسازید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>touch -a</code> فقط زمان دسترسی فایل <code>test.txt</code> را به‌روز کنید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>touch -t</code> زمان فایل <code>test.txt</code> را به ۱ ژانویه ۲۰۲۴، ساعت ۰۰:۰۰ تنظیم کنید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>stat test.txt</code> زمان‌های فایل را بررسی کنید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=7" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

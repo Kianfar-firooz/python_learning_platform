@@ -1,0 +1,139 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">🔄 دستور rsync – همگام‌سازی فایل‌ها و پوشه‌ها</h1>
+    <div class="lesson-meta">سطح: پیشرفته | زمان مطالعه: ۱۲ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>rsync</code> – ابزار قدرتمند برای همگام‌سازی فایل‌ها و پوشه‌ها (با قابلیت انتقال تفاضلی)</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">rsync [گزینه] [منبع] [مقصد]</pre>
+        <p><strong>توضیح:</strong> <code>rsync</code> یکی از قدرتمندترین ابزارهای انتقال و همگام‌سازی فایل‌ها در لینوکس است که با استفاده از الگوریتم تفاضلی (Delta Transfer)، فقط تغییرات فایل‌ها را انتقال می‌دهد. این ویژگی باعث می‌شود بسیار سریع و کارآمد باشد.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p><code>rsync</code> به‌طور گسترده برای:</p>
+        <ul>
+            <li>بک‌آپ‌گیری (Backup).</li>
+            <li>همگام‌سازی (Mirroring) سرورها.</li>
+            <li>انتقال فایل‌ها با SSH.</li>
+            <li>کپی پوشه‌ها با حفظ ویژگی‌ها.</li>
+        </ul>
+        <p>این دستور به‌صورت محلی، از راه دور (با SSH) و یا به عنوان دیمون (Daemon) قابل استفاده است.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-a</code> – حالت بایگانی (Archive) – شامل <code>-rlptgoD</code> (بازگشتی، حفظ لینک‌ها، مجوزها و ...).</li>
+            <li><code>-v</code> – نمایش جزئیات (Verbose).</li>
+            <li><code>-z</code> – فشرده‌سازی داده‌ها در حین انتقال.</li>
+            <li><code>-r</code> – انتقال بازگشتی (Recursive).</li>
+            <li><code>-u</code> – به‌روزرسانی (فایل‌های جدیدتر را جایگزین نمی‌کند).</li>
+            <li><code>-n</code> – شبیه‌سازی (Dry run) – فقط نمایش عملیات بدون اجرا.</li>
+            <li><code>--delete</code> – حذف فایل‌های اضافی در مقصد.</li>
+            <li><code>--exclude</code> – استثنا کردن فایل‌ها یا پوشه‌ها.</li>
+            <li><code>--include</code> – شامل کردن فایل‌ها.</li>
+            <li><code>-e ssh</code> – استفاده از SSH برای انتقال.</li>
+            <li><code>-P</code> – نمایش پیشرفت (Progress) و ادامه‌ی دانلود ناقص.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: همگام‌سازی محلی</h3>
+            <pre class="code-block">rsync -av /home/user/Documents/ /backup/Documents/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">sending incremental file list
+created directory /backup/Documents
+./
+file1.txt
+file2.txt
+folder/
+folder/file3.txt
+
+sent 1,234 bytes  received 56 bytes  2,580.00 bytes/sec
+total size is 10,000  speedup is 7.75</pre>
+            </div>
+            <p>پوشه‌ی <code>Documents</code> را با حفظ ویژگی‌ها به <code>/backup/Documents</code> همگام‌سازی می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: انتقال از راه دور با SSH</h3>
+            <pre class="code-block">rsync -avz -e ssh /home/user/ user@example.com:/backup/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(همگام‌سازی با SSH و فشرده‌سازی)</pre>
+            </div>
+            <p>پوشه‌ی <code>/home/user/</code> را با SSH و فشرده‌سازی به سرور کپی می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: شبیه‌سازی (Dry Run)</h3>
+            <pre class="code-block">rsync -avn /source/ /dest/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(نمایش عملیات بدون اجرا)</pre>
+            </div>
+            <p>فقط نشان می‌دهد که چه فایل‌هایی کپی می‌شوند، بدون انجام عملیات.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: حذف فایل‌های اضافی</h3>
+            <pre class="code-block">rsync -av --delete /source/ /dest/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(فایل‌هایی که در منبع نیستند، از مقصد حذف می‌شوند)</pre>
+            </div>
+            <p>مقصد را دقیقاً برابر با منبع می‌کند (فایل‌های اضافی را حذف می‌کند).</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: نمایش پیشرفت انتقال</h3>
+            <pre class="code-block">rsync -avP /source/ /dest/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(پیشرفت هر فایل و سرعت انتقال نمایش داده می‌شود)</pre>
+            </div>
+            <p>با گزینه‌ی <code>-P</code>، پیشرفت انتقال و سرعت را نشان می‌دهد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> تفاوت <code>rsync</code> با <code>scp</code> این است که <code>rsync</code> فقط تغییرات را انتقال می‌دهد و برای همگام‌سازی بسیار سریع‌تر است.</p>
+            <p><strong>نکته:</strong> همیشه از <code>-n</code> (Dry run) قبل از اجرای واقعی استفاده کنید تا مطمئن شوید عملیات درست است.</p>
+            <p><strong>نکته:</strong> برای بک‌آپ‌گیری، ترکیب <code>rsync -avz</code> بسیار رایج است.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>rsync -av</code> یک پوشه را به مکانی دیگر کپی کنید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>rsync -avn</code> عملیات را شبیه‌سازی کنید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>rsync -avz -e ssh</code> یک پوشه را به سرور کپی کنید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>--delete</code> فایل‌های اضافی را حذف کنید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=46" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

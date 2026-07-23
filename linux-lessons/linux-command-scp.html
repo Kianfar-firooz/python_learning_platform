@@ -1,0 +1,126 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📋 دستور scp – کپی امن فایل از راه دور</h1>
+    <div class="lesson-meta">سطح: پیشرفته | زمان مطالعه: ۸ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>scp</code> – کپی امن فایل‌ها بین سیستم‌ها (با استفاده از SSH)</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">scp [گزینه] [منبع] [مقصد]</pre>
+        <p><strong>توضیح:</strong> <code>scp</code> (مخفف Secure Copy) از پروتکل SSH برای انتقال امن فایل‌ها بین سیستم‌ها استفاده می‌کند. این دستور برای کپی فایل‌ها بین سرور و سیستم محلی بسیار مفید است.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p><code>scp</code> یک ابزار برای انتقال امن فایل‌ها با استفاده از SSH است. فرمت‌های مختلفی برای تعیین منبع و مقصد وجود دارد:</p>
+        <ul>
+            <li><code>local_file</code> – فایل محلی.</li>
+            <li><code>user@host:remote_file</code> – فایل روی سرور.</li>
+            <li><code>user@host:~/path/file</code> – فایل روی سرور با مسیر نسبی.</li>
+        </ul>
+        <p>این دستور برای کپی فایل‌ها بین سرورها و سیستم محلی بسیار پرکاربرد است.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-P [port]</code> – تنظیم پورت SSH (با حرف بزرگ P).</li>
+            <li><code>-i [keyfile]</code> – استفاده از کلید خصوصی.</li>
+            <li><code>-r</code> – کپی بازگشتی (برای پوشه‌ها).</li>
+            <li><code>-p</code> – حفظ ویژگی‌های فایل (Permissions, timestamps).</li>
+            <li><code>-v</code> – نمایش جزئیات (Verbose).</li>
+            <li><code>-q</code> – حالت بی‌صدا (Quiet).</li>
+            <li><code>-C</code> – فعال‌سازی فشرده‌سازی (Compression).</li>
+            <li><code>-l [limit]</code> – محدود کردن پهنای باند (به کیلوبیت بر ثانیه).</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: کپی فایل به سرور</h3>
+            <pre class="code-block">scp file.txt user@example.com:/home/user/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">file.txt                                   100% 1024     1.0KB/s   00:00</pre>
+            </div>
+            <p><code>file.txt</code> را به پوشه‌ی <code>/home/user/</code> روی سرور کپی می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: کپی فایل از سرور به محلی</h3>
+            <pre class="code-block">scp user@example.com:/home/user/file.txt .</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">file.txt                                   100% 1024     1.0KB/s   00:00</pre>
+            </div>
+            <p>فایل <code>file.txt</code> را از سرور به پوشه‌ی فعلی کپی می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: کپی بازگشتی (پوشه)</h3>
+            <pre class="code-block">scp -r folder/ user@example.com:/home/user/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">folder/file1.txt                           100% 1024     1.0KB/s   00:00
+folder/file2.txt                           100% 2048     2.0KB/s   00:00</pre>
+            </div>
+            <p>کل پوشه‌ی <code>folder/</code> را به سرور کپی می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: استفاده از پورت غیر استاندارد</h3>
+            <pre class="code-block">scp -P 2222 file.txt user@example.com:/home/user/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(فایل با استفاده از پورت ۲۲۲۲ کپی می‌شود)</pre>
+            </div>
+            <p>با پورت ۲۲۲۲ به سرور متصل شده و فایل را کپی می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: کپی بین دو سرور</h3>
+            <pre class="code-block">scp user1@server1:/path/file user2@server2:/path/</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(فایل از server1 به server2 کپی می‌شود)</pre>
+            </div>
+            <p>فایل را مستقیماً بین دو سرور کپی می‌کند (بدون عبور از سیستم محلی).</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> <code>scp</code> از پروتکل SSH استفاده می‌کند، بنابراین برای احراز هویت از رمز عبور یا کلید SSH استفاده می‌شود.</p>
+            <p><strong>نکته:</strong> <code>scp</code> به‌تدریج با <code>rsync</code> و <code>SFTP</code> جایگزین می‌شود، اما همچنان پرکاربرد است.</p>
+            <p><strong>نکته:</strong> برای کپی پوشه‌ها حتماً از <code>-r</code> استفاده کنید.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> یک فایل محلی را با <code>scp</code> به یک سرور کپی کنید (اگر سرور در دسترس دارید).</p>
+            <p><strong>تمرین ۲:</strong> یک فایل را از سرور به سیستم محلی کپی کنید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>scp -r</code> یک پوشه را به سرور کپی کنید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=45" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

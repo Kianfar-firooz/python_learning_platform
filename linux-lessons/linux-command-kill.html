@@ -1,0 +1,126 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">🛑 دستور kill – خاتمه دادن به فرآیندها</h1>
+    <div class="lesson-meta">سطح: متوسط | زمان مطالعه: ۸ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>kill</code> – ارسال سیگنال به فرآیندها (معمولاً برای خاتمه دادن)</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">kill [گزینه] [PID]</pre>
+        <p><strong>توضیح:</strong> یک سیگنال (معمولاً SIGTERM یا SIGKILL) به یک فرآیند خاص با شناسه‌ی PID ارسال می‌کند. این دستور برای خاتمه‌ی فرآیندهای بی‌پاسخ یا مدیریت فرآیندها استفاده می‌شود.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>kill</code> برای ارسال سیگنال‌های مختلف به فرآیندها استفاده می‌شود. مهم‌ترین کاربرد آن، خاتمه دادن به یک فرآیند با ارسال سیگنال <code>SIGTERM</code> (پیش‌فرض) یا <code>SIGKILL</code> (در صورت بی‌پاسخ بودن) است.</p>
+        <p><strong>سیگنال‌های مهم:</strong></p>
+        <ul>
+            <li><strong>SIGTERM (15):</strong> درخواست خاتمه‌ی فرآیند (به فرآیند اجازه می‌دهد که به‌خوبی خاتمه یابد).</li>
+            <li><strong>SIGKILL (9):</strong> خاتمه‌ی اجباری فرآیند (بدون هیچ گونه اخطار یا پاک‌سازی).</li>
+            <li><strong>SIGSTOP (19):</strong> متوقف کردن فرآیند (pause).</li>
+            <li><strong>SIGCONT (18):</strong> ادامه‌ی فرآیند متوقف‌شده.</li>
+            <li><strong>SIGHUP (1):</strong> خاتمه‌ی فرآیند و بارگذاری مجدد تنظیمات.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-l</code> – لیست همه‌ی سیگنال‌های موجود.</li>
+            <li><code>-s [signal]</code> – ارسال یک سیگنال خاص (با نام یا شماره).</li>
+            <li><code>-n [signal]</code> – ارسال یک سیگنال با شماره.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: خاتمه‌ی یک فرآیند با سیگنال پیش‌فرض (SIGTERM)</h3>
+            <pre class="code-block">kill 1234</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، فرآیند با PID 1234 خاتمه می‌یابد)</pre>
+            </div>
+            <p>به فرآیند با شناسه‌ی <code>1234</code> سیگنال <code>SIGTERM</code> ارسال می‌کند تا به‌خوبی خاتمه یابد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: خاتمه‌ی اجباری یک فرآیند (SIGKILL)</h3>
+            <pre class="code-block">kill -9 1234</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، فرآیند فوراً خاتمه می‌یابد)</pre>
+            </div>
+            <p>با سیگنال <code>SIGKILL</code> فرآیند را فوراً و بدون هیچ پاک‌سازی خاتمه می‌دهد. از این گزینه فقط در صورت عدم پاسخ‌دهی فرآیند استفاده کنید.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: خاتمه‌ی فرآیند با سیگنال خاص (با نام)</h3>
+            <pre class="code-block">kill -s SIGTERM 1234</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(همانند مثال ۱)</pre>
+            </div>
+            <p>با استفاده از <code>-s</code> می‌توانید سیگنال را با نام مشخص کنید.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: لیست سیگنال‌های موجود</h3>
+            <pre class="code-block">kill -l</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output"> 1) SIGHUP      2) SIGINT      3) SIGQUIT     4) SIGILL      5) SIGTRAP
+ 6) SIGABRT     7) SIGBUS      8) SIGFPE      9) SIGKILL    10) SIGUSR1
+...
+</pre>
+            </div>
+            <p>لیست کامل سیگنال‌های قابل ارسال به فرآیندها را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: خاتمه‌ی چند فرآیند با یک دستور</h3>
+            <pre class="code-block">kill 1234 5678 9012</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هر سه فرآیند خاتمه می‌یابند)</pre>
+            </div>
+            <p>می‌توانید چندین PID را به طور همزمان به <code>kill</code> بدهید.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> برای پیدا کردن PID یک فرآیند، از <code>ps aux | grep [name]</code> استفاده کنید.</p>
+            <p><strong>نکته:</strong> اگر مالک فرآیند نیستید، برای خاتمه‌ی آن باید از <code>sudo</code> استفاده کنید.</p>
+            <p><strong>نکته:</strong> سیگنال <code>SIGKILL</code> (9) را تنها زمانی استفاده کنید که فرآیند با سیگنال <code>SIGTERM</code> خاتمه نمی‌یابد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> یک فرآیند ساده (مثل <code>sleep 1000</code>) را در پس‌زمینه اجرا کنید و PID آن را پیدا کنید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>kill</code> و سیگنال پیش‌فرض، آن فرآیند را خاتمه دهید.</p>
+            <p><strong>تمرین ۳:</strong> فرآیند دیگری را اجرا کنید و با <code>kill -9</code> آن را به اجبار خاتمه دهید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>kill -l</code> لیست سیگنال‌ها را ببینید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=22" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

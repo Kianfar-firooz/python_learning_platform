@@ -1,0 +1,125 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">🔗 دستور ln – ایجاد لینک‌های سمبلیک و سخت</h1>
+    <div class="lesson-meta">سطح: متوسط | زمان مطالعه: ۱۰ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>ln</code> – ایجاد لینک (ارتباط) بین فایل‌ها و پوشه‌ها</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">ln [گزینه] [هدف] [نام لینک]</pre>
+        <p><strong>توضیح:</strong> <code>ln</code> برای ایجاد لینک‌های سمبلیک (Symbolic Links) و لینک‌های سخت (Hard Links) استفاده می‌شود. لینک‌های سمبلیک مانند میانبرهای ویندوز عمل می‌کنند و به یک فایل یا پوشه اشاره می‌کنند.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>ln</code> (مخفف Link) برای ایجاد ارتباط بین فایل‌ها و پوشه‌ها استفاده می‌شود. دو نوع لینک در لینوکس وجود دارد:</p>
+        <ul>
+            <li><strong>لینک سخت (Hard Link):</strong> یک کپی اضافی از فایل است که به همان inode (شناسه‌ی فایل) اشاره می‌کند. اگر فایل اصلی حذف شود، لینک سخت همچنان معتبر است.</li>
+            <li><strong>لینک سمبلیک (Symbolic Link):</strong> مانند میانبر است و به مسیر فایل اشاره می‌کند. اگر فایل اصلی حذف شود، لینک سمبلیک می‌شکند.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-s</code> – ایجاد لینک سمبلیک (نمادین).</li>
+            <li><code>-f</code> – بازنویسی لینک‌های موجود (force).</li>
+            <li><code>-n</code> – اگر نام لینک یک پوشه باشد، آن را به‌روز می‌کند.</li>
+            <li><code>-i</code> – قبل از بازنویسی، تأیید می‌گیرد.</li>
+            <li><code>-v</code> – نمایش جزئیات (verbose).</li>
+            <li><code>-b</code> – قبل از بازنویسی، از فایل مقصد بک‌آپ می‌گیرد.</li>
+            <li><code>-L</code> – لینک سخت را از یک لینک سمبلیک دنبال می‌کند.</li>
+            <li><code>-P</code> – لینک سخت را از خود لینک سمبلیک می‌سازد.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: ایجاد لینک سمبلیک به یک فایل</h3>
+            <pre class="code-block">ln -s /usr/bin/python3 python</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، لینک سمبلیک python ساخته می‌شود)</pre>
+            </div>
+            <p>یک لینک سمبلیک به نام <code>python</code> می‌سازد که به <code>/usr/bin/python3</code> اشاره می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: ایجاد لینک سمبلیک به یک پوشه</h3>
+            <pre class="code-block">ln -s /home/user/Documents/ mydocs</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، لینک سمبلیک mydocs ساخته می‌شود)</pre>
+            </div>
+            <p>یک لینک سمبلیک به نام <code>mydocs</code> می‌سازد که به پوشه‌ی <code>Documents</code> اشاره می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: ایجاد لینک سخت</h3>
+            <pre class="code-block">ln file.txt hardlink.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، لینک سخت hardlink.txt ساخته می‌شود)</pre>
+            </div>
+            <p>یک لینک سخت به نام <code>hardlink.txt</code> می‌سازد که همان محتوای <code>file.txt</code> را دارد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: نمایش لینک‌های سمبلیک با ls -l</h3>
+            <pre class="code-block">ls -l python</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">lrwxrwxrwx 1 user user 16 Jul 20 10:00 python -> /usr/bin/python3</pre>
+            </div>
+            <p>با <code>ls -l</code>، لینک‌های سمبلیک با <code>-></code> مشخص می‌شوند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: شکستن لینک سمبلیک</h3>
+            <pre class="code-block">rm python</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، لینک سمبلیک حذف می‌شود)</pre>
+            </div>
+            <p>لینک سمبلیک را حذف می‌کند (فایل اصلی حذف نمی‌شود).</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> برای ایجاد لینک سمبلیک، حتماً از <code>-s</code> استفاده کنید. در غیر این صورت، لینک سخت ایجاد می‌شود.</p>
+            <p><strong>نکته:</strong> لینک‌های سخت نمی‌توانند برای پوشه‌ها ایجاد شوند و فقط برای فایل‌ها هستند.</p>
+            <p><strong>نکته:</strong> اگر فایل اصلی را حذف کنید، لینک سمبلیک می‌شکند (و خطا می‌دهد) ولی لینک سخت همچنان معتبر است.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> یک فایل بسازید و با <code>ln -s</code> یک لینک سمبلیک به آن ایجاد کنید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>ls -l</code> لینک سمبلیک را بررسی کنید.</p>
+            <p><strong>تمرین ۳:</strong> یک لینک سخت با <code>ln</code> (بدون <code>-s</code>) ایجاد کنید.</p>
+            <p><strong>تمرین ۴:</strong> فایل اصلی را حذف کنید و ببینید لینک سمبلیک و سخت چه وضعیتی دارند.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=27" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+
+</div>

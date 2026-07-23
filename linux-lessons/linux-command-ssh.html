@@ -1,0 +1,142 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">🔐 دستور ssh – اتصال امن به سرور از راه دور</h1>
+    <div class="lesson-meta">سطح: پیشرفته | زمان مطالعه: ۱۲ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>ssh</code> – پروتکل SSH (Secure Shell) برای اتصال امن به سیستم‌های از راه دور</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">ssh [گزینه] [کاربر@]میزبان</pre>
+        <p><strong>توضیح:</strong> <code>ssh</code> (مخفف Secure Shell) یک پروتکل شبکه امن برای اتصال به سیستم‌های از راه دور است. این دستور به شما اجازه می‌دهد تا به یک سرور لینوکس متصل شده و روی آن کار کنید.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p><code>ssh</code> یکی از مهم‌ترین ابزارهای مدیریت سرور است که به شما امکان می‌دهد:</p>
+        <ul>
+            <li>به سرورهای لینوکس متصل شوید.</li>
+            <li>دستورات را روی سرور اجرا کنید.</li>
+            <li>فایل‌ها را به‌صورت امن انتقال دهید (با <code>scp</code> و <code>rsync</code>).</li>
+            <li>پورت‌های محلی را به سرور تونل کنید (Port Forwarding).</li>
+        </ul>
+        <p>اتصال SSH به‌طور پیش‌فرض از پورت ۲۲ استفاده می‌کند و با رمزنگاری قوی، امنیت ارتباط را تضمین می‌کند.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-p [port]</code> – تنظیم پورت (اگر سرور روی پورت غیر از ۲۲ باشد).</li>
+            <li><code>-i [keyfile]</code> – استفاده از کلید خصوصی (Private Key).</li>
+            <li><code>-v</code> – نمایش جزئیات (Verbose – برای عیب‌یابی).</li>
+            <li><code>-q</code> – حالت بی‌صدا (Quiet).</li>
+            <li><code>-C</code> – فعال‌سازی فشرده‌سازی (Compression).</li>
+            <li><code>-X</code> – فوروارد کردن X11 (برای اجرای برنامه‌های گرافیکی).</li>
+            <li><code>-L [local:remote]</code> – فوروارد کردن پورت محلی به سرور.</li>
+            <li><code>-R [remote:local]</code> – فوروارد کردن پورت سرور به محلی.</li>
+            <li><code>-o [option]</code> – تنظیم گزینه‌های پیشرفته (مثل <code>-o StrictHostKeyChecking=no</code>).</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: اتصال به یک سرور</h3>
+            <pre class="code-block">ssh user@192.168.1.100</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">The authenticity of host '192.168.1.100 (192.168.1.100)' can't be established.
+ECDSA key fingerprint is SHA256:...
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.1.100' (ECDSA) to the list of known hosts.
+user@192.168.1.100's password: 
+(پس از وارد کردن رمز عبور، به سرور متصل می‌شوید)
+user@server:~$</pre>
+            </div>
+            <p>با کاربر <code>user</code> به سرور با IP <code>192.168.1.100</code> متصل می‌شوید. اولین بار از شما تأیید می‌خواهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: اتصال با پورت غیر استاندارد</h3>
+            <pre class="code-block">ssh -p 2222 user@example.com</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(اتصال با پورت ۲۲۲۲ به جای پورت پیش‌فرض ۲۲)</pre>
+            </div>
+            <p>اگر سرور روی پورت ۲۲۲۲ کار می‌کند، از <code>-p</code> استفاده کنید.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: اجرای یک دستور روی سرور (بدون ورود به شل)</h3>
+            <pre class="code-block">ssh user@example.com ls -l /var/log</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">total 1024
+-rw-r--r-- 1 root root  12345 Jul 20 10:00 syslog
+-rw-r--r-- 1 root root   6789 Jul 19 08:00 auth.log</pre>
+            </div>
+            <p>دستور <code>ls -l /var/log</code> را روی سرور اجرا کرده و خروجی آن را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: استفاده از کلید خصوصی</h3>
+            <pre class="code-block">ssh -i ~/.ssh/id_rsa user@example.com</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(اتصال با استفاده از کلید SSH، بدون نیاز به رمز عبور)</pre>
+            </div>
+            <p>با کلید خصوصی <code>~/.ssh/id_rsa</code> به سرور متصل می‌شود.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: کپی کردن کلید عمومی به سرور</h3>
+            <p>برای اتصال بدون رمز عبور، کلید عمومی خود را به سرور کپی کنید:</p>
+            <pre class="code-block">ssh-copy-id user@example.com</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/user/.ssh/id_rsa.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+user@example.com's password: 
+(پس از وارد کردن رمز عبور، کلید کپی می‌شود)</pre>
+            </div>
+            <p>کلید عمومی شما را به سرور کپی می‌کند تا دفعات بعد بدون رمز عبور وارد شوید.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> برای امنیت بیشتر، اتصال SSH را با کلید (Key-based authentication) انجام دهید و از ورود با رمز عبور خودداری کنید.</p>
+            <p><strong>نکته:</strong> از <code>ssh -v</code> برای عیب‌یابی اتصال استفاده کنید.</p>
+            <p><strong>نکته:</strong> فایل <code>~/.ssh/known_hosts</code> شامل کلیدهای سرورهایی است که قبلاً به آن‌ها متصل شده‌اید.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> اگر به یک سرور دسترسی دارید، با <code>ssh</code> به آن متصل شوید.</p>
+            <p><strong>تمرین ۲:</strong> یک جفت کلید SSH با <code>ssh-keygen</code> بسازید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>ssh-copy-id</code> کلید عمومی خود را به یک سرور کپی کنید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>ssh -p</code> به یک سرور با پورت غیر استاندارد متصل شوید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=44" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+
+</div>

@@ -1,0 +1,140 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📋 دستور dmesg – مشاهده لاگ‌های هسته (Kernel logs)</h1>
+    <div class="lesson-meta">سطح: پیشرفته | زمان مطالعه: ۸ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>dmesg</code> – نمایش پیام‌های بافر حلقوی (Ring Buffer) هسته لینوکس</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">dmesg [گزینه]</pre>
+        <p><strong>توضیح:</strong> <code>dmesg</code> (مخفف Diagnostic Message) لاگ‌های مربوط به هسته (Kernel) لینوکس را نمایش می‌دهد. این لاگ‌ها شامل اطلاعات بوت، شناسایی سخت‌افزار، خطاهای سیستمی و ... هستند.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p><code>dmesg</code> یکی از ابزارهای اصلی برای عیب‌یابی و بررسی سیستم در زمان بوت و پس از آن است. این دستور اطلاعات زیر را نمایش می‌دهد:</p>
+        <ul>
+            <li>پیام‌های بوت (Boot messages).</li>
+            <li>تشخیص و شناسایی سخت‌افزارها.</li>
+            <li>خطاهای مربوط به درایورها.</li>
+            <li>اطلاعات مربوط به حافظه و CPU.</li>
+            <li>وضعیت دستگاه‌های متصل.</li>
+        </ul>
+        <p>این لاگ‌ها برای مدیران سیستم و عیب‌یاب‌ها بسیار ارزشمند هستند.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-H</code> – نمایش خروجی به صورت قابل خواندن (Human-readable).</li>
+            <li><code>-T</code> – نمایش زمان‌ها به صورت قابل خواندن (با تاریخ و ساعت).</li>
+            <li><code>-c</code> – نمایش و پاک کردن بافر (clear after display).</li>
+            <li><code>-f [facility]</code> – فیلتر کردن بر اساس نوع پیام (مثل <code>-f kern</code>).</li>
+            <li><code>-l [level]</code> – فیلتر کردن بر اساس سطح (مثل <code>-l err</code> برای خطاها).</li>
+            <li><code>-n [level]</code> – تنظیم سطح گزارش‌دهی (log level).</li>
+            <li><code>-s [size]</code> – تنظیم اندازه‌ی بافر برای خواندن.</li>
+            <li><code>-w</code> – نمایش لاگ‌ها به‌صورت زنده (مانند <code>tail -f</code>).</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: نمایش همه‌ی لاگ‌های هسته</h3>
+            <pre class="code-block">dmesg</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی (نمونه):</span>
+                <pre class="code-block-output">[    0.000000] Linux version 5.15.0-91-generic (buildd@lcy02-amd64-001) (gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #101-Ubuntu SMP Tue Nov 15 18:00:00 UTC 2024 (Ubuntu 5.15.0-91.101-generic 5.15.148)
+[    0.000000] Command line: BOOT_IMAGE=/vmlinuz-5.15.0-91-generic root=UUID=abc123 ro quiet splash
+[    0.000000] KERNEL supported cpus:
+[    0.000000]   Intel GenuineIntel
+[    0.000000]   AMD AuthenticAMD
+[    0.000000]   Hygon HygonGenuine
+[    0.000000]   Centaur CentaurHauls
+[    0.000000]   zhaoxin   Shanghai  
+...</pre>
+            </div>
+            <p>همه‌ی پیام‌های هسته از زمان بوت تا کنون را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: نمایش لاگ‌ها با زمان قابل خواندن</h3>
+            <pre class="code-block">dmesg -T</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">[Sun Jul 21 10:00:00 2024] Linux version 5.15.0-91-generic ...
+[Sun Jul 21 10:00:01 2024] Command line: BOOT_IMAGE=...
+...</pre>
+            </div>
+            <p>لاگ‌ها را با تاریخ و ساعت قابل خواندن نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: فیلتر کردن خطاها</h3>
+            <pre class="code-block">dmesg -l err</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(فقط پیام‌های خطا نمایش داده می‌شوند)</pre>
+            </div>
+            <p>فقط پیام‌های با سطح <code>err</code> (خطا) را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: نمایش لاگ‌های مربوط به دستگاه‌های USB</h3>
+            <pre class="code-block">dmesg | grep USB</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">[    1.234567] usb 1-1: new high-speed USB device number 2 using ehci-pci
+[    1.345678] usb 1-1: New USB device found, idVendor=abcd, idProduct=1234
+...</pre>
+            </div>
+            <p>با ترکیب <code>dmesg | grep</code> می‌توانید لاگ‌های مربوط به یک دستگاه خاص را پیدا کنید.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: نمایش زنده‌ی لاگ‌ها</h3>
+            <pre class="code-block">dmesg -w</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(لاگ‌های جدید به‌صورت لحظه‌ای نمایش داده می‌شوند)</pre>
+            </div>
+            <p>مانند <code>tail -f</code>، لاگ‌های هسته را به‌صورت زنده نمایش می‌دهد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> <code>dmesg</code> برای عیب‌یابی مشکلات سخت‌افزاری و خطاهای بوت بسیار مفید است.</p>
+            <p><strong>نکته:</strong> بافر هسته محدود است، بنابراین لاگ‌های قدیمی ممکن است از دست بروند.</p>
+            <p><strong>نکته:</strong> برای مشاهده‌ی لاگ‌های کامل سیستم، از <code>journalctl</code> استفاده کنید (در سیستم‌های با systemd).</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>dmesg</code> لاگ‌های هسته را ببینید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>dmesg -T</code> لاگ‌ها را با زمان قابل خواندن ببینید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>dmesg | grep</code> پیام‌های مربوط به <code>error</code> را پیدا کنید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>dmesg -w</code> لاگ‌ها را به‌صورت زنده دنبال کنید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=50" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>

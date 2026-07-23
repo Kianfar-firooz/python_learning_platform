@@ -1,0 +1,135 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">🌐 دستور ping – تست اتصال شبکه</h1>
+    <div class="lesson-meta">سطح: متوسط | زمان مطالعه: ۸ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>ping</code> – ارسال بسته‌های ICMP برای تست اتصال به یک میزبان (Host) در شبکه</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">ping [گزینه] [آدرس یا نام میزبان]</pre>
+        <p><strong>توضیح:</strong> <code>ping</code> یکی از اصلی‌ترین ابزارهای شبکه در لینوکس است که با ارسال بسته‌های ICMP Echo Request به یک میزبان، پاسخ آن را بررسی می‌کند. این دستور برای بررسی اتصال به اینترنت، سرورها و سایر دستگاه‌های شبکه بسیار مفید است.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>ping</code> به‌طور مداوم بسته‌های ICMP را به آدرس یا نام میزبان مورد نظر ارسال می‌کند و زمان رفت و برگشت (RTT) هر بسته را نمایش می‌دهد. این اطلاعات به شما کمک می‌کند تا:</p>
+        <ul>
+            <li>مشخص کنید که آیا میزبان در دسترس است یا خیر.</li>
+            <li>سرعت پاسخ‌دهی (Latency) شبکه را اندازه‌گیری کنید.</li>
+            <li>مشکلات اتصال و افت بسته (Packet Loss) را تشخیص دهید.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-c [count]</code> – تعداد بسته‌های ارسالی را مشخص می‌کند (پس از آن متوقف می‌شود).</li>
+            <li><code>-i [seconds]</code> – فاصله‌ی زمانی بین ارسال بسته‌ها (پیش‌فرض ۱ ثانیه).</li>
+            <li><code>-s [size]</code> – اندازه‌ی بسته را مشخص می‌کند (به بایت).</li>
+            <li><code>-t [ttl]</code> – مقدار TTL (Time To Live) را تنظیم می‌کند.</li>
+            <li><code>-W [timeout]</code> – زمان انتظار برای پاسخ (به ثانیه).</li>
+            <li><code>-4</code> – استفاده از IPv4.</li>
+            <li><code>-6</code> – استفاده از IPv6.</li>
+            <li><code>-q</code> – نمایش خلاصه (quiet mode).</li>
+            <li><code>-v</code> – نمایش جزئیات بیشتر (verbose).</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: تست اتصال به گوگل (نام دامنه)</h3>
+            <pre class="code-block">ping google.com</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">PING google.com (142.250.185.78) 56(84) bytes of data.
+64 bytes from 142.250.185.78: icmp_seq=1 ttl=117 time=15.2 ms
+64 bytes from 142.250.185.78: icmp_seq=2 ttl=117 time=14.8 ms
+64 bytes from 142.250.185.78: icmp_seq=3 ttl=117 time=15.0 ms
+^C
+--- google.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 14.800/15.000/15.200/0.200 ms</pre>
+            </div>
+            <p><code>ping</code> را با <code>Ctrl+C</code> متوقف می‌کنید. خروجی آمار نهایی را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: ارسال ۴ بسته و توقف خودکار</h3>
+            <pre class="code-block">ping -c 4 google.com</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">PING google.com (142.250.185.78) 56(84) bytes of data.
+64 bytes from 142.250.185.78: icmp_seq=1 ttl=117 time=15.2 ms
+64 bytes from 142.250.185.78: icmp_seq=2 ttl=117 time=14.8 ms
+64 bytes from 142.250.185.78: icmp_seq=3 ttl=117 time=15.0 ms
+64 bytes from 142.250.185.78: icmp_seq=4 ttl=117 time=15.1 ms
+
+--- google.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 14.800/15.025/15.200/0.150 ms</pre>
+            </div>
+            <p>با <code>-c 4</code> فقط ۴ بسته ارسال می‌شود و برنامه خودکار متوقف می‌شود.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: تست اتصال به یک آدرس IP</h3>
+            <pre class="code-block">ping 8.8.8.8</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=117 time=15.2 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=117 time=14.8 ms
+...</pre>
+            </div>
+            <p>آدرس IP سرور DNS گوگل (8.8.8.8) را پینگ می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: تغییر فاصله ارسال بسته‌ها</h3>
+            <pre class="code-block">ping -i 0.5 google.com</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(بسته‌ها هر ۰.۵ ثانیه ارسال می‌شوند)</pre>
+            </div>
+            <p>فاصله‌ی ارسال بسته‌ها را به ۰.۵ ثانیه کاهش می‌دهد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> اگر <code>ping</code> پاسخی دریافت نکند، ممکن است میزبان خاموش باشد یا فایروال درخواست‌های ICMP را مسدود کرده باشد.</p>
+            <p><strong>نکته:</strong> برای پینگ کردن به‌طور مداوم، از گزینه‌های <code>-c</code> استفاده نکنید و با <code>Ctrl+C</code> آن را متوقف کنید.</p>
+            <p><strong>نکته:</strong> زمان پاسخ (Time) نشان‌دهنده‌ی سرعت شبکه است. هرچه کمتر باشد، اتصال سریع‌تر است.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>ping</code> اتصال خود به سرور <code>google.com</code> را تست کنید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>ping -c 5</code> فقط ۵ بسته ارسال کنید.</p>
+            <p><strong>تمرین ۳:</strong> آدرس IP یک سرور دیگر (مثل <code>1.1.1.1</code>) را پینگ کنید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>ping -i 2</code> فاصله‌ی ارسال را به ۲ ثانیه افزایش دهید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=41" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+
+</div>

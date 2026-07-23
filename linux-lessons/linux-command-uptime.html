@@ -1,0 +1,111 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">⏱️ دستور uptime – نمایش زمان فعالیت سیستم</h1>
+    <div class="lesson-meta">سطح: مقدماتی | زمان مطالعه: ۵ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>uptime</code> – نمایش مدت زمان فعالیت سیستم، تعداد کاربران و بار متوسط (Load Average)</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">uptime [گزینه]</pre>
+        <p><strong>توضیح:</strong> زمان روشن بودن سیستم از آخرین بوت، تعداد کاربران وارد شده و بار متوسط سیستم را در ۱، ۵ و ۱۵ دقیقه‌ی اخیر نمایش می‌دهد.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>uptime</code> یک نمای کلی از وضعیت سیستم ارائه می‌دهد. این دستور برای مدیران سیستم بسیار مفید است تا ببینند سیستم چقدر روشن بوده و آیا بار سیستم زیاد است یا نه.</p>
+        <p><strong>بار متوسط (Load Average):</strong></p>
+        <ul>
+            <li>عدد اول: بار متوسط در ۱ دقیقه‌ی اخیر.</li>
+            <li>عدد دوم: بار متوسط در ۵ دقیقه‌ی اخیر.</li>
+            <li>عدد سوم: بار متوسط در ۱۵ دقیقه‌ی اخیر.</li>
+        </ul>
+        <p>اگر اعداد بار متوسط از تعداد هسته‌های CPU بیشتر باشند، یعنی سیستم بار زیادی دارد.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-p</code> – نمایش زمان فعالیت به صورت خوانا (pretty).</li>
+            <li><code>-s</code> – نمایش زمان شروع سیستم (since).</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: نمایش زمان فعالیت</h3>
+            <pre class="code-block">uptime</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">10:00:00 up 3 days, 2:15, 3 users, load average: 0.15, 0.12, 0.10</pre>
+            </div>
+            <p>سیستم ۳ روز و ۲ ساعت و ۱۵ دقیقه روشن بوده، ۳ کاربر وارد شده‌اند و بار متوسط کم است.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: نمایش زمان فعالیت به صورت خوانا</h3>
+            <pre class="code-block">uptime -p</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">up 3 days, 2 hours, 15 minutes</pre>
+            </div>
+            <p>زمان فعالیت را به صورت قابل خواندن (Pretty) نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: نمایش زمان شروع سیستم</h3>
+            <pre class="code-block">uptime -s</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">2024-07-18 07:45:00</pre>
+            </div>
+            <p>زمان دقیق شروع (بوت) سیستم را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: بار متوسط بالا</h3>
+            <pre class="code-block">uptime</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">10:00:00 up 1 day, 5:00, 2 users, load average: 4.5, 3.2, 2.8</pre>
+            </div>
+            <p>بار متوسط ۴.۵ در ۱ دقیقه‌ی اخیر یعنی سیستم بار زیادی دارد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> بار متوسط را بر اساس تعداد هسته‌های CPU تفسیر کنید. مثلاً در یک سیستم ۴ هسته‌ای، بار ۴ به معنی استفاده‌ی کامل از CPU است.</p>
+            <p><strong>نکته:</strong> برای مانیتورینگ دقیق‌تر از <code>top</code> یا <code>htop</code> استفاده کنید.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>uptime</code> زمان فعالیت سیستم را ببینید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>uptime -p</code> زمان فعالیت را به صورت خوانا ببینید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>uptime -s</code> زمان شروع سیستم را ببینید.</p>
+            <p><strong>تمرین ۴:</strong> بار متوسط را بررسی کنید و ببینید آیا سیستم بار زیادی دارد یا نه.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=35" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+
+</div>

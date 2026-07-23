@@ -1,0 +1,160 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">📄 دستور cat – نمایش و اتصال محتوای فایل‌ها</h1>
+    <div class="lesson-meta">سطح: مقدماتی | زمان مطالعه: ۱۰ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>cat</code> – چاپ محتوای فایل‌ها و اتصال آن‌ها به هم</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">cat [گزینه] [فایل]...</pre>
+        <p><strong>توضیح:</strong> محتوای یک یا چند فایل را در خروجی استاندارد (ترمینال) چاپ می‌کند. همچنین می‌تواند چند فایل را به هم متصل کند.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>cat</code> (مخفف Concatenate) یکی از پرکاربردترین دستورات لینوکس است که برای نمایش سریع محتوای فایل‌های کوچک و همچنین اتصال چند فایل به یکدیگر استفاده می‌شود.</p>
+        <p>این دستور به‌طور پیش‌فرض، تمام محتوای فایل را یکجا در ترمینال نمایش می‌دهد، بنابراین برای فایل‌های بزرگ مناسب نیست. برای فایل‌های بزرگ، از دستور <code>less</code> استفاده کنید.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-n</code> – نمایش شماره خطوط (از ۱ شروع می‌شود).</li>
+            <li><code>-b</code> – نمایش شماره خطوط غیر خالی (خطوط خالی شماره ندارند).</li>
+            <li><code>-E</code> – نمایش علامت <code>$</code> در انتهای هر خط.</li>
+            <li><code>-T</code> – نمایش علامت <code>^I</code> به جای Tab.</li>
+            <li><code>-s</code> – حذف خطوط خالی تکراری (فشرده‌سازی).</li>
+            <li><code>-A</code> – معادل <code>-vET</code> (نمایش همه‌ی کاراکترهای غیرقابل چاپ).</li>
+            <li><code>-v</code> – نمایش کاراکترهای غیرقابل چاپ به صورت <code>^X</code> یا <code>M-X</code>.</li>
+            <li><code>-e</code> – معادل <code>-vE</code>.</li>
+            <li><code>-t</code> – معادل <code>-vT</code>.</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: نمایش محتوای یک فایل</h3>
+            <p>ساده‌ترین حالت استفاده از <code>cat</code>:</p>
+            <pre class="code-block">cat file.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">این محتوای فایل است.
+خط دوم.
+خط سوم.</pre>
+            </div>
+            <p>محتوای <code>file.txt</code> را در ترمینال نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: نمایش با شماره خطوط</h3>
+            <p>با گزینه‌ی <code>-n</code>، شماره خطوط را نمایش می‌دهد:</p>
+            <pre class="code-block">cat -n file.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">     1  این محتوای فایل است.
+     2  خط دوم.
+     3  خط سوم.</pre>
+            </div>
+            <p>همراه با شماره خطوط نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: نمایش چند فایل به صورت متوالی</h3>
+            <p>می‌توانید چند فایل را پشت‌سر هم نمایش دهید:</p>
+            <pre class="code-block">cat file1.txt file2.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">محتوای فایل اول
+محتوای فایل دوم</pre>
+            </div>
+            <p>اول <code>file1.txt</code> و سپس <code>file2.txt</code> را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: نمایش انتهای خطوط</h3>
+            <p>با گزینه‌ی <code>-E</code>، انتهای هر خط با <code>$</code> مشخص می‌شود:</p>
+            <pre class="code-block">cat -E file.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">این محتوای فایل است.$
+خط دوم.$
+خط سوم.$</pre>
+            </div>
+            <p>نمایش <code>$</code> در انتهای هر خط، مخصوصاً برای تشخیص فضاهای خالی مفید است.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: حذف خطوط خالی تکراری</h3>
+            <p>با گزینه‌ی <code>-s</code>، خطوط خالی تکراری حذف می‌شوند:</p>
+            <pre class="code-block">cat -s file.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">خط اول
+
+خط سوم</pre>
+            </div>
+            <p>چند خط خالی پشت‌سر هم را به یک خط خالی تبدیل می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۶: ایجاد فایل جدید با <code>cat</code></h3>
+            <p>با استفاده از <code>></code> می‌توانید یک فایل جدید بسازید:</p>
+            <pre class="code-block">cat > newfile.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(منتظر ورودی از شماست. برای ذخیره، Ctrl+D را بزنید.)</pre>
+            </div>
+            <p>این دستور یک فایل جدید می‌سازد و هرچه تایپ کنید را در آن ذخیره می‌کند. با <code>Ctrl+D</code> ذخیره و خارج می‌شوید.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۷: اتصال دو فایل و ذخیره در فایل جدید</h3>
+            <p>با استفاده از <code>></code> می‌توانید خروجی را به فایل دیگری هدایت کنید:</p>
+            <pre class="code-block">cat file1.txt file2.txt > combined.txt</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، فایل combined.txt ساخته می‌شود)</pre>
+            </div>
+            <p>محتوای <code>file1.txt</code> و <code>file2.txt</code> را به هم متصل کرده و در <code>combined.txt</code> ذخیره می‌کند.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>📘 همچنین ببینید (SEE ALSO)</h2>
+        <ul>
+            <li><code>man less</code> – نمایش صفحه‌به‌صفحه فایل‌ها</li>
+            <li><code>man more</code> – نمایش صفحه‌به‌صفحه (قدیمی‌تر)</li>
+            <li><code>man head</code> – نمایش ابتدای فایل</li>
+            <li><code>man tail</code> – نمایش انتهای فایل</li>
+            <li><code>man grep</code> – جستجو در فایل‌ها</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> یک فایل متنی با ۵ خط محتوا بسازید و با <code>cat</code> آن را نمایش دهید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>cat -n</code> همان فایل را با شماره خطوط نمایش دهید.</p>
+            <p><strong>تمرین ۳:</strong> دو فایل بسازید و با <code>cat</code> آن‌ها را به هم متصل کرده و در یک فایل جدید ذخیره کنید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>cat > file.txt</code> یک فایل جدید بسازید و چند خط تایپ کنید. سپس با <code>Ctrl+D</code> ذخیره کنید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=11" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+  
+</div>

@@ -1,0 +1,122 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">🖥️ دستور uname – نمایش اطلاعات سیستم</h1>
+    <div class="lesson-meta">سطح: مقدماتی | زمان مطالعه: ۶ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>uname</code> – چاپ اطلاعات مربوط به سیستم‌عامل و هسته (Kernel)</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">uname [گزینه]</pre>
+        <p><strong>توضیح:</strong> اطلاعاتی مانند نام سیستم‌عامل، نسخه‌ی هسته، نام شبکه و معماری سیستم را نمایش می‌دهد. این دستور برای شناسایی محیط سیستم بسیار مفید است.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>uname</code> (مخفف Unix Name) اطلاعات اساسی سیستم را نمایش می‌دهد. این دستور در اسکریپت‌ها برای شناسایی سیستم‌عامل و نسخه‌ی هسته استفاده می‌شود.</p>
+        <p>به‌طور پیش‌فرض، <code>uname</code> فقط نام سیستم‌عامل را نمایش می‌دهد.</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها (OPTIONS)</h2>
+        <ul>
+            <li><code>-a</code> – نمایش همه‌ی اطلاعات (All).</li>
+            <li><code>-s</code> – نام هسته (Kernel name).</li>
+            <li><code>-n</code> – نام شبکه (Network hostname).</li>
+            <li><code>-r</code> – نسخه‌ی هسته (Kernel release).</li>
+            <li><code>-v</code> – تاریخ و اطلاعات هسته (Kernel version).</li>
+            <li><code>-m</code> – معماری سیستم (Machine architecture).</li>
+            <li><code>-p</code> – نوع پردازنده (Processor type).</li>
+            <li><code>-i</code> – سخت‌افزار (Hardware platform).</li>
+            <li><code>-o</code> – نام سیستم‌عامل (Operating system).</li>
+            <li><code>--help</code> – نمایش راهنمای کوتاه.</li>
+            <li><code>--version</code> – نمایش نسخه‌ی دستور.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: نمایش نام سیستم‌عامل</h3>
+            <pre class="code-block">uname</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Linux</pre>
+            </div>
+            <p>نام سیستم‌عامل را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: نمایش همه‌ی اطلاعات</h3>
+            <pre class="code-block">uname -a</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">Linux hostname 5.15.0-91-generic #101-Ubuntu SMP Tue Nov 15 18:00:00 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux</pre>
+            </div>
+            <p>همه‌ی اطلاعات سیستم را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: نمایش نسخه‌ی هسته</h3>
+            <pre class="code-block">uname -r</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">5.15.0-91-generic</pre>
+            </div>
+            <p>نسخه‌ی هسته‌ی لینوکس را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: نمایش معماری سیستم</h3>
+            <pre class="code-block">uname -m</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">x86_64</pre>
+            </div>
+            <p>معماری سیستم (۶۴ بیتی یا ۳۲ بیتی) را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: نمایش نام شبکه</h3>
+            <pre class="code-block">uname -n</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">my-server</pre>
+            </div>
+            <p>نام شبکه (Hostname) سیستم را نمایش می‌دهد.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> گزینه‌ی <code>-a</code> همه‌ی اطلاعات را به جز <code>-i</code> و <code>-p</code> (اگر مشخص نشده باشند) نمایش می‌دهد.</p>
+            <p><strong>نکته:</strong> برای نمایش نسخه‌ی توزیع لینوکس (مثلاً Ubuntu 22.04) از <code>lsb_release -a</code> استفاده کنید.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>uname</code> نام سیستم‌عامل را ببینید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>uname -r</code> نسخه‌ی هسته را ببینید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>uname -a</code> همه‌ی اطلاعات را ببینید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>uname -m</code> معماری سیستم را ببینید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=34" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+
+</div>

@@ -1,0 +1,175 @@
+<div class="lesson-content" dir="auto">
+    <h1 class="lesson-title">🔎 دستور find – جستجوی فایل‌ها و پوشه‌ها</h1>
+    <div class="lesson-meta">سطح: متوسط | زمان مطالعه: ۱۲ دقیقه</div>
+
+    <section class="section">
+        <h2>📖 نام (NAME)</h2>
+        <p><code>find</code> – جستجوی فایل‌ها و پوشه‌ها در ساختار درختی سیستم فایل</p>
+    </section>
+
+    <section class="section">
+        <h2>💻 خلاصه (SYNOPSIS)</h2>
+        <pre class="code-block">find [مسیر] [شرط] [عمل]</pre>
+        <p><strong>توضیح:</strong> فایل‌ها و پوشه‌هایی را که با شرایط مشخص شده مطابقت دارند، در مسیر داده شده (و زیرپوشه‌های آن) جستجو می‌کند. این دستور بسیار قدرتمند و انعطاف‌پذیر است.</p>
+    </section>
+
+    <section class="section">
+        <h2>📖 توضیح کامل (DESCRIPTION)</h2>
+        <p>دستور <code>find</code> یکی از قدرتمندترین دستورات لینوکس برای جستجوی فایل‌ها و پوشه‌ها بر اساس معیارهای مختلف مانند نام، نوع، اندازه، زمان تغییر و مجوزهای دسترسی است.</p>
+        <p>ساختار این دستور به این صورت است: ابتدا مسیر جستجو را مشخص می‌کنید، سپس شرایط (شرط) و در نهایت عملی که باید روی فایل‌های پیدا شده انجام شود (مثلاً نمایش، حذف یا اجرای یک دستور).</p>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ لیست کامل گزینه‌ها و شرایط (OPTIONS & TESTS)</h2>
+        <h3>شرایط مربوط به نام:</h3>
+        <ul>
+            <li><code>-name "الگو"</code> – جستجو بر اساس نام فایل (حساس به حروف بزرگ و کوچک).</li>
+            <li><code>-iname "الگو"</code> – جستجو بر اساس نام فایل (غیرحساس به حروف بزرگ و کوچک).</li>
+            <li><code>-regex "الگو"</code> – جستجو با عبارت منظم (Regular Expression).</li>
+            <li><code>-iregex "الگو"</code> – جستجو با عبارت منظم (غیرحساس).</li>
+        </ul>
+        <h3>شرایط مربوط به نوع:</h3>
+        <ul>
+            <li><code>-type f</code> – فقط فایل‌های معمولی.</li>
+            <li><code>-type d</code> – فقط پوشه‌ها (Directory).</li>
+            <li><code>-type l</code> – فقط لینک‌های سمبلیک.</li>
+            <li><code>-type b</code> – فایل‌های بلاک (Block devices).</li>
+            <li><code>-type c</code> – فایل‌های کاراکتری (Character devices).</li>
+        </ul>
+        <h3>شرایط مربوط به اندازه:</h3>
+        <ul>
+            <li><code>-size +100M</code> – فایل‌های بزرگتر از ۱۰۰ مگابایت.</li>
+            <li><code>-size -1G</code> – فایل‌های کوچکتر از ۱ گیگابایت.</li>
+            <li><code>-size 1024c</code> – فایل‌های دقیقاً ۱۰۲۴ بایت.</li>
+        </ul>
+        <h3>شرایط مربوط به زمان:</h3>
+        <ul>
+            <li><code>-mtime -7</code> – فایل‌هایی که در ۷ روز گذشته تغییر کرده‌اند.</li>
+            <li><code>-mtime +30</code> – فایل‌هایی که بیش از ۳۰ روز پیش تغییر کرده‌اند.</li>
+            <li><code>-amin -10</code> – فایل‌هایی که در ۱۰ دقیقه‌ی گذشته به آن‌ها دسترسی پیدا شده است.</li>
+        </ul>
+        <h3>شرایط مربوط به مجوزها:</h3>
+        <ul>
+            <li><code>-perm 755</code> – فایل‌هایی با مجوز دقیق ۷۵۵.</li>
+            <li><code>-perm -644</code> – فایل‌هایی که حداقل مجوز ۶۴۴ را دارند.</li>
+        </ul>
+        <h3>عمل‌ها (Actions):</h3>
+        <ul>
+            <li><code>-print</code> – نمایش مسیر فایل‌ها (پیش‌فرض).</li>
+            <li><code>-ls</code> – نمایش جزئیات کامل (مثل <code>ls -l</code>).</li>
+            <li><code>-delete</code> – حذف فایل‌های پیدا شده.</li>
+            <li><code>-exec [command] {} \;</code> – اجرای یک دستور روی هر فایل پیدا شده.</li>
+            <li><code>-exec [command] {} +</code> – اجرای یک دستور روی همه‌ی فایل‌ها به طور همزمان.</li>
+        </ul>
+        <h3>گزینه‌های دیگر:</h3>
+        <ul>
+            <li><code>-maxdepth [n]</code> – محدود کردن عمق جستجو.</li>
+            <li><code>-mindepth [n]</code> – شروع جستجو از عمق مشخص.</li>
+            <li><code>-empty</code> – جستجوی فایل‌ها یا پوشه‌های خالی.</li>
+            <li><code>-not</code> یا <code>!</code> – نفی شرط.</li>
+            <li><code>-o</code> – OR (یا) بین شرایط.</li>
+            <li><code>-a</code> – AND (و) بین شرایط (پیش‌فرض).</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🧪 مثال‌ها (EXAMPLES)</h2>
+
+        <div class="example">
+            <h3>مثال ۱: جستجوی فایل با نام خاص</h3>
+            <pre class="code-block">find /home -name "file.txt"</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">/home/user/file.txt
+/home/user/Documents/file.txt</pre>
+            </div>
+            <p>همه‌ی فایل‌های با نام <code>file.txt</code> را در پوشه‌ی <code>/home</code> جستجو می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۲: جستجوی فایل‌های با پسوند خاص</h3>
+            <pre class="code-block">find /var/log -name "*.log"</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">/var/log/syslog
+/var/log/auth.log
+/var/log/kern.log</pre>
+            </div>
+            <p>همه‌ی فایل‌های با پسوند <code>.log</code> را در <code>/var/log</code> پیدا می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۳: جستجوی پوشه‌ها</h3>
+            <pre class="code-block">find /home -type d -name "projects"</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">/home/user/projects
+/home/user/backup/projects</pre>
+            </div>
+            <p>همه‌ی پوشه‌های با نام <code>projects</code> را جستجو می‌کند.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۴: جستجوی فایل‌های بزرگ</h3>
+            <pre class="code-block">find / -type f -size +1G -exec ls -lh {} \;</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">-rw-r--r-- 1 user user 1.2G Jul 20 10:00 /home/user/video.mp4
+-rw-r--r-- 1 root root 2.1G Jul 19 08:00 /var/log/syslog.1</pre>
+            </div>
+            <p>فایل‌های بزرگتر از ۱ گیگابایت را پیدا کرده و جزئیات آن‌ها را با <code>ls -lh</code> نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۵: جستجوی فایل‌های تغییر کرده در ۷ روز گذشته</h3>
+            <pre class="code-block">find /home -type f -mtime -7</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">/home/user/report.txt
+/home/user/Documents/letter.docx</pre>
+            </div>
+            <p>فایل‌هایی که در ۷ روز گذشته تغییر کرده‌اند را نمایش می‌دهد.</p>
+        </div>
+
+        <div class="example">
+            <h3>مثال ۶: حذف فایل‌های خالی</h3>
+            <pre class="code-block">find /tmp -type f -empty -delete</pre>
+            <div class="output-box">
+                <span class="output-label">خروجی:</span>
+                <pre class="code-block-output">(هیچ خروجی، فایل‌های خالی حذف می‌شوند)</pre>
+            </div>
+            <p>همه‌ی فایل‌های خالی را در <code>/tmp</code> پیدا کرده و حذف می‌کند.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>🧠 نکته (BUGS & NOTES)</h2>
+        <div class="highlight-box">
+            <p><strong>نکته:</strong> اگر می‌خواهید فایل‌هایی که دسترسی به آن‌ها ندارید را هم جستجو کنید، از <code>sudo</code> استفاده کنید.</p>
+            <p><strong>نکته:</strong> برای جستجوی پیشرفته‌تر، می‌توانید از ترکیب <code>find</code> با <code>xargs</code> استفاده کنید.</p>
+            <p><strong>نکته:</strong> برای فایل‌های خیلی بزرگ، از <code>-maxdepth</code> برای محدود کردن عمق جستجو استفاده کنید تا سرعت بالا برود.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>✍️ تمرین</h2>
+        <div class="exercise-box">
+            <p><strong>تمرین ۱:</strong> با <code>find</code> یک فایل با نام خاص را در پوشه‌ی خانه خود جستجو کنید.</p>
+            <p><strong>تمرین ۲:</strong> با <code>find -type d</code> همه‌ی پوشه‌های یک مسیر را پیدا کنید.</p>
+            <p><strong>تمرین ۳:</strong> با <code>find -size</code> فایل‌های بزرگتر از ۱۰۰ مگابایت را پیدا کنید.</p>
+            <p><strong>تمرین ۴:</strong> با <code>find -mtime</code> فایل‌های تغییر کرده در ۳ روز گذشته را پیدا کنید.</p>
+            <p><strong>تمرین ۵:</strong> با <code>find -exec</code> یک دستور روی فایل‌های پیدا شده اجرا کنید.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="highlight-box" style="text-align: center; background: rgba(245, 184, 27, 0.05); border-color: #f5b81b;">
+            <p style="font-size: 1.1rem;">
+                🧀 برای دیدن <strong>جواب تمرین</strong> این درس، 
+                <a href="../answers.html?id=24" style="color: #f5b81b; font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
+                    اینجا کلیک کن
+                </a>
+            </p>
+        </div>
+    </section>
+
+</div>
