@@ -205,72 +205,67 @@
     }
 
     // ============================================
-    // ۷. چک کردن آپدیت
+    // ۷. دکمه کپی خودکار برای کدوبلاک‌ها
     // ============================================
 
-    var VERSION_KEY = 'cheese_version';
+    function setupCopyButtons() {
+        var codeBlocks = document.querySelectorAll('pre, code, .code-block');
 
-    function getLocalVersion() {
-        try {
-            return JSON.parse(localStorage.getItem(VERSION_KEY));
-        } catch(e) {
-            return null;
-        }
-    }
-
-    function saveLocalVersion(versionData) {
-        localStorage.setItem(VERSION_KEY, JSON.stringify(versionData));
-    }
-
-    function compareVersionsNumbers(v1, v2) {
-        var parts1 = v1.split('.').map(Number);
-        var parts2 = v2.split('.').map(Number);
-        
-        for (var i = 0; i < Math.max(parts1.length, parts2.length); i++) {
-            var num1 = parts1[i] || 0;
-            var num2 = parts2[i] || 0;
-            if (num1 !== num2) {
-                return num1 > num2 ? 1 : -1;
+        codeBlocks.forEach(function(block) {
+            // اگر والدش از قبل کانتینر کپی دارد، رد شو
+            if (block.parentNode.classList && block.parentNode.classList.contains('code-wrapper')) {
+                return;
             }
-        }
-        return 0;
-    }
 
-    function checkForUpdates() {
-        return new Promise(function(resolve, reject) {
-            fetch('version.json?v=' + Date.now())
-                .then(function(res) {
-                    if (!res.ok) throw new Error('HTTP ' + res.status);
-                    return res.json();
-                })
-                .then(function(remoteVersion) {
-                    var localVersion = getLocalVersion();
-                    
-                    if (!localVersion) {
-                        resolve({
-                            hasUpdate: true,
-                            remote: remoteVersion,
-                            local: null,
-                            isFirstTime: true
-                        });
-                        return;
-                    }
+            // فقط تگ‌های pre یا بلوک‌های اصلی مد نظر هستند
+            if (block.tagName.toLowerCase() === 'code' && block.parentNode.tagName.toLowerCase() === 'pre') {
+                return; // مدیریت توسط pre انجام می‌شود
+            }
 
-                    var remoteMain = remoteVersion.version || '0.0.0';
-                    var localMain = localVersion.version || '0.0.0';
-                    
-                    var hasUpdate = compareVersionsNumbers(remoteMain, localMain) > 0;
+            var wrapper = document.createElement('div');
+            wrapper.className = 'code-wrapper';
+            wrapper.style.position = 'relative';
+            
+            block.parentNode.insertBefore(wrapper, block);
+            wrapper.appendChild(block);
 
-                    resolve({
-                        hasUpdate: hasUpdate,
-                        remote: remoteVersion,
-                        local: localVersion,
-                        isFirstTime: false
-                    });
-                })
-                .catch(function(err) {
-                    reject(err);
+            var copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.textContent = 'کپی';
+            copyBtn.style.cssText = `
+                position: absolute;
+                top: 8px;
+                left: 8px;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                color: var(--text-muted, #8892b0);
+                font-family: var(--font-code, monospace);
+                font-size: 0.75rem;
+                padding: 0.3rem 0.6rem;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                z-index: 10;
+            `;
+
+            copyBtn.addEventListener('click', function() {
+                var textToCopy = block.innerText;
+                navigator.clipboard.writeText(textToCopy).then(function() {
+                    copyBtn.textContent = 'کپی شد! ✓';
+                    copyBtn.style.color = 'var(--accent-green, #06d6a0)';
+                    copyBtn.style.borderColor = 'var(--accent-green, #06d6a0)';
+
+                    setTimeout(function() {
+                        copyBtn.textContent = 'کپی';
+                        copyBtn.style.color = '';
+                        copyBtn.style.borderColor = '';
+                    }, 2000);
+                }).catch(function(err) {
+                    console.error('خطا در کپی کردن متن:', err);
                 });
+            });
+
+            wrapper.appendChild(copyBtn);
         });
     }
 
@@ -311,11 +306,9 @@
                     if (courseType === 'linux') {
                         lessons = versionData.courses.linux.lessons || [];
                         basePath = 'linux-lessons/';
-                        prefix = '';
                     } else if (courseType === 'python') {
                         lessons = versionData.courses.python.lessons || [];
                         basePath = 'python-lessons/';
-                        prefix = '';
                     } else if (courseType === 'answers') {
                         lessons = versionData.courses.answers.lessons || [];
                         basePath = 'answers/';
@@ -387,14 +380,10 @@
         
         setupSearch: setupSearch,
         setupResume: setupResume,
+        setupCopyButtons: setupCopyButtons,
         
         toggleTheme: toggleTheme,
         loadTheme: loadTheme,
-        
-        checkForUpdates: checkForUpdates,
-        getLocalVersion: getLocalVersion,
-        saveLocalVersion: saveLocalVersion,
-        compareVersionsNumbers: compareVersionsNumbers,
         
         downloadFile: downloadFile,
         downloadCourse: downloadCourse
@@ -408,131 +397,15 @@
         loadTheme();
         setupSearch();
         setupResume();
+        setupCopyButtons();
 
         var themeBtn = document.getElementById('themeToggle');
         if (themeBtn) {
             themeBtn.addEventListener('click', toggleTheme);
         }
 
-        if (navigator.onLine) {
-            setTimeout(function() {
-                checkForUpdates()
-                    .then(function(result) {
-                        if (result.hasUpdate) {
-                            var count = 0;
-                            if (result.remote && result.remote.courses) {
-                                if (result.remote.courses.linux) count += result.remote.courses.linux.lessons.length;
-                                if (result.remote.courses.python) count += result.remote.courses.python.lessons.length;
-                                if (result.remote.courses.answers) count += result.remote.courses.answers.lessons.length;
-                            }
-                            saveLocalVersion(result.remote);
-                            showUpdateNotification(count);
-                        }
-                    })
-                    .catch(function(err) {
-                        console.log('⚠️ خطا در چک آپدیت:', err);
-                    });
-            }, 3000);
-        }
-
-        console.log('🧀 CheeseUtils ready!');
+        console.log('🧀 CheeseUtils ready with Copy feature!');
     }
-
-    // ============================================
-    // ۱۱. نمایش نوتیف آپدیت
-    // ============================================
-
-// ============================================
-// ۱۱. نمایش نوتیف آپدیت (ساده و بدون دانلود)
-// ============================================
-
-function showUpdateNotification(count) {
-    if (document.getElementById('updateNotification')) return;
-
-    var notification = document.createElement('div');
-    notification.id = 'updateNotification';
-    notification.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        left: 20px;
-        max-width: 450px;
-        margin: 0 auto;
-        background: rgba(0, 10, 0, 0.95);
-        border: 1px solid rgba(245, 184, 27, 0.2);
-        border-radius: 16px;
-        padding: 1.5rem;
-        z-index: 9999;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(10px);
-        animation: slideUpNotif 0.4s ease;
-        text-align: center;
-        direction: rtl;
-        font-family: 'Courier New', monospace;
-    `;
-
-    var style = document.createElement('style');
-    style.textContent = `
-        @keyframes slideUpNotif {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-    `;
-    document.head.appendChild(style);
-
-    notification.innerHTML = `
-        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📢</div>
-        <h3 style="color: #f5b81b; margin-bottom: 0.5rem; font-size: 1.1rem;">آپدیت جدید موجود است!</h3>
-        <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-bottom: 1.2rem;">
-            ${count} فایل برای به‌روزرسانی آماده است.
-        </p>
-        <p style="color: rgba(255,255,255,0.15); font-size: 0.7rem; margin-bottom: 1.2rem;">
-            برای دریافت آپدیت، لطفاً صفحه را رفرش کنید یا بعداً مراجعه کنید.
-        </p>
-        <div style="display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;">
-            <button onclick="location.reload()" style="
-                background: rgba(245, 184, 27, 0.08);
-                border: 1px solid rgba(245, 184, 27, 0.15);
-                padding: 0.6rem 1.5rem;
-                border-radius: 8px;
-                color: #f5b81b;
-                cursor: pointer;
-                font-family: 'Courier New', monospace;
-                font-size: 0.85rem;
-                transition: all 0.3s ease;
-            ">
-                🔄 رفرش صفحه
-            </button>
-            <button onclick="this.closest('#updateNotification').remove()" style="
-                background: transparent;
-                border: 1px solid rgba(255,255,255,0.03);
-                padding: 0.6rem 1.5rem;
-                border-radius: 8px;
-                color: rgba(255,255,255,0.2);
-                cursor: pointer;
-                font-family: 'Courier New', monospace;
-                font-size: 0.85rem;
-                transition: all 0.3s ease;
-            ">
-                ⏰ بعداً
-            </button>
-        </div>
-    `;
-
-    document.body.appendChild(notification);
-
-    // بعد از ۱۵ ثانیه خودکار بسته بشه
-    setTimeout(function() {
-        var notif = document.getElementById('updateNotification');
-        if (notif) {
-            notif.style.transition = 'opacity 0.5s ease';
-            notif.style.opacity = '0';
-            setTimeout(function() {
-                if (notif.parentNode) notif.remove();
-            }, 500);
-        }
-    }, 15000);
-}
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
