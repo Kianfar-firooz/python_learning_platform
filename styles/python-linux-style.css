@@ -448,3 +448,42 @@ body[data-theme="light"] .modal-content {
         align-items: flex-start;
     }
 }
+/* استایل کانتینر کدوبلاک برای قرارگیری دکمه */
+.code-wrapper {
+    position: relative;
+    margin: 0.8rem 0;
+}
+
+.code-wrapper .code-block {
+    margin: 0; /* حذف margin اضافی چون کانتینر مدیریت میکنه */
+}
+
+/* دکمه کپی داخل کدوبلاک */
+.copy-btn {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    font-family: var(--font-code);
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.copy-btn:hover {
+    background: rgba(255, 183, 3, 0.1);
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+}
+
+.copy-btn.copied {
+    background: rgba(6, 214, 160, 0.15);
+    color: var(--accent-green);
+    border-color: var(--accent-green);
+}
+
