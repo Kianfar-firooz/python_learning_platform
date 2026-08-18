@@ -1,0 +1,257 @@
+/* ============================================
+   🧀💻 استایل ترمینال | CheeseCode Academy
+   (هماهنگ با لوگو - نسخه سبک)
+   ============================================ */
+html{
+    background-color: #0a0d16e3;
+}
+   .terminal-wrapper {
+    width: 100%;
+    max-width: 900px;
+    background: rgba(10, 14, 23, 0.85);
+    border: 1px solid rgba(0, 229, 255, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    margin: 0 auto;
+    direction: rtl;
+    text-align: right;
+    transition: all 0.2s ease;
+}
+
+.terminal-wrapper:hover {
+    border-color: rgba(245, 158, 11, 0.15);
+}
+
+/* نوار بالای ترمینال */
+.terminal-topbar {
+    background: rgba(10, 14, 23, 0.9);
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.06);
+}
+
+.window-dots {
+    display: flex;
+    gap: 8px;
+}
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.dot-red { background: #ff5f56; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #27c93f; }
+
+.terminal-label {
+    margin-right: 15px;
+    font-size: 0.8rem;
+    color: #f59e0b;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.terminal-body {
+    padding: 1.8rem;
+}
+
+.editor-label {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: #00e5ff;
+    font-size: 0.85rem;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+}
+
+.editor-label::before {
+    content: '>>';
+    color: #00e5ff;
+}
+
+/* تکست‌آریا */
+textarea.code-textarea {
+    width: 100%;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #e0fbfc;
+    border: 1px solid rgba(0, 229, 255, 0.08);
+    border-right: 2px solid #00e5ff;
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    resize: vertical;
+    box-sizing: border-box;
+    outline: none;
+    direction: ltr;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+textarea.code-textarea:focus {
+    border-color: #00e5ff;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+/* نوار دکمه‌ها */
+.action-bar {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn-terminal {
+    background: rgba(0, 229, 255, 0.03);
+    border: 1px solid rgba(0, 229, 255, 0.06);
+    padding: 0.5rem 1.4rem;
+    border-radius: 8px;
+    color: #00e5ff;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+}
+
+.btn-terminal:hover {
+    background: rgba(0, 229, 255, 0.05);
+    border-color: rgba(245, 158, 11, 0.2);
+    transform: scale(1.02);
+}
+
+.btn-secondary {
+    background: rgba(245, 158, 11, 0.02);
+    border-color: rgba(245, 158, 11, 0.06);
+    color: #f59e0b;
+}
+
+.btn-secondary:hover {
+    background: rgba(245, 158, 11, 0.04);
+    border-color: rgba(245, 158, 11, 0.12);
+}
+
+/* بخش خروجی */
+.output-container {
+    margin-top: 1.2rem;
+    border-top: 1px solid rgba(0, 229, 255, 0.06);
+    padding-top: 1rem;
+}
+
+.output-title {
+    font-size: 0.75rem;
+    color: rgba(0, 229, 255, 0.3);
+    margin-bottom: 0.5rem;
+    font-family: 'Courier New', monospace;
+}
+
+pre.terminal-output {
+    background: rgba(0, 0, 0, 0.6);
+    color: #f59e0b;
+    border: 1px solid rgba(0, 229, 255, 0.04);
+    border-right: 2px solid #f59e0b;
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 60px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+    direction: ltr;
+    text-align: left;
+}
+
+pre.terminal-output::-webkit-scrollbar {
+    width: 3px;
+}
+pre.terminal-output::-webkit-scrollbar-track {
+    background: rgba(0, 229, 255, 0.01);
+}
+pre.terminal-output::-webkit-scrollbar-thumb {
+    background: rgba(0, 229, 255, 0.1);
+    border-radius: 10px;
+}
+
+/* ============================================
+   ☀️ حالت روشن (Light Theme)
+   ============================================ */
+
+body[data-theme="light"] .terminal-wrapper {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+body[data-theme="light"] .terminal-topbar {
+    background: rgba(245, 245, 245, 0.9);
+    border-bottom-color: rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme="light"] .terminal-label {
+    color: #d97706;
+}
+
+body[data-theme="light"] .editor-label {
+    color: #d97706;
+}
+
+body[data-theme="light"] textarea.code-textarea {
+    background: rgba(0, 0, 0, 0.03);
+    color: #1a1a2e;
+    border-color: rgba(0, 0, 0, 0.06);
+    border-right-color: #0284c7;
+}
+
+body[data-theme="light"] textarea.code-textarea:focus {
+    border-color: #0284c7;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme="light"] .btn-terminal {
+    color: #0284c7;
+    border-color: rgba(0, 0, 0, 0.06);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body[data-theme="light"] .btn-terminal:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(217, 119, 6, 0.2);
+    color: #d97706;
+}
+
+body[data-theme="light"] .btn-secondary {
+    color: #d97706;
+}
+
+body[data-theme="light"] .output-container {
+    border-top-color: rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme="light"] .output-title {
+    color: rgba(2, 132, 199, 0.3);
+}
+
+body[data-theme="light"] pre.terminal-output {
+    background: rgba(0, 0, 0, 0.03);
+    color: #d97706;
+    border-color: rgba(0, 0, 0, 0.04);
+    border-right-color: #d97706;
+}
+
+body[data-theme="light"] ::selection {
+    background: rgba(217, 119, 6, 0.1);
+    color: #d97706;
+}

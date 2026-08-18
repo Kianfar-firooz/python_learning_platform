@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>کانال چیز کد | آموزش لینوکس</title>
+    <title>  چیز کد | آموزش لینوکس</title>
     <link rel="stylesheet" href="styles/python-linux-style.css">
     <link rel="icon" type="image/jpeg" href="images/logo.png">
     
@@ -14,12 +14,12 @@
 
     <header class="hero-panel">
         <div class="brand">
-            <img src="images/logo.jpg" alt="Logo" class="brand-logo" id="logoBtn">
-            <div class="brand-text"><h1>کانال چیز کد</h1><p>CheeseCode Channel</p></div>
+            <img src="images/logo.jpeg" alt="Logo" class="brand-logo" id="logoBtn">
+            <div class="brand-text"><h1>  چیز کد</h1><p>CheeseCode</p></div>
         </div>
         <div style="display:flex; gap:0.5rem; align-items:center;">
             <button id="themeToggle" class="action-btn" style="background:transparent; border:1px solid rgba(0,255,65,0.1);">☀️</button>
-            <button class="action-btn" id="infoButton">📢 اطلاعات کانال</button>
+            <button class="action-btn" id="infoButton">📢 اطلاعات  </button>
         </div>
     </header>
 
@@ -59,7 +59,7 @@
         <div class="modal-content" style="max-width: 450px; text-align: center; border-top-color: #f5b81b;">
             <span class="close-modal" id="closeChannel">&times;</span>
             <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎓</div>
-            <h3 style="color: #f5b81b; font-weight: 700; font-size: 1.4rem;">کانال چیزکد | CheeseCode</h3>
+            <h3 style="color: #f5b81b; font-weight: 700; font-size: 1.4rem;">  چیزکد | CheeseCode</h3>
             <p style="margin: 1rem 0; color: rgba(255,255,255,0.5);">🍕 آموزش ساده پایتون مثل خوردن پنیر</p>
             <p style="color: rgba(255,255,255,0.7);">
                 ارتباط با ادمین: 
@@ -104,23 +104,11 @@
             }
         
             function loadLesson(lesson) {
-                var cached = window.CheeseUtils ? window.CheeseUtils.getFromCache(lesson.file) : null;
-                
-                if (cached) {
-                    modalBody.innerHTML = cached;
-                    lessonModal.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                    if (window.CheeseUtils) {
-                        window.CheeseUtils.saveLastLesson(lesson.file, lesson.title);
-                    }
-                    return;
-                }
-        
                 modalBody.innerHTML = '<div style="text-align:center;padding:2rem;">⏳ در حال بارگذاری...</div>';
                 lessonModal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
         
-                fetch('linux-lessons/' + lesson.file)
+                fetch('linux-lessons/' + lesson.file + '?v=' + Date.now())
                     .then(function(res) {
                         if (!res.ok) throw new Error('HTTP ' + res.status);
                         return res.text();
@@ -129,6 +117,7 @@
                         modalBody.innerHTML = html;
                         if (window.CheeseUtils) {
                             window.CheeseUtils.saveLastLesson(lesson.file, lesson.title);
+                            window.CheeseUtils.updateProgress(lessonsConfig.length);
                         }
                     })
                     .catch(function() {

@@ -1,0 +1,12 @@
+[
+    {
+      "id": "py_003",
+      "title": "معکووس کردن یک رشته",
+      "type": "python",
+      "badgeName": "نشان پایتون کار مبتدی",
+      "badgeImage": "badges/python-badge-2.png",
+      "creationDate": "2026-07-26",
+      "expirationDate": "2026-08-02",
+      "expectedOutput": "cheese"
+    }
+  ]

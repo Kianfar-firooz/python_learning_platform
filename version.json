@@ -140,7 +140,7 @@
         { "name": "answers-config.js", "version": "1.0.0", "lastUpdate": "1405-01-01" }
     ],
     "js": [
-        { "name": "cheese-utils.js", "version": "1.0.0", "lastUpdate": "1405-01-01" },
-        { "name": "main.js", "version": "1.0.0", "lastUpdate": "1405-01-01" }
+        { "name": "cheese-utils.js", "version": "1.2.0", "lastUpdate": "1405-01-02" },
+        { "name": "main.js", "version": "1.2.0", "lastUpdate": "1405-01-05" }
     ]
 }

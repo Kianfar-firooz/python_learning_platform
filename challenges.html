@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>چالش‌های پایتون | CheeseCode Academy</title>
+    
+    <!-- استایل‌ها -->
+    <link rel="stylesheet" href="styles/index-style.css">
+    <link rel="stylesheet" href="styles/challenges-style.css">
+    <link rel="icon" type="image/jpeg" href="images/logo.png">
+    <script src="./pyodide/pyodide.js"></script>
+    <script src="./js/python-engine.js"></script>
+</head>
+<body>
+
+    <div class="challenges-wrapper">
+
+        <!-- ===== هدر ===== -->
+        <div class="page-header">
+            <h2>چالش‌های پایتون</h2>
+            <div class="header-actions">
+                <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+                <a href="index.html" class="back-link">↩ بازگشت</a>
+            </div>
+        </div>
+
+        <!-- ===== کارت چالش ===== -->
+        <div class="challenge-card">
+            <h3 id="challenge-title">در حال بارگذاری چالش...</h3>
+            <div id="challenge-description" class="challenge-desc"></div>
+            
+            <textarea id="challenge-code" dir="ltr" rows="6" placeholder="# کد پایتون خود را اینجا بنویسید..."></textarea>
+            
+            <button onclick="submitChallenge()">▶ ارسال و بررسی</button>
+            
+            <p id="challenge-result"></p>
+        </div>
+
+        <hr style="border-color: rgba(0, 229, 255, 0.06); margin: 30px 0;">
+
+        <!-- ===== بخش نشان‌ها ===== -->
+        <div class="badges-section">
+            <h2>نشان‌های من</h2>
+            <div id="badges-container"></div>
+        </div>
+
+    </div>
+
+    <!-- ============================================
+    🧀 اسکریپت (دست نخورده - دقیقاً مثل خودتون)
+    ============================================ -->
+
+    <script>
+        // ===== تغییر تم (اضافه شده) =====
+        function toggleTheme() {
+            let body = document.body;
+            let currentTheme = body.getAttribute('data-theme');
+            let toggle = document.getElementById('themeToggle');
+            
+            if (currentTheme === 'light') {
+                body.removeAttribute('data-theme');
+                toggle.innerHTML = '🌙';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                toggle.innerHTML = '☀️';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        function loadTheme() {
+            let savedTheme = localStorage.getItem('theme');
+            let toggle = document.getElementById('themeToggle');
+            
+            if (savedTheme === 'light') {
+                document.body.setAttribute('data-theme', 'light');
+                toggle.innerHTML = '☀️';
+            }
+        }
+
+        // ===== کد اصلی شما (دست نخورده) =====
+        let currentChallenge = null;
+
+        async function loadDailyChallenge() {
+            let response = await fetch('./settings/challenges.json');
+            let challenges = await response.json();
+            
+            currentChallenge = challenges[0];
+            document.getElementById('challenge-title').innerText = currentChallenge.title;
+            document.getElementById('challenge-description').innerHTML = currentChallenge.description || '';
+            
+            renderBadges();
+        }
+
+        async function submitChallenge() {
+            let userCode = document.getElementById('challenge-code').value;
+            let resultBox = document.getElementById('challenge-result');
+            resultBox.innerText = "⏳ در حال بررسی خروجی...";
+            resultBox.className = 'loading';
+
+            let userOutput = await runPythonCode(userCode);
+
+            if (userOutput.trim() === currentChallenge.expectedOutput.trim()) {
+                resultBox.className = 'success';
+                resultBox.innerText = "🎉 تبریک! چالش با موفقیت حل شد و نشان آزاد شد.";
+                saveBadge(currentChallenge.id, currentChallenge.badgeName, currentChallenge.badgeImage);
+            } else {
+                resultBox.className = 'error';
+                resultBox.innerText = `❌ خروجی اشتباه است. خروجی شما: ${userOutput}`;
+            }
+        }
+
+        function saveBadge(id, name, imagePath) {
+            let earnedBadges = JSON.parse(localStorage.getItem('earned_badges') || "{}");
+            if (!earnedBadges[id]) {
+                earnedBadges[id] = { name: name, image: imagePath, date: new Date().toISOString() };
+                localStorage.setItem('earned_badges', JSON.stringify(earnedBadges));
+                renderBadges();
+            }
+        }
+
+        function renderBadges() {
+            let container = document.getElementById('badges-container');
+            let earnedBadges = JSON.parse(localStorage.getItem('earned_badges') || "{}");
+            
+            container.innerHTML = "";
+            
+            let keys = Object.keys(earnedBadges);
+            if (keys.length === 0) {
+                container.innerHTML = '<div class="badge-empty">هنوز نشان‌ای کسب نکرده‌اید 🏆</div>';
+                return;
+            }
+            
+            for (let id in earnedBadges) {
+                let badge = earnedBadges[id];
+                container.innerHTML += `
+                    <div>
+                        <img src="${badge.image}" alt="${badge.name}">
+                        <p>${badge.name}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // ===== مقداردهی اولیه =====
+        loadTheme();
+        loadDailyChallenge();
+    </script>
+
+</body>
+</html>

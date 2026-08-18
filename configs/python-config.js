@@ -1,6 +1,7 @@
 // 📢 دفترچه ثبت درس‌های آکادمی چیزکد
 // هر وقت درس جدیدی ساختی، فقط بیا خط آخر این لیست یکی مثل بقیه اضافه کن!
 const lessonsConfig = [
+    { title: "محیط اجرای پایتون", file: "terminal-python-link.html"},
     { title: "متد های str", file: "str-m.html" },
     { title: "متد های float", file: "float-m.html" },
     { title: "متد های int", file: "int-m.html" },
