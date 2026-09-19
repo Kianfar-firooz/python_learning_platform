@@ -43,14 +43,14 @@
     color: #f5b81b;
     font-size: 1rem;
     margin: 0 0 0.3rem 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 .cache-status-info p {
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.8rem;
     margin: 0 0 0.6rem 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 .cache-progress-bar {
@@ -79,7 +79,7 @@
     padding: 0.6rem 1.2rem;
     border-radius: 10px;
     color: #f5b81b;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
@@ -100,7 +100,7 @@
     padding: 0.6rem 1.2rem;
     border-radius: 10px;
     color: #00d4ff;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
@@ -120,7 +120,7 @@
     padding: 0.6rem 1.2rem;
     border-radius: 10px;
     color: #ff6b6b;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
@@ -147,7 +147,7 @@
     color: #f5b81b;
     font-size: 1.3rem;
     margin: 0 0 0.3rem 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     letter-spacing: 1px;
 }
 
@@ -160,7 +160,7 @@
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.85rem;
     margin: 0 0 1rem 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 /* ============================================
@@ -210,7 +210,7 @@
     color: #f5b81b;
     font-size: 1rem;
     margin: 0 0 0.3rem 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 .card-desc {
@@ -224,7 +224,7 @@
     color: rgba(245, 184, 27, 0.6);
     font-size: 0.7rem;
     margin: 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 /* ============================================
@@ -255,7 +255,7 @@
     color: rgba(255, 255, 255, 0.4);
     font-size: 0.7rem;
     margin: 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 /* ============================================
@@ -275,7 +275,7 @@
     flex: 1;
     padding: 0.6rem 1rem;
     border-radius: 10px;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
@@ -355,14 +355,14 @@
     color: #f5b81b;
     font-size: 0.9rem;
     margin: 0 0 0.2rem 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 .resource-info p {
     color: rgba(255, 255, 255, 0.4);
     font-size: 0.75rem;
     margin: 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     direction: ltr;
     text-align: left;
 }
@@ -392,7 +392,7 @@
     border-radius: 12px;
     padding: 0.8rem 1.5rem;
     color: #f5b81b;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-size: 0.85rem;
     z-index: 10000;
     backdrop-filter: blur(20px);

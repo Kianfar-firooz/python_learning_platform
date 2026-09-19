@@ -406,7 +406,7 @@ body[data-theme="light-gray"] .course-card:hover {
     background: transparent;
     cursor: pointer;
     transition: all 0.2s ease;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.7);
     text-align: right;
@@ -436,7 +436,7 @@ body[data-theme="light-gray"] .course-card:hover {
     font-size: 0.9rem;
     flex-shrink: 0;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 .theme-preview.theme-dark { background: #0a0e1a; color: #f5b81b; }
@@ -545,7 +545,7 @@ body[data-theme="light-gray"] .course-card:hover {
 .window-title {
     flex: 1;
     text-align: center;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-size: 0.85rem;
     color: rgba(245, 184, 27, 0.8);
     font-weight: 600;
@@ -649,7 +649,7 @@ body[data-theme^="light"] .window-title { color: #d97706; }
 
 .extra-buttons-bar button {
     min-height: 44px;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-weight: 600;
     transition: all 0.2s ease;
     cursor: pointer;

@@ -16,7 +16,7 @@
     color: #f5b81b;
     font-size: 1.6rem;
     margin: 0 0 0.3rem 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     letter-spacing: 1px;
 }
 
@@ -29,7 +29,7 @@
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.85rem;
     margin: 0 0 2rem 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 /* ============================================
@@ -43,7 +43,7 @@
     color: #f5b81b;
     text-decoration: none;
     font-size: 1.2rem;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     cursor: pointer;
     transition: all 0.2s ease;
     display: inline-flex;
@@ -85,7 +85,7 @@
     color: #f5b81b;
     font-size: 1.2rem;
     margin: 0 0 0.3rem 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     letter-spacing: 1px;
 }
 
@@ -98,7 +98,7 @@
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.85rem;
     margin: 0 0 1.2rem 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 /* ============================================
@@ -115,7 +115,7 @@
     background: rgba(245, 184, 27, 0.05);
     border: 1px solid rgba(245, 184, 27, 0.15);
     color: rgba(255, 255, 255, 0.8);
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
@@ -166,7 +166,7 @@
     background: rgba(245, 184, 27, 0.03);
     border: 1px solid rgba(245, 184, 27, 0.1);
     color: rgba(255, 255, 255, 0.75);
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-size: 0.9rem;
     transition: all 0.2s ease;
     font-weight: 500;
@@ -421,14 +421,14 @@ body[data-theme^="light"] .modal-item-check {
     color: #00d4ff;
     font-size: 1.3rem;
     font-weight: bold;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     margin-bottom: 0.2rem;
 }
 
 .stat-label {
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.7rem;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 body[data-theme^="light"] .stat-card {

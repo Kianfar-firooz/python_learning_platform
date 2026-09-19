@@ -63,7 +63,7 @@ body.focus-mode .main-container {
 
 .cheese-auto-loader-text {
     color: #f5b81b;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: 2px;
@@ -142,7 +142,7 @@ body.focus-mode .main-container {
     justify-content: center;
     z-index: 99999;
     direction: rtl;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -160,7 +160,7 @@ body.focus-mode .main-container {
 .cheese-loading-text {
     color: #f5b81b;
     font-size: 1rem;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     text-align: center;
     letter-spacing: 1px;
     animation: textPulse 1.5s ease-in-out infinite;
@@ -189,7 +189,7 @@ body.focus-mode .main-container {
     transform: translate(-50%, 100px);
     padding: 0.9rem 1.5rem;
     border-radius: 12px;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-size: 0.9rem;
     font-weight: 600;
     z-index: 10000;

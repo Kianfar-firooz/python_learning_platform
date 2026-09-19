@@ -9,7 +9,7 @@
 }
 
 body {
-    font-family: 'Courier New', 'Fira Code', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', 'Segoe UI', sans-serif;
     color: #ffffff;
     min-height: 100vh;
     display: flex;
@@ -107,9 +107,9 @@ body::after {
     font-weight: 700;
     color: #f5b81b;
     text-shadow: 0 0 25px rgba(245, 184, 27, 0.25);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     margin-bottom: 0.3rem;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 .glass-card h1::after {
@@ -131,12 +131,62 @@ body::after {
     }
 }
 
-.glass-card>p {
-    font-size: 0.85rem;
-    color: rgba(245, 184, 27, 0.6);
-    letter-spacing: 4px;
-    margin-bottom: 1.8rem;
-    font-family: 'Courier New', monospace;
+.glass-card > .tagline {
+    font-size: 0.95rem;
+    color: rgba(245, 184, 27, 0.85);
+    letter-spacing: 0.5px;
+    margin-bottom: 0.6rem;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+}
+
+.glass-card > .index-intro {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.7;
+    margin-bottom: 1.6rem;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+}
+
+.index-header {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(10, 14, 26, 0.5);
+    border-radius: 16px;
+    border: 1px solid rgba(245, 184, 27, 0.06);
+}
+
+.index-header-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.index-header-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid rgba(245, 184, 27, 0.15);
+}
+
+.index-header-title {
+    font-size: 1.1rem;
+    color: #f5b81b;
+    margin: 0;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+}
+
+.index-header-sub {
+    font-size: 0.65rem;
+    color: rgba(245, 184, 27, 0.55);
+    margin: 0;
+    letter-spacing: 1px;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 #course-list {
@@ -148,20 +198,33 @@ body::after {
 .course-card {
     background: rgba(245, 184, 27, 0.03);
     border: 1px solid rgba(245, 184, 27, 0.12);
-    padding: 1.2rem 1.5rem;
+    padding: 1rem 1.3rem;
     border-radius: 16px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.25rem;
     transition: all 0.3s ease;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-size: 1.05rem;
     font-weight: 500;
     position: relative;
     overflow: hidden;
+}
+
+.course-card-title {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.course-card-desc {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 400;
+    line-height: 1.4;
 }
 
 .course-card::before {
@@ -244,7 +307,7 @@ body::after {
     font-size: 1.6rem;
     color: #f5b81b;
     margin-bottom: 0.5rem;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     letter-spacing: 2px;
 }
 
@@ -258,7 +321,7 @@ body::after {
     font-size: 0.9rem;
     margin: 0.5rem 0 1.5rem;
     line-height: 1.8;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 .modal-content .btn-link {
@@ -270,7 +333,7 @@ body::after {
     border-radius: 12px;
     text-decoration: none;
     font-weight: 600;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-size: 0.9rem;
     border: 1px solid rgba(245, 184, 27, 0.2);
     transition: all 0.3s ease;
@@ -286,9 +349,9 @@ body::after {
     margin-top: 12px;
     background: transparent;
     border: none;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.55);
     cursor: pointer;
-    font-family: 'Courier New', monospace;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     font-size: 0.8rem;
     padding: 0.5rem 1rem;
     transition: all 0.3s ease;
